@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
+.ps .ps__scrollbar-y-rail {
+    left: 3px;
+    right: auto;
+}
+
+/* | content container | */
+.page-content {
+  width: auto;
+  height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: white;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin-bottom: 60px;
+}
+
+/* | Styling divs | */
+.custom-div-1 {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* | Styles for sign up container | */
+.sign-up-container{
+  width: auto;
+  height: 80Vh;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+/* | custom form style | */
+.custom-form-1{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* | overide label | */
+label {
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+
+/* | custom lable | */
+.custom-lable-1 {
+  width: auto;
+  height: auto;
+  padding: 5px 10px;
+  margin: 2px;
+  color: white;
+  border-radius: 4px;
+}
+
+
+/* | Remove Styles from list | */
+ul.custom-list-1{
+  list-style-type: none;
+  margin: 1px;
+  padding-left: 5px;
+}
+
+ul.custom-list-1 a {
+  margin: 2px;
+}
+
+.custom-table-1 {
+  border: 0;
+}
+
+.custom-link-1 {
+  cursor: pointer;
+  color: white;
+}
+
+tr.custom-table-1 td {
+  width: 50%;
+  cursor: pointer;
+}

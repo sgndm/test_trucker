@@ -1,0 +1,117 @@
+<div class="page-content">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-8">
+      <h2 class=""> {{ trucker_name }} </h2>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <h2 class="text-right"> {{ job_name }} </h2>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row justify-content-center">
+
+    <div class="col-sm-12 col-md-12 col-lg-3">
+
+      <label class="col-sm-12">
+        <h6>Date</h6>
+        <p *ngIf="j_date" class="bg-info custom-lable-1"> {{ j_date }} </p>
+      </label>
+
+      <label class="col-sm-12">
+        <h6>Start Time</h6>
+        <p *ngIf="s_time" class="bg-info custom-lable-1"> {{ s_time }} </p>
+      </label>
+
+      <label class="col-sm-12">
+        <h6>End Time</h6>
+        <p *ngIf="e_time" class="bg-info custom-lable-1"> {{ e_time }} </p>
+      </label>
+
+      <label class="col-sm-12">
+        <h6>Additional Port To Port Time</h6>
+        <p *ngIf="p_p_time" class="bg-info custom-lable-1"> {{ p_p_time }} </p>
+      </label>
+
+      <label class="col-sm-12">
+        <h6>Total Work Hours</h6>
+        <p *ngIf="t_w_hours" class="bg-info custom-lable-1"> {{ t_w_hours }} </p>
+      </label>
+
+      <label class="col-sm-12">
+        <h6>Hourly Trucking Rate</h6>
+        <p *ngIf="h_t_rate" class="bg-info custom-lable-1"> {{ h_t_rate }} </p>
+      </label>
+
+      <label class="col-sm-12">
+        <h6>Trucking Invoice Total</h6>
+        <p *ngIf="t_i_total" class="bg-info custom-lable-1"> {{ t_i_total }} </p>
+      </label>
+
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-9">
+      <h4 class="text-center"> Job Progress</h4>
+      <hr>
+
+      <div class="row justify-content-center">
+
+        <label class="col-sm-12 col-md-3">
+          <h6>Number of Loads</h6>
+          <p *ngIf="n_loads" class="bg-info custom-lable-1"> {{ n_loads }} </p>
+        </label>
+        <label class="col-sm-12 col-md-3">
+          <h6>Average Round Trips</h6>
+          <p *ngIf="a_r_trips" class="bg-info custom-lable-1"> {{ a_r_trips }} </p>
+        </label>
+
+        <div class="col-sm-12 col-md-6 form-group">
+          <label for="loder_note">Loder Notes</label>
+          <textarea name="loder_note" id="loder_note" rows="" cols="" class="form-control" value=""></textarea>
+        </div>
+
+      </div>
+
+      <div class="col-sm-12 col-md-12">
+        <br>
+        <table class="table table-sm table-striped">
+          <thead class="bg-info text-white">
+            <tr>
+              <th>Round</th>
+              <th>Left Job site</th>
+              <th>Arrived Dump Site</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let t_turn of truck_turns">
+              <td> {{ t_turn.index }} </td>
+              <td> {{ t_turn.left }} </td>
+              <td> {{ t_turn.arrived }} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm-12 col-md-12">
+        <br>
+        <h5 class="text-center">Payment Details</h5>
+        <hr>
+
+        <div class="row justify-content-center">
+          <div class="form-group col-sm-12 col-md-4">
+            <input type="checkbox" name="" id="Payment" value="">
+            <label for="Payment">Paid</label>
+          </div>
+          <div class="form-group col-sm-12 col-md-8">
+            <label for="payment_note">Payment Notes</label>
+            <textarea name="payment_note" id="payment_note" rows="" cols="" class="form-control"></textarea>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
