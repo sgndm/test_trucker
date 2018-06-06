@@ -22,6 +22,9 @@ import { TodayComponent } from './projects/today/today.component';
 import { UpcomingComponent } from './projects/upcoming/upcoming.component';
 import { HistoryComponent } from './projects/history/history.component';
 import { PJobComponent } from './projects/p-job/p-job.component';
+import { PDayComponent } from './projects/p-day/p-day.component';
+import { PMonthComponent } from './projects/p-month/p-month.component';
+import { PYearComponent } from './projects/p-year/p-year.component';
 
 const routes: Routes = [
     // loader history
@@ -41,7 +44,14 @@ const routes: Routes = [
     { path: 'projects/today', component: TodayComponent },
     { path: 'projects/today/job/:id', component: PJobComponent },
     { path: 'projects/upcoming', component: UpcomingComponent },
-    { path: 'projects/history', component: HistoryComponent },
+    { path: 'projects/upcoming/date/:id', component: PDayComponent },
+    { path: 'projects/upcoming/job/:id', component: PJobComponent },
+    { path: 'projects/upcoming/month/:id', component: PMonthComponent },
+    { path: 'projects/past', component: HistoryComponent },
+    { path: 'projects/past/date/:id', component: PDayComponent },
+    { path: 'projects/past/job/:id', component: PJobComponent },
+    { path: 'projects/past/month/:id', component: PMonthComponent },
+    { path: 'projects/past/year/:id', component: PYearComponent },
 
 
 ];

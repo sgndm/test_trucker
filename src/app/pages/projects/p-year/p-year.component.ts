@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-history',
-  templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  selector: 'app-p-year',
+  templateUrl: './p-year.component.html',
+  styleUrls: ['./p-year.component.css']
 })
-export class HistoryComponent implements OnInit {
+export class PYearComponent implements OnInit {
 
     public proj_mon : number;
     public proj_tue : number;
@@ -64,6 +64,6 @@ export class HistoryComponent implements OnInit {
             { 'name': '2015', 'count': 10},
         ];
 
-    }
+    
 
 }

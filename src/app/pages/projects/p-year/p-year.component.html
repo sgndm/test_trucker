@@ -2,7 +2,7 @@
 
     <div class="row justify-content-center">
       <div class="col-sm-12 col-md-8">
-        <h2 class=""> Upcoming Projects </h2>
+        <h2 class=""> 2017</h2>
       </div>
       <div class="col-sm-12 col-md-4">
         <h2 class="text-right"> {{ company_name }}</h2>
@@ -12,99 +12,9 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" [routerLink]="['/pages/projects/upcoming/date','Monday']">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Monday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_mon | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Tuesday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_tue | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Wednesday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_wed | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Thursday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_thur | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Friday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_fri | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Saturday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_sat | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Sunday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_sun | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <br>
-    <hr>
-    <div class="row justify-content-center">
-        <div class="col-lg-3">
             <div class="card bg-success">
                 <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" [routerLink]="['/pages/projects/upcoming/month','January']">
+                    <a class="waves-effect waves-light text-white col-sm-12" [routerLink]="['/pages/projects/past/month','January']">
                         <div class="align-self-center text-center">
                             <h6 class="text-white m-t-10 m-b-0">January</h6>
                             <h2 class="m-t-0 text-white"> {{ proj_jan | number }} </h2>
@@ -248,4 +158,20 @@
 
     </div>
 
+    <br>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-lg-3" *ngFor="let year of year_list">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <a class="waves-effect waves-light text-white col-sm-12" [routerLink]="['/pages/projects/past/year','2017']">
+                        <div class="align-self-center text-center">
+                            <h6 class="text-white m-t-10 m-b-0">{{ year.name }}</h6>
+                            <h2 class="m-t-0 text-white"> {{ year.count | number }} </h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -13,11 +13,14 @@ export class TodayComponent implements OnInit {
     public act_proj_list : any[];
     public schd_proj_list : any[];
 
+    public company_name : string = '';
+
   constructor() { }
 
   ngOnInit() {
       this.arvd_proj = 12;
       this.arvng_proj = 5;
+      this.company_name = "Chandlers Landfill";
 
       this.act_proj_list = [
           { 'id': 1, 'name': 'Kyles Plumbing'},

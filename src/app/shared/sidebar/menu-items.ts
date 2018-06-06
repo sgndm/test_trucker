@@ -6,7 +6,7 @@ export const ROUTES: RouteInfo[] = [
   // { path: '/pages/permissions', title: 'Permissions', icon: 'mdi mdi-account-key', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
 
 
-  { path: '', title: 'History', icon: '', class: 'nav-small-cap', label: '', labelClass: '', extralink: true, submenu: [] },
+  { path: '', title: 'Loader Dashboard', icon: '', class: 'nav-small-cap', label: '', labelClass: '', extralink: true, submenu: [] },
   {
       path: '', title: 'Trucking History', icon: 'mdi mdi-history', class: 'has-arrow', label: '', labelClass: 'label label-rouded label-themecolor pull-right', extralink: false,
       submenu: [
@@ -32,7 +32,7 @@ export const ROUTES: RouteInfo[] = [
       submenu: [
           { path: '/pages/projects/today', title: 'Today', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
           { path: '/pages/projects/upcoming', title: 'Upcoming', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
-          { path: '/pages/projects/history', title: 'History', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+          { path: '/pages/projects/past', title: 'History', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
       ]
   },
 

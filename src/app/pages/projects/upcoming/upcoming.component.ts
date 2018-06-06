@@ -27,9 +27,14 @@ export class UpcomingComponent implements OnInit {
     public proj_nov : number;
     public proj_dec : number;
 
+    public company_name :string = '';
+
     constructor() { }
 
     ngOnInit() {
+
+        this.company_name = "Chandlers Landfill";
+
         this.proj_mon = 4;
         this.proj_tue = 4;
         this.proj_wed = 4;
@@ -52,10 +57,5 @@ export class UpcomingComponent implements OnInit {
 
     }
 
-    get_proj_week() {
-
-    }
-
-    get_projects() {}
 
 }

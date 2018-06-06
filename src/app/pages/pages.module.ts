@@ -24,6 +24,9 @@ import { TodayComponent } from './projects/today/today.component';
 import { UpcomingComponent } from './projects/upcoming/upcoming.component';
 import { HistoryComponent } from './projects/history/history.component';
 import { PJobComponent } from './projects/p-job/p-job.component';
+import { PDayComponent } from './projects/p-day/p-day.component';
+import { PMonthComponent } from './projects/p-month/p-month.component';
+import { PYearComponent } from './projects/p-year/p-year.component';
 
 @NgModule({
   imports: [
@@ -48,7 +51,10 @@ import { PJobComponent } from './projects/p-job/p-job.component';
     TodayComponent,
     UpcomingComponent,
     HistoryComponent,
-    PJobComponent
+    PJobComponent,
+    PDayComponent,
+    PMonthComponent,
+    PYearComponent
   ]
 })
 export class PagesModule { }
