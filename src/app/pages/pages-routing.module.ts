@@ -12,6 +12,8 @@ import { DshWeekComponent } from './dump-site-history/dsh-week/dsh-week.componen
 import { DshYearComponent } from './dump-site-history/dsh-year/dsh-year.component';
 import { DshCompleteComponent } from './dump-site-history/dsh-complete/dsh-complete.component';
 import { TruckerComponent } from './trucker/trucker.component';
+import { JobComponent } from './job/job.component';
+import { SiteComponent } from './site/site.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'history/th-week' },
@@ -20,9 +22,12 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'permissions', component: PermissionsComponent },
   { path: 'history/th-week', component: ThWeekComponent },
+  { path: 'history/th-week/job/:id', component: JobComponent },
   { path: 'history/th-year', component: ThYearComponent },
   { path: 'history/th-complete', component: ThCompleteComponent },
   { path: 'history/dsh-week', component: DshWeekComponent },
+  { path: 'history/dsh-week/site/:id', component: SiteComponent },
+  { path: 'history/dsh-week/job/:id', component: JobComponent },
   { path: 'history/dsh-year', component: DshYearComponent },
   { path: 'history/dsh-complete', component: DshCompleteComponent },
   { path: 'history/trucker/:id', component: TruckerComponent },

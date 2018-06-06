@@ -23,7 +23,7 @@
 .custom-div-1 {
   width: 100%;
   height: auto;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
 }
 
 /* | Styles for sign up container | */
@@ -75,6 +75,7 @@ ul.custom-list-1 a {
 .custom-link-1 {
   cursor: pointer;
   color: white;
+  min-width: 80%;
 }
 
 tr.custom-table-1 td {

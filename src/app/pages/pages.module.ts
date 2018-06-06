@@ -14,6 +14,8 @@ import { DshWeekComponent } from './dump-site-history/dsh-week/dsh-week.componen
 import { DshYearComponent } from './dump-site-history/dsh-year/dsh-year.component';
 import { DshCompleteComponent } from './dump-site-history/dsh-complete/dsh-complete.component';
 import { TruckerComponent } from './trucker/trucker.component';
+import { JobComponent } from './job/job.component';
+import { SiteComponent } from './site/site.component';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ import { TruckerComponent } from './trucker/trucker.component';
     DshWeekComponent,
     DshYearComponent,
     DshCompleteComponent,
-    TruckerComponent
+    TruckerComponent,
+    JobComponent,
+    SiteComponent
   ]
 })
 export class PagesModule { }

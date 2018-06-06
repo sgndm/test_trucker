@@ -47,9 +47,9 @@ export class DshWeekComponent implements OnInit {
         this.t_t_fees = 1234;
 
         this.dump_sites = [
-            {'id': 1, 'name': 'Chandlers'},
-            {'id': 2, 'name': 'ABC'},
-            {'id': 3, 'name': 'ABC'},
+            {'id': 1, 'name': 'Chandlers', 'loads': 10},
+            {'id': 2, 'name': 'ABC', 'loads': 5},
+            {'id': 3, 'name': 'ABCD', 'loads': 0},
         ];
 
     }
