@@ -15,7 +15,7 @@
                       <div class="m-r-20 align-self-center"><img src="assets/images/icon/income-w.png" alt="Income" /></div>
                       <div class="align-self-center">
                           <h6 class="text-white m-t-10 m-b-0">Total Loads</h6>
-                          <h2 class="m-t-0 text-white"> {{ t_loads }} </h2></div>
+                          <h2 class="m-t-0 text-white"> {{ t_loads | number }} </h2></div>
                   </div>
               </div>
           </div>
@@ -27,7 +27,7 @@
                       <div class="m-r-20 align-self-center"><img src="assets/images/icon/expense-w.png" alt="Income" /></div>
                       <div class="align-self-center">
                           <h6 class="text-white m-t-10 m-b-0">Total Fees</h6>
-                          <h2 class="m-t-0 text-white">${{ t_t_fees }}</h2></div>
+                          <h2 class="m-t-0 text-white">${{ t_t_fees | number }}</h2></div>
                   </div>
               </div>
           </div>
@@ -37,8 +37,9 @@
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-6">
       <label for="dump_site">Select Dump Site</label>
-      <select class="form-control" name="dump_site" id="dump_site" (change) = "get_dump_site()" >
-        <option *ngFor = "let site of dump_sites" value="site.id"> {{ site.name }} </option>
+      <select class="form-control" name="dump_site" (change) = "get_dump_site()" [(ngModel)]="dump_site_mod" >
+          <option value="0">Select a Dump Site</option>
+        <option *ngFor = "let site of dump_sites" value="{{ site.id }}"> {{ site.name }} </option>
       </select>
     </div>
   </div>
@@ -48,7 +49,7 @@
     <h4> {{ site_name }} This Week </h4>
     <hr>
 
-    <div class="row justify-content-center">
+    <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-3">
 
         <div class="custom-div-1">
@@ -157,7 +158,7 @@
         </div>
 
       </div>
-      <div class="col-sm-12 col-md-12 col-lg-9" id="">
+      <div class="col-sm-12 col-md-12 col-lg-9" *ngIf="j_address">
 
         <h5 class="text-center">Job Details</h5>
         <hr>

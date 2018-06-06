@@ -3,7 +3,7 @@
   <h3 class="">This Week Trucking History</h3>
   <hr>
 
-  <div class="row ">
+  <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-3">
 
       <div class="custom-div-1">
@@ -112,7 +112,7 @@
       </div>
 
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-9" *ngIf="j_address" >
+    <div class="col-sm-12 col-md-12 col-lg-9"  *ngIf="j_address">
 
       <h5 class="text-center">Job Details</h5>
       <hr>
@@ -131,7 +131,7 @@
 
           <label class="col-sm-12">
             <h6>Job Number</h6>
-            <p *ngIf="j_number" class="bg-info custom-lable-1"> {{ j_number }} </p>
+            <p *ngIf="j_number" class="bg-info custom-lable-1"> {{ j_number | number }} </p>
           </label>
 
           <label class="col-sm-12">

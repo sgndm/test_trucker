@@ -7,28 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThWeekComponent implements OnInit {
 
-  mon_jobs: any[];
-  tue_jobs: any[];
-  wed_jobs: any[];
-  thu_jobs: any[];
-  fri_jobs: any[];
-  sat_jobs: any[];
-  sun_jobs: any[];
-  truckers: any[];
+  public mon_jobs: any[];
+  public tue_jobs: any[];
+  public wed_jobs: any[];
+  public thu_jobs: any[];
+  public fri_jobs: any[];
+  public sat_jobs: any[];
+  public sun_jobs: any[];
+  public truckers: any[];
 
-  j_address: string = '';
-  j_status: string = '';
-  j_number: string = '';
-  j_date: string = '';
-  s_time: string = '';
-  e_time: string = '';
-  d_location: string = '';
-  j_material: string = '';
-  h_rate: string = '';
-  t_fees: string = '';
-  n_loads: string = '';
-  n_trucks: string = '';
-  av_ld_truck: string = '';
+  public j_address: string = '';
+  public j_status: string = '';
+  public j_number: string = '';
+  public j_date: string = '';
+  public s_time: string = '';
+  public e_time: string = '';
+  public d_location: string = '';
+  public j_material: string = '';
+  public h_rate: string = '';
+  public t_fees: string = '';
+  public n_loads: string = '';
+  public n_trucks: string = '';
+  public av_ld_truck: string = '';
 
   constructor() { }
 

@@ -18,7 +18,7 @@
                       <div class="m-r-20 align-self-center"><img src="assets/images/icon/income-w.png" alt="Income" /></div>
                       <div class="align-self-center">
                           <h6 class="text-white m-t-10 m-b-0">Loads Dumped</h6>
-                          <h2 class="m-t-0 text-white"> {{ l_dumped }} </h2></div>
+                          <h2 class="m-t-0 text-white"> {{ l_dumped | number }} </h2></div>
                   </div>
               </div>
           </div>
@@ -30,7 +30,7 @@
                       <div class="m-r-20 align-self-center"><img src="assets/images/icon/expense-w.png" alt="Income" /></div>
                       <div class="align-self-center">
                           <h6 class="text-white m-t-10 m-b-0">Dump Fees</h6>
-                          <h2 class="m-t-0 text-white">${{ d_fees }}</h2></div>
+                          <h2 class="m-t-0 text-white">${{ d_fees | number }}</h2></div>
                   </div>
               </div>
           </div>
@@ -42,7 +42,7 @@
                       <div class="m-r-20 align-self-center"><img src="assets/images/icon/assets-w.png" alt="Income" /></div>
                       <div class="align-self-center">
                           <h6 class="text-white m-t-10 m-b-0">Truckers Used</h6>
-                          <h2 class="m-t-0 text-white"> {{ t_used }} </h2></div>
+                          <h2 class="m-t-0 text-white"> {{ t_used | number }} </h2></div>
                   </div>
               </div>
           </div>
@@ -53,7 +53,8 @@
     <br>
     <div class="form-group col-sm-12 col-md-6">
       <label for="month">Select Month</label>
-      <select class="form-control" name="month" id="month" (change) = "get_weeks()" >
+      <select class="form-control" name="month" (change) = "get_weeks()" [(ngModel)]="month_mod" >
+          <option value="0">Select a Month</option>
         <option value="1">January</option>
         <option value="2">February</option>
         <option value="3">March</option>
@@ -72,18 +73,19 @@
 
     <div class="form-group col-sm-12 col-md-6">
       <label for="get_weeks">Select Week</label>
-      <select class="form-control" name="week" id="week" (change) = "get_jobs()" >
-        <option *ngFor = "let l_week of week_list" value="l_week.id"> {{ l_week.name }} </option>
+      <select class="form-control" name="week" (change) = "get_jobs()" [(ngModel)]="week_mod" >
+          <option value="0">Select a Week</option>
+        <option *ngFor = "let l_week of week_list" value="{{ l_week.id }}"> {{ l_week.name }} </option>
       </select>
     </div>
   </div>
 
-  <div class="col-sm-12 col-md-12">
+  <div class="col-sm-12 col-md-12" *ngIf="week_name">
     <br>
     <h3 class="">{{week_name}} Dump Site History</h3>
     <hr>
 
-    <div class="row justify-content-center">
+    <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-3">
 
         <div class="custom-div-1">
@@ -192,7 +194,7 @@
         </div>
 
       </div>
-      <div class="col-sm-12 col-md-12 col-lg-9" id="">
+      <div class="col-sm-12 col-md-12 col-lg-9" *ngIf="j_address">
 
         <h5 class="text-center">Job Details</h5>
         <hr>
