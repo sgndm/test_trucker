@@ -1,12 +1,12 @@
 <div class="page-content">
 
     <div class="row justify-content-center">
-      <div class="col-sm-12 col-md-8">
-        <h2 class="">JoB Details </h2>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <h5 class="text-right"> {{ j_address }} </h5>
-      </div>
+        <div class="col-sm-12 col-md-8">
+            <h2 class="">{{ company_name }} JoB Details </h2>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <h5 class="text-right"> {{ j_address }} </h5>
+        </div>
     </div>
     <hr>
 
@@ -53,12 +53,17 @@
             </label>
 
             <label class="col-sm-12">
-                <h6>Hourly Rate</h6>
-                <p *ngIf="h_rate" class="bg-info custom-lable-1"> {{ h_rate }} </p>
+                <h6>Price Per Load</h6>
+                <!-- <p *ngIf="p_load" class="bg-info custom-lable-1"> {{ p_load }} </p> -->
+                <input type="text" name="" value="" class="form-control">
+            </label>
+            <label class="col-sm-12">
+                <h6>Current Price</h6>
+                <p *ngIf="c_price" class="bg-info custom-lable-1"> {{ c_price }} </p>
             </label>
 
             <label class="col-sm-12">
-                <h6>Total Trucking Fees</h6>
+                <h6>Total</h6>
                 <p *ngIf="t_fees" class="bg-info custom-lable-1"> {{ t_fees }} </p>
             </label>
 
@@ -97,13 +102,22 @@
                 <hr>
                 <table class="table table-sm custom-table-1">
                     <tr *ngFor="let trucker of truckers">
-                        <td class="bg-info custom-lable-1 text-center" >
-                            <a class="custom-link-1" [routerLink]="['/pages/history/trucker',trucker.id]">
+                        <td class="text-center" >
+                            <div class="col-md-12 bg-info custom-lable-1">
                                 {{ trucker.name }}
-                            </a>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-sm-12 col-md-4 col-lg-4 text-center" *ngFor="let time of trucker.times">
+                                    <p>{{ time }}</p>
+                                </div>
+                            </div>
                         </td>
                         <td></td>
-                        <td class="bg-info custom-lable-1 text-center"> {{ trucker.turns }} </td>
+                        <td class="text-center">
+                            <div class="bg-info custom-lable-1 ">
+                                {{ trucker.turns }} 
+                            </div>
+                         </td>
                     </tr>
                 </table>
 

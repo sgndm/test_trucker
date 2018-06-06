@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { SettingsComponent } from './settings/settings.component';
 import { PermissionsComponent } from './permissions/permissions.component';
+
+// loader history components
 import { ThWeekComponent } from './trucking-history/th-week/th-week.component';
 import { ThYearComponent } from './trucking-history/th-year/th-year.component';
 import { ThCompleteComponent } from './trucking-history/th-complete/th-complete.component';
@@ -16,6 +18,12 @@ import { DshCompleteComponent } from './dump-site-history/dsh-complete/dsh-compl
 import { TruckerComponent } from './trucker/trucker.component';
 import { JobComponent } from './job/job.component';
 import { SiteComponent } from './site/site.component';
+
+// project components
+import { TodayComponent } from './projects/today/today.component';
+import { UpcomingComponent } from './projects/upcoming/upcoming.component';
+import { HistoryComponent } from './projects/history/history.component';
+import { PJobComponent } from './projects/p-job/p-job.component';
 
 @NgModule({
   imports: [
@@ -36,7 +44,11 @@ import { SiteComponent } from './site/site.component';
     DshCompleteComponent,
     TruckerComponent,
     JobComponent,
-    SiteComponent
+    SiteComponent,
+    TodayComponent,
+    UpcomingComponent,
+    HistoryComponent,
+    PJobComponent
   ]
 })
 export class PagesModule { }
