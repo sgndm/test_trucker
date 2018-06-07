@@ -27,6 +27,10 @@
   margin-bottom: 35px;
 }
 
+.c_tab_panel {
+    display: none;
+}
+
 .calendar_cont {
     width: 95%;
     height: 80vh;
