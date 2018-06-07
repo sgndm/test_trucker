@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
-import { SettingsComponent } from './settings/settings.component';
-import { PermissionsComponent } from './permissions/permissions.component';
 
 // loader history components
 import { ThWeekComponent } from './trucking-history/th-week/th-week.component';
@@ -25,6 +23,19 @@ import { PJobComponent } from './projects/p-job/p-job.component';
 import { PDayComponent } from './projects/p-day/p-day.component';
 import { PMonthComponent } from './projects/p-month/p-month.component';
 import { PYearComponent } from './projects/p-year/p-year.component';
+
+// customers
+import { NewCustomerComponent } from './customers/new-customer/new-customer.component';
+import { CurrentCustomersComponent } from './customers/current-customers/current-customers.component';
+import { CustomerComponent } from './customers/customer/customer.component';
+
+// material
+import { MaterialsComponent } from './materials/materials.component';
+
+// settings
+import { PermissionsComponent } from './settings/permissions/permissions.component';
+import { SettingsComponent } from './settings/settings/settings.component';
+import { EmployeeComponent } from './settings/employee/employee.component';
 
 const routes: Routes = [
     // loader history
@@ -52,6 +63,20 @@ const routes: Routes = [
     { path: 'projects/past/job/:id', component: PJobComponent },
     { path: 'projects/past/month/:id', component: PMonthComponent },
     { path: 'projects/past/year/:id', component: PYearComponent },
+
+    // customer
+    { path: 'customers/new', component: NewCustomerComponent },
+    { path: 'customers/current', component: CurrentCustomersComponent },
+    { path: 'customers/current/customer/:id', component: CustomerComponent },
+
+    // material
+    { path: 'material', component: MaterialsComponent },
+
+    // settings
+    { path: 'settings', component: SettingsComponent },
+    { path: 'permissions', component: PermissionsComponent },
+    { path: 'premissions/employee/:id', component: EmployeeComponent },
+
 
 
 ];

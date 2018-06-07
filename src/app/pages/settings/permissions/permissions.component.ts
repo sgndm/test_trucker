@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermissionsComponent implements OnInit {
 
+    public company_name : string = '';
+    public employee_list : any[];
+
   constructor() { }
 
   ngOnInit() {
+      this.company_name = "Chandlers Landfill";
+      this.employee_list = [
+          {'id': 1, 'name': 'Bob Smith'},
+          {'id': 2, 'name': 'Trever Smith'}
+      ];
   }
 
 }

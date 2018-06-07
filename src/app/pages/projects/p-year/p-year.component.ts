@@ -63,7 +63,7 @@ export class PYearComponent implements OnInit {
             { 'name': '2016', 'count': 0},
             { 'name': '2015', 'count': 10},
         ];
+    }
 
-    
 
 }

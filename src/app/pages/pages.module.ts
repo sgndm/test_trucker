@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { PagesRoutingModule } from './pages-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
-import { SettingsComponent } from './settings/settings.component';
-import { PermissionsComponent } from './permissions/permissions.component';
 
 // loader history components
 import { ThWeekComponent } from './trucking-history/th-week/th-week.component';
@@ -28,6 +26,19 @@ import { PDayComponent } from './projects/p-day/p-day.component';
 import { PMonthComponent } from './projects/p-month/p-month.component';
 import { PYearComponent } from './projects/p-year/p-year.component';
 
+// customer
+import { NewCustomerComponent } from './customers/new-customer/new-customer.component';
+import { CurrentCustomersComponent } from './customers/current-customers/current-customers.component';
+import { CustomerComponent } from './customers/customer/customer.component';
+
+// material
+import { MaterialsComponent } from './materials/materials.component';
+
+// settings 
+import { PermissionsComponent } from './settings/permissions/permissions.component';
+import { SettingsComponent } from './settings/settings/settings.component';
+import { EmployeeComponent } from './settings/employee/employee.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -37,8 +48,6 @@ import { PYearComponent } from './projects/p-year/p-year.component';
   declarations: [
     DashboardComponent,
     UsersComponent,
-    SettingsComponent,
-    PermissionsComponent,
     ThWeekComponent,
     ThYearComponent,
     ThCompleteComponent,
@@ -54,7 +63,14 @@ import { PYearComponent } from './projects/p-year/p-year.component';
     PJobComponent,
     PDayComponent,
     PMonthComponent,
-    PYearComponent
+    PYearComponent,
+    NewCustomerComponent,
+    CurrentCustomersComponent,
+    CustomerComponent,
+    MaterialsComponent,
+    PermissionsComponent,
+    SettingsComponent,
+    EmployeeComponent
   ]
 })
 export class PagesModule { }

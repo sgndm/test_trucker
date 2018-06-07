@@ -39,18 +39,18 @@ export const ROUTES: RouteInfo[] = [
   {
       path: '', title: 'Customer Accounts', icon: 'mdi mdi-view-dashboard', class: 'has-arrow', label: '', labelClass: 'label label-rouded label-themecolor pull-right', extralink: false,
       submenu: [
-          { path: '/pages/history/dsh-week', title: 'Current', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
-          { path: '/pages/history/dsh-year', title: 'Create New Account', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] }
+          { path: '/pages/customers/current', title: 'Current', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+          { path: '/pages/customers/new', title: 'Create New Account', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] }
       ]
   },
 
-  { path: '/pages/permissions', title: 'material Costs', icon: 'mdi mdi-currency-usd', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+  { path: '/pages/material', title: 'material Costs', icon: 'mdi mdi-currency-usd', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
 
   {
       path: '', title: 'Settings And Permissions', icon: 'mdi mdi-view-dashboard', class: 'has-arrow', label: '', labelClass: 'label label-rouded label-themecolor pull-right', extralink: false,
       submenu: [
-          { path: '/pages/history/dsh-week', title: 'Liability Waivers', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
-          { path: '/pages/history/dsh-year', title: 'Employee Permissions', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] }
+          { path: '/pages/settings', title: 'Liability Waivers', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+          { path: '/pages/permissions', title: 'Employee Permissions', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] }
       ]
   },
 

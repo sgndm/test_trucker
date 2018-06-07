@@ -1,0 +1,86 @@
+<div class="page-content">
+
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8">
+            <h2 class=""> Employee Permissions  </h2>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <h2 class="text-right"> {{ company_name }} </h2>
+        </div>
+    </div>
+    <hr>
+
+    <h5>Employees and Permissions</h5><hr>
+
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg-8">
+            <br>
+            <div class="form-group row">
+                <label for="" class="col-sm-12 col-md-6 col-lg-6">Owner / Manager Name</label>
+                <label for="" class="col-sm-12 col-md-6 col-lg-6">{{ manager_name }}</label>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <label for="" class="col-sm-12 col-md-6 col-lg-6">Administration Permissions</label>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio1" name="admin_per" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Allow</span>
+                        </label>
+                    </div>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio2" name="admin_per" type="radio" class="custom-control-input" checked>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Don't Allow</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <label for="" class="col-sm-12 col-md-6 col-lg-6">Financial Permissions</label>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio1" name="financial_per" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Allow</span>
+                        </label>
+                    </div>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio2" name="financial_per" type="radio" class="custom-control-input" checked>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Don't Allow</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <label for="" class="col-sm-12 col-md-6 col-lg-6">Field Permissions</label>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio1" name="field_per" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Allow</span>
+                        </label>
+                    </div>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio2" name="field_per" type="radio" class="custom-control-input" checked>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Don't Allow</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
