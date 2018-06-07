@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
+/* @import '~/fullcalendar/dist/fullcalendar.css'; */
 
 .ps .ps__scrollbar-y-rail {
     left: 3px;
@@ -24,6 +25,11 @@
   width: 100%;
   height: auto;
   margin-bottom: 35px;
+}
+
+.calendar_cont {
+    width: 95%;
+    height: 80vh;
 }
 
 /* | Styles for sign up container | */

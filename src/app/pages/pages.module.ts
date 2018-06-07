@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+// fullcalendar
+import { FullCalendarModule } from 'ng-fullcalendar';
+
 import { PagesRoutingModule } from './pages-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
@@ -34,7 +37,7 @@ import { CustomerComponent } from './customers/customer/customer.component';
 // material
 import { MaterialsComponent } from './materials/materials.component';
 
-// settings 
+// settings
 import { PermissionsComponent } from './settings/permissions/permissions.component';
 import { SettingsComponent } from './settings/settings/settings.component';
 import { EmployeeComponent } from './settings/employee/employee.component';
@@ -43,7 +46,8 @@ import { EmployeeComponent } from './settings/employee/employee.component';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule,
   ],
   declarations: [
     DashboardComponent,
