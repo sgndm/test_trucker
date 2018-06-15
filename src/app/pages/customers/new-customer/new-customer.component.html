@@ -1,0 +1,138 @@
+<div class="page-content">
+
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8">
+            <h2 class=""> Create New Customer </h2>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <h2 class="text-right"> {{ company_name }} </h2>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="company_name">Company Name</label>
+            <div class="col-xs-12">
+                <input type="text" name="company_name" class="form-control" required=""  placeholder="" [(ngModel)]="comp_name" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="contact_name">Contact Name</label>
+            <div class="col-xs-12">
+                <input type="text" name="contact_name" class="form-control" required=""  placeholder="" [(ngModel)]="cont_name" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="email_1">Email Address 01</label>
+            <div class="col-xs-12">
+                <input type="text" name="email_1" class="form-control" required=""  placeholder="" [(ngModel)]="email_add_1" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="email_2">Email Address 02</label>
+            <div class="col-xs-12">
+                <input type="text" name="email_2" class="form-control" required=""  placeholder="" [(ngModel)]="email_add_2" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="street">Street Address</label>
+            <div class="col-xs-12">
+                <input type="text" name="street" class="form-control" required=""  placeholder="" [(ngModel)]="street_add" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="phone">Phone Number</label>
+            <div class="col-xs-12">
+                <input type="text" name="phone" class="form-control" required=""  placeholder="" [(ngModel)]="phone_num" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="city">City</label>
+            <div class="col-xs-12">
+                <input type="text" name="city" class="form-control" required=""  placeholder="" [(ngModel)]="city_name" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="ssn">SSN/EIN</label>
+            <div class="col-xs-12">
+                <input type="text" name="ssn" class="form-control" required=""  placeholder="" [(ngModel)]="ssn_ein" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="state">State</label>
+            <div class="col-xs-12">
+                <input type="text" name="state" class="form-control" required=""  placeholder="" [(ngModel)]="state_name" >
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <div class="">
+                <div class="row">
+                    <label for="" class="col-sm-12 col-md-6 col-lg-6">Send Welcome Email</label>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio1" name="send_email" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Yes</span>
+                        </label>
+                    </div>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio2" name="send_email" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">No</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="row">
+                    <label for="" class="col-sm-12 col-md-6 col-lg-6">Send Temp Password</label>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio3" name="send_password" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Yes</span>
+                        </label>
+                    </div>
+                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
+                        <label class="custom-control custom-radio">
+                            <input id="radio4" name="send_password" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">No</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="zip">Zip</label>
+            <div class="col-xs-12">
+                <input type="text" name="zip" class="form-control" required=""  placeholder="" [(ngModel)]="zip_code" >
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <button type="button" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12" [routerLink]="['/pages/customers/current']">Save Customer</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <div class="form-check col-sm-6 col-md-6 col-lg-6">
+<label class="custom-control custom-checkbox">
+<input type="checkbox" class="custom-control-input">
+<span class="custom-control-indicator"></span>
+<span class="custom-control-description">Yes</span>
+</label>
+</div>
+<div class="form-check col-sm-6 col-md-6 col-lg-6">
+<label class="custom-control custom-checkbox">
+<input type="checkbox" class="custom-control-input">
+<span class="custom-control-indicator"></span>
+<span class="custom-control-description">No</span>
+</label>
+</div> -->

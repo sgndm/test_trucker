@@ -1,0 +1,71 @@
+<div class="page-content">
+
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8">
+            <h2 class=""> Employee Permissions  </h2>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <h2 class="text-right"> {{ company_name }} </h2>
+        </div>
+    </div>
+    <hr>
+
+    <h5>Employees and Permissions</h5><hr>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <br>
+            <table class="table table-sm">
+                <thead>
+                    <tr class="text-center">
+                        <th colspan="2"> Owner / Manager Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employee_list">
+                        <td> {{ employee.name }} </td>
+                        <td> <button type="button" class="btn btn-primary btn-sm" name="button" [routerLink]="['/pages/premissions/employee', employee.id]" > Edit </button> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <br>
+            <table class="table table-sm">
+                <thead>
+                    <tr class="text-center">
+                        <th colspan="2"> Administration Permissions</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employee_list">
+                        <td> {{ employee.name }} </td>
+                        <td> <button type="button" class="btn btn-primary btn-sm" name="button" [routerLink]="['/pages/premissions/employee', employee.id]" > Edit </button> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <br>
+            <table class="table table-sm">
+                <thead>
+                    <tr class="text-center">
+                        <th colspan="2"> Field Crew Permissions</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employee_list">
+                        <td> {{ employee.name }} </td>
+                        <td> <button type="button" class="btn btn-primary btn-sm" name="button" [routerLink]="['/pages/premissions/employee', employee.id]" > Edit </button> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

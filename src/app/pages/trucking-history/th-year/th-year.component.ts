@@ -7,45 +7,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThYearComponent implements OnInit {
 
-  week_list: any[];
+  public week_list: any[];
 
-  companny_name: string ='';
-  c_year: string = '';
-  l_dumped: number;
-  d_fees: number;
-  t_used: number;
+  public companny_name: string ='';
+  public c_year: string = '';
+  public l_dumped: number;
+  public d_fees: number;
+  public t_used: number;
 
-  week_name: string= '';
+  public week_name: string= '';
 
 
-  mon_jobs: any[];
-  tue_jobs: any[];
-  wed_jobs: any[];
-  thu_jobs: any[];
-  fri_jobs: any[];
-  sat_jobs: any[];
-  sun_jobs: any[];
-  truckers: any[];
+  public mon_jobs: any[];
+  public tue_jobs: any[];
+  public wed_jobs: any[];
+  public thu_jobs: any[];
+  public fri_jobs: any[];
+  public sat_jobs: any[];
+  public sun_jobs: any[];
+  public truckers: any[];
 
-  j_address: string = '';
-  j_status: string = '';
-  j_number: string = '';
-  j_date: string = '';
-  s_time: string = '';
-  e_time: string = '';
-  d_location: string = '';
-  j_material: string = '';
-  h_rate: string = '';
-  t_fees: string = '';
-  n_loads: string = '';
-  n_trucks: string = '';
-  av_ld_truck: string = '';
+  public j_address: string = '';
+  public j_status: string = '';
+  public j_number: string = '';
+  public j_date: string = '';
+  public s_time: string = '';
+  public e_time: string = '';
+  public d_location: string = '';
+  public j_material: string = '';
+  public h_rate: string = '';
+  public t_fees: string = '';
+  public n_loads: string = '';
+  public n_trucks: string = '';
+  public av_ld_truck: string = '';
 
+  public month_mod : string = '';
+    public week_mod : string = '';
 
   constructor() { }
 
   ngOnInit() {
 
+      this.month_mod = "0";
+        this.week_mod = "0";
+        
     this.companny_name = "Jonnys Grading and Excavation";
     this.c_year = '2017';
     this.l_dumped = 1230;
