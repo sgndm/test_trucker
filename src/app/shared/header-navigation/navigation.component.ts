@@ -82,7 +82,7 @@ export class NavigationComponent implements AfterViewInit {
     logout() {
       // clear local storage
       this.apiServices.clearLocalStorage();
-      location.reload();
+      // location.reload();
       this.router.navigate(['/sign-in']);
     }
 }
