@@ -37,6 +37,9 @@ import { PermissionsComponent } from './settings/permissions/permissions.compone
 import { SettingsComponent } from './settings/settings/settings.component';
 import { EmployeeComponent } from './settings/employee/employee.component';
 
+
+import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
+
 const routes: Routes = [
     // loader history
     { path: '', redirectTo: 'history/th-week' },
@@ -76,6 +79,9 @@ const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'permissions', component: PermissionsComponent },
     { path: 'premissions/employee/:id', component: EmployeeComponent },
+
+    // admin 
+    { path: 'admin/dump-companies', component: DumpCompaniesComponent },
 
 
 

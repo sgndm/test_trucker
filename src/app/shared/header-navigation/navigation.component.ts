@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbPanelChangeEvent, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { ApiServicesService } from '../../services/api-services/api-services.service';
 declare var $: any;
 
 import { Router } from '@angular/router';
@@ -18,7 +19,8 @@ export class NavigationComponent implements AfterViewInit {
 
   	constructor(
       private modalService: NgbModal,
-      public router: Router
+      public router: Router,
+      public apiServices: ApiServicesService
     ) {}
 
     // This is for Notifications
@@ -79,7 +81,8 @@ export class NavigationComponent implements AfterViewInit {
 
     logout() {
       // clear local storage
-      // this.apiServices.clearLocalStorage();
+      this.apiServices.clearLocalStorage();
+      location.reload();
       this.router.navigate(['/sign-in']);
     }
 }

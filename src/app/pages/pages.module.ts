@@ -41,6 +41,7 @@ import { MaterialsComponent } from './materials/materials.component';
 import { PermissionsComponent } from './settings/permissions/permissions.component';
 import { SettingsComponent } from './settings/settings/settings.component';
 import { EmployeeComponent } from './settings/employee/employee.component';
+import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
 
 @NgModule({
   imports: [
@@ -74,7 +75,8 @@ import { EmployeeComponent } from './settings/employee/employee.component';
     MaterialsComponent,
     PermissionsComponent,
     SettingsComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    DumpCompaniesComponent
   ]
 })
 export class PagesModule { }
