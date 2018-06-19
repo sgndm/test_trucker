@@ -94,10 +94,16 @@ export class ApiServicesService {
 
 	/// company / owner 
 
+	// get customer account details 
+	getCustomerDetails(token) {
+		const url = SERVER_URL + 'web/dumpcustomers';
+		return this.http.get(url,{ headers: { 'X-AUTH-TOKEN': token }});
+	}
+
 	// create customer 
 	createCustomer(data,token) {
 		const formData: FormData = new FormData();
-		formData.append('dump_customer_details ', data.dump_customer);
+		formData.append('dump_customer_details', JSON.stringify(data.dump_customer));
 
 		const url = SERVER_URL + 'web/register/dumpcustomer';
 		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token} });
@@ -121,13 +127,11 @@ export class ApiServicesService {
 		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token} });
 	}
 
-	// get customer account details 
-	getCustomerDetails(data, token) {
-		const formData: FormData = new FormData();
-		formData.append('dump_customer_id ', data.customerId);
-
+	getCustomerById(data, token) {
 		const url = SERVER_URL + 'web/dumpcustomer';
-		return this.http.get(url,{ headers: { 'X-AUTH-TOKEN': token }});
+		return this.http.get(url,{ headers: { 'X-AUTH-TOKEN': token }, params: {dump_customer_id: data}});
 	}
+
+	
 
 }

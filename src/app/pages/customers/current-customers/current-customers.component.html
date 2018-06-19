@@ -10,10 +10,11 @@
     </div>
     <hr>
 
-    <div class="row">
+    <div class="row" >
         <div class="col-sm-12 col-md-2 col-lg-2">
             <div class="custom-div-1">
-                <h4 class="text-center">Categories</h4><hr>
+                <h4 class="text-center">Categories</h4>
+                <hr>
                 <ul class="custom-list-1">
                     <li *ngFor="let category of categories_list">
                         <a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="get_customers(category)">
@@ -25,17 +26,99 @@
         </div>
 
         <div class="col-sm-12 col-md-10 col-lg-10">
-            <h4 class="text-center">Customers</h4><hr>
+            <h4 class="text-center">Customers</h4>
+            <hr>
 
-            <ul class="custom-list-1 row">
+            <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' class=""> -->
+
+            <!-- <br> -->
+
+            <ngx-datatable class="material" [headerHeight]="50" [rowHeight]="'auto'" [columnMode]="'force'" [footerHeight]="50" [count]="true"
+                [limit]="10" [rows]="rows">
+
+                <ngx-datatable-column name="index">
+                    <ng-template ngx-datatable-header-template>
+                        <span>#</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.index }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="cust_name">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Customer Name</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.cust_name }}
+                        
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="cust_phone">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Phone Number</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.cust_phone }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="email">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Email</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.email }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="status">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Status</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        <label class="cus-lbl btn-sm bg-success" *ngIf="row.status == 'ACTIVE'">Active</label>
+                        <label class="cus-lbl btn-sm bg-danger" *ngIf="row.status == 'ONHOLD'">On Hold</label>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="action">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Action</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        <button *ngIf="row.status == 'ACTIVE'" class="cus-btn-1 btn btn-sm btn-danger" (click)="onPutHoldCustomer(row.cust_id)">Hold</button>
+                        <button *ngIf="row.status == 'ONHOLD'" class="cus-btn-1 btn btn-sm btn-success" (click)="onActivateCustomer(row.cust_id)">Activate</button>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="">
+                    <ng-template ngx-datatable-header-template>
+                        <span>view</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        <a class="cus-btn-1 btn btn-sm btn-primary" [routerLink]="['/pages/customers/current/customer',row.cust_id]" >
+                            View
+                        </a>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                
+
+            </ngx-datatable>
+
+
+            <!-- <ul class="custom-list-1 row">
                 <li *ngFor="let customer of customer_list" class="col-sm-12 col-md-4 col-lg-4">
                     <a class="btn btn-info waves-effect waves-light text-white col-sm-12" [routerLink]="['/pages/customers/current/customer', customer.id]" >
                         {{ customer.name }}
                     </a>
                 </li>
-            </ul>
+            </ul> -->
 
         </div>
 
     </div>
+
 </div>
