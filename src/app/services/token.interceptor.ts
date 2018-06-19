@@ -25,23 +25,26 @@ export class TokenInterceptor implements HttpInterceptor {
 	}
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+		console.log(request);
+		return next.handle(request);
+
 		console.log('access_token : ' + this.access_token);
 
-		if (this.access_token) {
-			request = request.clone({
-				setHeaders: {
-					'X-AUTH-TOKEN': `${this.access_token}`
+		// if (this.access_token) {
+		// 	request = request.clone({
+		// 		setHeaders: {
+		// 			'X-AUTH-TOKEN': `${this.access_token}`
 
-				}
-			})
-			console.log(request);
-			return next.handle(request);
-			
-		} else {
-			console.log(request);
-			return next.handle(request);
-		}
-		
+		// 		}
+		// 	})
+		// 	console.log(request);
+		// 	return next.handle(request);
+
+		// } else {
+		// 	console.log(request);
+		// 	return next.handle(request);
+		// }
+
 
 	}
 }

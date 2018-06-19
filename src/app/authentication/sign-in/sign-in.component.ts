@@ -29,7 +29,7 @@ export class SignInComponent implements OnInit {
 
 	ngOnInit() {
 		if(this.access_token){
-			this.apiServices.getDetails().subscribe(
+			this.apiServices.getDetailsSetHeader(this.access_token).subscribe(
 				(res: any) => {
 					console.log(res);
 					

@@ -1,3 +1,79 @@
-<p>
-  dump-companies works!
-</p>
+<div class="page-content">
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-12">
+			<h2 class=""> Dump Company Accounts </h2>
+		</div>
+	</div>
+	<hr>
+
+	<div class="col-sm-12 col-md-12 col-lg-12">
+		<!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' /> -->
+
+		<ngx-datatable class="material" [headerHeight]="50" [rowHeight]="'auto'" [columnMode]="'force'" [footerHeight]="50" [count]="true"
+		 [limit]="5" [rows]="rows">
+
+			<ngx-datatable-column name="index">
+				<ng-template ngx-datatable-header-template>
+					<span>#</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.index }}
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="comp_name">
+				<ng-template ngx-datatable-header-template>
+					<span>Company Name</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.comp_name }}
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="user_name">
+				<ng-template ngx-datatable-header-template>
+					<span>Owner / Manager</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.user_name }}
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="email">
+				<ng-template ngx-datatable-header-template>
+					<span>Email</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.email }}
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="status">
+				<ng-template ngx-datatable-header-template>
+					<span>Status</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					<label class="cus-lbl btn-sm bg-warning" *ngIf="row.status == 'PENDING_APPROVAL'">Pending</label>
+					<label class="cus-lbl btn-sm bg-success" *ngIf="row.status == 'APPROVED'">Approved</label>
+					<label class="cus-lbl btn-sm bg-danger" *ngIf="row.status == 'BLOCKED'">Blocked</label>
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="action">
+				<ng-template ngx-datatable-header-template>
+					<span>Action</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					<button *ngIf="row.status == 'PENDING_APPROVAL'" class="cus-btn-1 btn btn-sm btn-success" (click)="onApprove(row.comp_id)">Approve</button>
+					<button *ngIf="row.status == 'APPROVED'" class="cus-btn-1 btn btn-sm btn-danger" (click)="onBlockCompany(row.comp_id)">Block</button>
+					<button *ngIf="row.status == 'BLOCKED'" class="cus-btn-1 btn btn-sm btn-success" (click)="onUnblockCompany(row.comp_id)">Unblock</button>
+				</ng-template>
+			</ngx-datatable-column>
+
+		</ngx-datatable>
+	</div>
+</div>
+
+
+<!-- (keyup)='updateFilter($event)'  
+  [sorts]="[{prop: 'name', dir: 'desc'}]"-->

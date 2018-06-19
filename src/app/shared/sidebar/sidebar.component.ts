@@ -58,6 +58,20 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
 
+        $(function () {
+            $(".sidebartoggler").on('click', function () {
+                if ($("#main-wrapper").hasClass("mini-sidebar")) {
+                    $("body").trigger("resize");
+                    $("#main-wrapper").removeClass("mini-sidebar");
+
+                } else {
+                    $("body").trigger("resize");
+                    $("#main-wrapper").addClass("mini-sidebar");
+                }
+            });
+
+        });
+
         this.allSideNavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
 
         const tempArray = [];
@@ -128,19 +142,7 @@ export class SidebarComponent implements OnInit {
         this.sidebarnavItems = tempArray;
         //   this.sidebarnavItems =ROUTES.filter(sidebarnavItem => sidebarnavItem);
 
-        $(function () {
-            $(".sidebartoggler").on('click', function () {
-                if ($("#main-wrapper").hasClass("mini-sidebar")) {
-                    $("body").trigger("resize");
-                    $("#main-wrapper").removeClass("mini-sidebar");
-
-                } else {
-                    $("body").trigger("resize");
-                    $("#main-wrapper").addClass("mini-sidebar");
-                }
-            });
-
-        });
+        
 
     }
 

@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 // fullcalendar
 import { FullCalendarModule } from 'ng-fullcalendar';
 
+// datatables
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 import { PagesRoutingModule } from './pages-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
@@ -49,6 +52,7 @@ import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-compan
     PagesRoutingModule,
     FormsModule,
     FullCalendarModule,
+    NgxDatatableModule
   ],
   declarations: [
     DashboardComponent,
