@@ -20,6 +20,7 @@ export class CurrentCustomersComponent implements OnInit {
 
     public rows: any[];
     public columns: any[];
+    public temp: any[];
 
 
 
@@ -70,6 +71,7 @@ export class CurrentCustomersComponent implements OnInit {
                 }
 
                 this.rows = tempArray;
+                this.temp = this.rows;
 
                 this.columns = [
                     { name: 'index' },
@@ -90,22 +92,15 @@ export class CurrentCustomersComponent implements OnInit {
 
     get_customers(category) {
         // alert(category);
-        if (category == '0-9') {
-            this.customer_list = [
-                { 'id': 1, 'name': '10-4 Trucking' },
-                { 'id': 2, 'name': '7-11 Trucking' },
-                { 'id': 3, 'name': '1-4 Trucking' }
-            ];
-        }
-        else if (category == 'A') {
-            this.customer_list = [
-                { 'id': 4, 'name': 'Adams Trucking' },
-                { 'id': 5, 'name': 'AAA Trucking' },
-                { 'id': 6, 'name': 'Angle Trucking' }
-            ];
-        } else {
-            this.customer_list = [];
-        }
+        const val = category.toLowerCase();
+
+        // filter our data
+        const temp_data = this.temp.filter(function(d) {
+          return d.cust_name.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+
+        // update the rows
+        this.rows = temp_data;
 
     }
 
@@ -174,7 +169,17 @@ export class CurrentCustomersComponent implements OnInit {
         )
     }
 
+    updateFilter(event) {
+        const val = event.target.value.toLowerCase();
 
+        // filter our data
+        const temp_data = this.temp.filter(function(d) {
+          return d.cust_name.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+
+        // update the rows
+        this.rows = temp_data;
+    }
 
 
 }

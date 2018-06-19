@@ -15,6 +15,7 @@ export class DumpCompaniesComponent implements OnInit {
 
 	public rows: any[];
 	public columns: any[];
+	public temp: any[];
 
 	public company_id: '';
 
@@ -108,6 +109,7 @@ export class DumpCompaniesComponent implements OnInit {
 				}
 
 				this.rows = tempArray;
+				this.temp = this.rows;
 
 				this.columns = [
 					{ name: 'index' },
@@ -126,6 +128,17 @@ export class DumpCompaniesComponent implements OnInit {
 		)
 	}
 
+	updateFilter(event) {
+		const val = event.target.value.toLowerCase();
+
+        // filter our data
+        const temp_data = this.temp.filter(function(d) {
+          return d.comp_name.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+
+        // update the rows
+        this.rows = temp_data;
+	}
 
 
 }

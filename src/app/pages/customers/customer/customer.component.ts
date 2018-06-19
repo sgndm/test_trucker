@@ -27,6 +27,8 @@ export class CustomerComponent implements OnInit {
     public zipcode: '';
     public ssnEin: '';
 
+    public accountHold: boolean;
+
     constructor (
         private activeRoute: ActivatedRoute,
         public router: Router,
@@ -45,6 +47,7 @@ export class CustomerComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.accountHold = true;
         $('#tab_1').show();
 
         // get customer details
@@ -88,5 +91,48 @@ export class CustomerComponent implements OnInit {
             }
         )
     }
+
+    onPutHoldAccount(id, event) {
+
+        const data = {
+            customerId: id
+        }
+
+        if(event.target.checked) {
+            this.apiServices.putAccountOnHold(data, this.access_token).subscribe(
+                (res: any) => {
+                    console.log(res);
+                    if ((res.status == "successful") && (res.message == "account_onhold")) {
+                        alert("Successfully blocked customer");
+                    }
+                },
+                err => {
+                    console.log(err);
+                }
+            )            
+        }
+    }
+
+    onActivateAccount(id, event) {
+
+        const data = {
+            customerId: id
+        }
+
+        if(event.target.checked) {
+            this.apiServices.activateCustomer(data, this.access_token).subscribe(
+                (res: any) => {
+                    console.log(res);
+                    if ((res.status == "successful") && (res.message == "account_active")) {
+                        alert("Successfully activated customer");
+                    }
+                },
+                err => {
+                    console.log(err);
+                }
+            )            
+        }
+    }
+
 
 }
