@@ -84,6 +84,11 @@ label {
   color: white;
 }
 
+.event-lbl-cus {
+  width: 70px;
+  height: 70px;
+}
+
 .cus-btn-1 {
   width: 100%;
 }

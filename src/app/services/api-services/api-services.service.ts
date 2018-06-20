@@ -94,6 +94,8 @@ export class ApiServicesService {
 
 	/// company / owner 
 
+	// customer
+
 	// get customer account details 
 	getCustomerDetails(token) {
 		const url = SERVER_URL + 'web/dumpcustomers';
@@ -173,6 +175,39 @@ export class ApiServicesService {
 
 		const url = SERVER_URL + 'web/dumpcustomer/resetpassword';
 		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+
+	// projects 
+
+	// get dump sites
+	getDumpSites(token) {
+		const url = SERVER_URL + 'web/dumpcompany/dumpsites';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	// get project counts by id 
+	getProjectCountsById(data, token) {
+		const url = SERVER_URL + 'web/dumpcompany/dumpsite/projects/today';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { dump_id: data } });
+	}
+
+	// get active projects for today 
+	getActiveProjectsTodayById(data, token) {
+		const url = SERVER_URL + 'web/dumpcompany/dumpsite/projects/today/active';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { dump_id: data } });
+	}
+
+	// get scheduled projects for today 
+	getScheduledProjectsTodayById(data, token) {
+		const url = SERVER_URL + 'web/dumpcompany/dumpsite/projects/today/scheduled';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { dump_id: data } });
+	}
+
+	// get project details 
+	getProjectDetails(data, token) {
+		const url = SERVER_URL + 'web/dumpcompany/dumpsite/projects/jobdetails';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_id: data } });
 	}
 
 

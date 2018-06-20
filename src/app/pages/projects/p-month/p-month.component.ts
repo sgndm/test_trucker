@@ -26,10 +26,10 @@ export class PMonthComponent implements OnInit {
     ngOnInit() {
         this.company_name = "Chandlers Landfill";
         this.data = [
-            { title: 'All Day Event', start: '2018-06-06', 'e_id': 1 }
+            { title: '1', start: '2018-06-06', 'e_id': 1 }
         ];
         this.calendarOptions = {
-            editable: true,
+            editable: false,
             eventLimit: false,
             height: 550,
             header: {
@@ -37,7 +37,12 @@ export class PMonthComponent implements OnInit {
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay,listMonth'
             },
-            events: this.data
+            events: this.data,
+            eventColor: '#00D59C',
+            eventTextColor: '#ffffff',
+            eventRender: function( event, element, view ) {
+                element.find('.fc-day-grid-event').removeClass('fc-day-grid-event'); 
+         }
         };
     }
 
