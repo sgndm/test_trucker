@@ -27,12 +27,18 @@ export class CustomerComponent implements OnInit {
     public zipcode: '';
     public ssnEin: '';
 
+    public newPassword: '';
+
+    public rows: any[];
+    public columns: any[];
+    public temp: any[];
+
     public accountHold: boolean;
 
-    constructor (
+    constructor(
         private activeRoute: ActivatedRoute,
         public router: Router,
-		private apiServices: ApiServicesService,
+        private apiServices: ApiServicesService,
     ) {
         this.activeRoute.params.subscribe(
             params => {
@@ -52,6 +58,9 @@ export class CustomerComponent implements OnInit {
 
         // get customer details
         this.getCustomerDetails(this.customer_id, this.access_token);
+
+        // get dump activies 
+        this.getDumpActivities(this.customer_id, this.access_token);
     }
 
     show_tab(tab_id, count) {
@@ -69,9 +78,9 @@ export class CustomerComponent implements OnInit {
 
     getCustomerDetails(id, token) {
         this.apiServices.getCustomerById(id, token).subscribe(
-            (res:any) => {
+            (res: any) => {
                 console.log(res);
-                if(res.status == "successful") {
+                if (res.status == "successful") {
                     this.customer_name = res.customer.name;
                     this.company_name = res.customer.dumpCompany.companyName;
 
@@ -98,7 +107,7 @@ export class CustomerComponent implements OnInit {
             customerId: id
         }
 
-        if(event.target.checked) {
+        if (event.target.checked) {
             this.apiServices.putAccountOnHold(data, this.access_token).subscribe(
                 (res: any) => {
                     console.log(res);
@@ -109,7 +118,7 @@ export class CustomerComponent implements OnInit {
                 err => {
                     console.log(err);
                 }
-            )            
+            )
         }
     }
 
@@ -119,7 +128,7 @@ export class CustomerComponent implements OnInit {
             customerId: id
         }
 
-        if(event.target.checked) {
+        if (event.target.checked) {
             this.apiServices.activateCustomer(data, this.access_token).subscribe(
                 (res: any) => {
                     console.log(res);
@@ -130,9 +139,154 @@ export class CustomerComponent implements OnInit {
                 err => {
                     console.log(err);
                 }
-            )            
+            )
         }
     }
 
+    getDumpActivities(id, token) {
+        this.apiServices.getDumpActivity(id, token).subscribe(
+            (res: any) => {
+                console.log("\n\ndump activity \n");
+                console.log(res);
+
+                let tempArray = [];
+
+                // bind data to table 
+                let i = 0;
+                if (res.customer_activity) {
+                    for (let data of res.customer_activity) {
+                        i += 1;
+
+                        let stTime = new Date(data.startTime);
+                        let endTime = new Date(data.endTime);
+
+                        let tempRow = {
+                            index: i,
+                            job_id: data.id,
+                            job_name: data.jobName,
+                            job_category: data.jobCategory,
+                            status: data.jobStatus,
+                            driver: data.driver,
+                            start_time: stTime,
+                            end_time: endTime,
+                            payment: data.jobPayment.paymentStatus
+                        }
+
+                        tempArray.push(tempRow);
+                    }
+                }
+
+
+                this.rows = tempArray;
+                this.temp = this.rows;
+
+                this.columns = [
+                    { name: 'index' },
+                    { name: 'job_name' },
+                    { name: 'job_category' },
+                    { name: 'status' },
+                    { name: 'driver' },
+                    { name: 'start_time' },
+                    { name: 'end_time' },
+                    { name: 'payment' }
+                ];
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+    updateFilter(event) {
+
+    }
+
+    onDeleteCustomer(id) {
+        const data = {
+            customerId: id
+        }
+
+        // alert(id);
+        if (confirm("Are you sure?")) {
+            this.apiServices.deleteCustomer(data, this.access_token).subscribe(
+                (res: any) => {
+                    console.log(res);
+
+                    if ((res.status == "successful") && (res.message == "account_deleted")) {
+                        alert("Account Delete Successfully");
+
+                        // redirect to current customers
+                        this.goToCurrentCustomer();
+
+                    }
+                },
+
+                err => {
+                    console.log(err);
+                }
+            )
+        } else {
+            alert("canceled");
+        }
+
+
+    }
+
+    goToCurrentCustomer() {
+        this.router.navigate(['/pages/customers/current']);
+    }
+
+    onUpdateCustonmer(id) {
+        const data = {
+            name: this.customerName,
+            email: this.email,
+            phoneNumber: this.phone,
+            state: this.state,
+            city: this.city,
+            streetAddress: this.streetAddress,
+            zipcode: this.zipcode,
+            ssnEin: this.ssnEin,
+            dump_customer_id: id
+        }
+
+        this.apiServices.updateCustomer(data, this.access_token).subscribe(
+            (res: any) => {
+                console.log(res);
+
+                if ((res.status == "successful") && (res.message == "cutomer_account_updated")) {
+                    alert("Customer Updated Successfully");
+                    location.reload();
+     
+                }
+
+            },
+
+            err => {
+                console.log(err);
+            }
+        )
+
+    }
+
+    onResetPassword(id) {
+        const data = {
+            customerId: id,
+            newPassword: this.newPassword
+        }
+
+        this.apiServices.resetPassword(data, this.access_token).subscribe(
+            (res: any) => {
+                console.log(res);
+                if ((res.status == "successful") && (res.message == "cutomer_account_updated")) {
+                    alert("Password Updated Successfully");
+                    location.reload()
+                }
+
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
 
 }

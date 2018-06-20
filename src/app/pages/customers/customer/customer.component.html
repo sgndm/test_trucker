@@ -13,111 +13,200 @@
     <div class="row ">
         <div class="col-sm-12 col-md-4 col-lg-3">
             <ul class="custom-list-1">
-                <li><a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(1,6)" >Account Information</a></li>
-                <li><a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(2,6)" >Dump Activity </a></li>
-                <li><a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(3,6)" >Activate Hold On Account</a></li>
-                <li><a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(4,6)" >Remove Hold Account</a></li>
-                <li><a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(5,6)" >Reset Password</a></li>
-                <li><a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(6,6)" >Delete Customer</a></li>
+                <li>
+                    <a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(1,6)">Account Information</a>
+                </li>
+                <li>
+                    <a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(2,6)">Dump Activity </a>
+                </li>
+                <li>
+                    <a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(3,6)">Activate Hold On Account</a>
+                </li>
+                <li>
+                    <a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(4,6)">Remove Hold Account</a>
+                </li>
+                <li>
+                    <a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(5,6)">Reset Password</a>
+                </li>
+                <li>
+                    <a class="btn btn-success waves-effect waves-light text-white col-sm-12" (click)="show_tab(6,6)">Delete Customer</a>
+                </li>
             </ul>
 
 
         </div>
         <div class="col-sm-12 col-md-8 col-lg-9">
-            <div class="c_tab_panel" id="tab_1" >
+            <!-- user details -->
+            <div class="c_tab_panel" id="tab_1">
                 <div class="row">
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="company_name">Customer Name</label>
                         <div class="col-xs-12">
-                            <input type="text" name="company_name" class="form-control" required=""  placeholder="" [(ngModel)]="customerName" >
+                            <input type="text" name="company_name" class="form-control" required="" placeholder="" [(ngModel)]="customerName">
                         </div>
                     </div>
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="email_1">Email Address</label>
                         <div class="col-xs-12">
-                            <input type="text" name="email_1" class="form-control" required=""  placeholder="" [(ngModel)]="email" >
+                            <input type="text" name="email_1" class="form-control" required="" placeholder="" [(ngModel)]="email">
                         </div>
                     </div>
 
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="phone">Phone Number</label>
                         <div class="col-xs-12">
-                            <input type="text" name="phone" class="form-control" required=""  placeholder="" [(ngModel)]="phone" >
+                            <input type="text" name="phone" class="form-control" required="" placeholder="" [(ngModel)]="phone">
                         </div>
                     </div>
 
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="ssn">SSN/EIN</label>
                         <div class="col-xs-12">
-                            <input type="text" name="ssn" class="form-control" required=""  placeholder="" [(ngModel)]="ssnEin" >
+                            <input type="text" name="ssn" class="form-control" required="" placeholder="" [(ngModel)]="ssnEin">
                         </div>
                     </div>
 
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="street">Street Address</label>
                         <div class="col-xs-12">
-                            <input type="text" name="street" class="form-control" required=""  placeholder="" [(ngModel)]="streetAddress" >
+                            <input type="text" name="street" class="form-control" required="" placeholder="" [(ngModel)]="streetAddress">
                         </div>
                     </div>
-                    
+
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="city">City</label>
                         <div class="col-xs-12">
-                            <input type="text" name="city" class="form-control" required=""  placeholder="" [(ngModel)]="city" >
+                            <input type="text" name="city" class="form-control" required="" placeholder="" [(ngModel)]="city">
                         </div>
                     </div>
-                    
+
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="state">State</label>
                         <div class="col-xs-12">
-                            <input type="text" name="state" class="form-control" required=""  placeholder="" [(ngModel)]="state" >
+                            <input type="text" name="state" class="form-control" required="" placeholder="" [(ngModel)]="state">
                         </div>
                     </div>
-                    
+
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
                         <label for="zip">Zip</label>
                         <div class="col-xs-12">
-                            <input type="text" name="zip" class="form-control" required=""  placeholder="" [(ngModel)]="zipcode" >
+                            <input type="text" name="zip" class="form-control" required="" placeholder="" [(ngModel)]="zipcode">
                         </div>
                     </div>
 
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <button type="button" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12" [routerLink]="['/pages/customers/current']">Save Customer</button>
+                        <button type="button" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12" (click)="onUpdateCustonmer(customer_id)" >Save Customer</button>
                     </div>
 
                 </div>
 
             </div>
-            <div class="c_tab_panel" id="tab_2" >
+            <!-- dump ativities -->
+            <div class="c_tab_panel" id="tab_2">
                 <br>
-                <h5>Last Thirty Days</h5><hr>
-                <div class="">
-                    <br>
-                    <br>
-                    <br>
+                <h5>Dump Activities</h5>
+                <hr>
+                <div class="form-group row justify-content-center">
+                    <label for="" class="col-sm-12 col-md-5 col-lg-5 text-right">Search</label>
+                    <input type='text' placeholder='Type Customer name..' class="form-control col-sm-12 col-md-5 col-lg-5" (keyup)='updateFilter($event)'>
                 </div>
-                <br>
-                <h5>Complete History</h5><hr>
-                <div class="">
-                    <br>
-                    <br>
-                    <br>
-                </div>
+
+
+                <ngx-datatable class="material" [headerHeight]="50" [rowHeight]="'auto'" [columnMode]="'force'" [footerHeight]="50" [count]="true"
+                    [limit]="10" [rows]="rows">
+
+                    <ngx-datatable-column name="index">
+                        <ng-template ngx-datatable-header-template>
+                            <span>#</span>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                            {{ row.index }}
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="job_name">
+                        <ng-template ngx-datatable-header-template>
+                            <span>Job Name</span>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                            {{ row.job_name }}
+
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="job_category">
+                        <ng-template ngx-datatable-header-template>
+                            <span>Category</span>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                            {{ row.job_category }}
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="status">
+                        <ng-template ngx-datatable-header-template>
+                            <span>Job Status</span>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                            {{ row.status }}
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="driver">
+                        <ng-template ngx-datatable-header-template>
+                            <span>Driver</span>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                            {{ row.driver }}
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="start_time">
+                        <ng-template ngx-datatable-header-template>
+                            <span>Start Time</span>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                            {{ row.start_time | date:'MM-dd-yyyy HH:mm:ss' }}
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="end_time">
+                        <ng-template ngx-datatable-header-template>
+                            <span>End Time</span>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                            {{ row.end_time | date:'MM-dd-yyyy HH:mm:ss'  }}
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="payment">
+                        <ng-template ngx-datatable-header-template>
+                            <span>Payment Status</span>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                            {{ row.payment }}
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                </ngx-datatable>
             </div>
-            <div class="c_tab_panel" id="tab_3" >
+
+            <div class="c_tab_panel" id="tab_3">
                 <br>
-                <h5>Put Account Into Temparary Hold Status</h5><hr>
+                <h5>Put Account Into Temparary Hold Status</h5>
+                <hr>
                 <div class="form-check col-sm-6 col-md-6 col-lg-6">
                     <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" (change)="onPutHoldAccount(customer_id, $event)" >
+                        <input type="checkbox" class="custom-control-input" (change)="onPutHoldAccount(customer_id, $event)">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Yes</span>
                     </label>
                 </div>
             </div>
-            <div class="c_tab_panel" id="tab_4" >
+            <div class="c_tab_panel" id="tab_4">
                 <br>
-                <h5>Put Account Into Active Status</h5><hr>
+                <h5>Put Account Into Active Status</h5>
+                <hr>
                 <div class="form-check col-sm-6 col-md-6 col-lg-6">
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" (change)="onActivateAccount(customer_id, $event)">
@@ -126,34 +215,30 @@
                     </label>
                 </div>
             </div>
-            <div class="c_tab_panel" id="tab_5" >
+            <div class="c_tab_panel" id="tab_5">
                 <br>
-                <h5>Reset Password</h5><hr>
-                <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                    <label for="company_name">Current Password</label>
-                    <div class="col-xs-12">
-                        <input type="password" name="company_name" class="form-control" required=""  placeholder=""  >
-                    </div>
-                </div>
+                <h5>Reset Password</h5>
+                <hr>
+                
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
                     <label for="company_name">New Password</label>
                     <div class="col-xs-12">
-                        <input type="password" name="company_name" class="form-control" required=""  placeholder=""  >
+                        <input type="password" name="newpassword" class="form-control" required="" placeholder="" [(ngModel)]="newPassword" >
                     </div>
                 </div>
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                    <label for="company_name">Confirm Password</label>
-                    <div class="col-xs-12">
-                        <input type="password" name="company_name" class="form-control" required=""  placeholder=""  >
-                    </div>
+                    <button class="btn btn-primary col-sm-12 col-md-8 col-lg-8" (click)="onResetPassword(customer_id)" >Save Password</button>
                 </div>
+                
             </div>
             <div class="c_tab_panel" id="tab_6">
                 <br>
-                <h5>Delete Customer</h5><hr>
+                <h5>Delete Customer</h5>
+                <hr>
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                    <label for="company_name">Are You Sure?</label><br>
-                    <button type="button" class="btn btn-danger col-sm-12 col-md-8 col-lg-8" name="button"> Yes Delete This</button>
+                    <label for="company_name">Are You Sure?</label>
+                    <br>
+                    <button type="button" class="btn btn-danger col-sm-12 col-md-8 col-lg-8" name="button" (click)="onDeleteCustomer(customer_id)"> Yes Delete This</button>
                 </div>
             </div>
         </div>

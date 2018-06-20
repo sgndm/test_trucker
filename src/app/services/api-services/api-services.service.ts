@@ -79,7 +79,7 @@ export class ApiServicesService {
 		formData.append('dump_user_id', data.companyId);
 
 		const url = SERVER_URL + 'admin/dumpaccount/approve';
-		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token} });
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
 	}
 
 	// block dump company 
@@ -88,7 +88,7 @@ export class ApiServicesService {
 		formData.append('dump_user_id', data.companyId);
 
 		const url = SERVER_URL + 'admin/dumpaccount/block';
-		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token} });
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
 	}
 
 
@@ -97,16 +97,28 @@ export class ApiServicesService {
 	// get customer account details 
 	getCustomerDetails(token) {
 		const url = SERVER_URL + 'web/dumpcustomers';
-		return this.http.get(url,{ headers: { 'X-AUTH-TOKEN': token }});
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	// by id 
+	getCustomerById(data, token) {
+		const url = SERVER_URL + 'web/dumpcustomer';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { dump_customer_id: data } });
+	}
+
+	// get dump activity 
+	getDumpActivity(data, token) {
+		const url = SERVER_URL + 'web/dumpcustomer/activity';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { dump_customer_id: data } });
 	}
 
 	// create customer 
-	createCustomer(data,token) {
+	createCustomer(data, token) {
 		const formData: FormData = new FormData();
 		formData.append('dump_customer_details', JSON.stringify(data.dump_customer));
 
 		const url = SERVER_URL + 'web/register/dumpcustomer';
-		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token} });
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
 	}
 
 	// activate dump customer
@@ -115,7 +127,7 @@ export class ApiServicesService {
 		formData.append('dump_customer_id ', data.customerId);
 
 		const url = SERVER_URL + 'web/dumpcustomer/activate';
-		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token} });
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
 	}
 
 	// put customer account on hold
@@ -124,14 +136,44 @@ export class ApiServicesService {
 		formData.append('dump_customer_id ', data.customerId);
 
 		const url = SERVER_URL + 'web/dumpcustomer/onhold';
-		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token} });
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
 	}
 
-	getCustomerById(data, token) {
-		const url = SERVER_URL + 'web/dumpcustomer';
-		return this.http.get(url,{ headers: { 'X-AUTH-TOKEN': token }, params: {dump_customer_id: data}});
+	// delete customer 
+	deleteCustomer(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('dump_customer_id ', data.customerId);
+
+		const url = SERVER_URL + 'web/dumpcustomer/delete';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+
 	}
 
-	
+	// update customer 
+	updateCustomer(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('dump_customer_id', data.dump_customer_id);
+		formData.append('phoneNumber', data.phoneNumber);
+		formData.append('city', data.city);
+		formData.append('state', data.state);
+		formData.append('ssnEin', data.ssnEin);
+		formData.append('streetAddress', data.streetAddress);
+		formData.append('name', data.name);
+		formData.append('zipcode', data.zipcode);
+
+		const url = SERVER_URL + 'web/dumpcustomer/update';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	// password reset 
+	resetPassword(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('dump_customer_id ', data.customerId);
+		formData.append('password ', data.newPassword);
+
+		const url = SERVER_URL + 'web/dumpcustomer/resetpassword';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
 
 }

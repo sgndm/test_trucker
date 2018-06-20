@@ -91,6 +91,16 @@ export class NewCustomerComponent implements OnInit {
 		this.apiServices.createCustomer(data, this.access_token).subscribe(
 			(res:any) => {
 				console.log(res);
+
+				if((res.status == "successful") && (res.message == "customer_created")) {
+					alert("Customer Created Successfully");
+					this.goToCurrentCustomer();
+				} 
+
+				// if((res.status == "successful") && (res.message == "no_loader_account_associated_with_this_email")) {
+				// 	alert("please use a loader email")
+				// } 
+
 			}, 
 			err => {
 				console.log(err);
@@ -100,5 +110,8 @@ export class NewCustomerComponent implements OnInit {
 	}
 
 
+	goToCurrentCustomer() {
+        this.router.navigate(['/pages/customers/current']);
+    }
 
 }
