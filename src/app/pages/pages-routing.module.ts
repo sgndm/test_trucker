@@ -78,7 +78,7 @@ const routes: Routes = [
     // settings
     { path: 'settings', component: SettingsComponent },
     { path: 'permissions', component: PermissionsComponent },
-    { path: 'premissions/employee/:id', component: EmployeeComponent },
+    { path: 'permissions/employee/:id', component: EmployeeComponent },
 
     // admin 
     { path: 'admin/dump-companies', component: DumpCompaniesComponent },

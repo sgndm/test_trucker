@@ -41,23 +41,6 @@ export class TodayComponent implements OnInit {
 
         this.getDumpSites(this.access_token);
 
-        
-
-        // this.act_proj_list = [
-        //     { 'id': 1, 'name': 'Kyles Plumbing' },
-        //     { 'id': 2, 'name': 'Kyles Plumbing' },
-        //     { 'id': 3, 'name': 'Kyles Plumbing' },
-        // ];
-
-        // this.schd_proj_list = [
-        //     { 'id': 1, 'name': 'Johns Work' },
-        //     { 'id': 2, 'name': 'Johns Work' },
-        //     { 'id': 3, 'name': 'Johns Work' },
-        // ];
-    }
-
-    my_func() {
-        // alert('c');
     }
 
     getCompanyName(token) {
