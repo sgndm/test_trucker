@@ -1,251 +1,127 @@
 <div class="page-content">
 
-    <div class="row justify-content-center">
-      <div class="col-sm-12 col-md-8">
-        <h2 class=""> Upcoming Projects </h2>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <h2 class="text-right"> {{ company_name }}</h2>
-      </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-8">
+                <h2 class=""> Upcoming Projects</h2>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <h2 class="text-right"> {{ company_name }}</h2>
+            </div>
+        </div>
+        <hr>
+    
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group col-sm-12 col-md-12 col-lg-12 row">
+                <label for="" class="col-sm-12 col-md-5 col-lg-5 text-right">Dump Site</label>
+                <select name="dsite" id="" [(ngModel)]="selectDumpSite" class="form-control custom-select col-sm-12 col-md-5 col-lg-5" (change)="onChangeDumpSite()">
+                    <option value="0">Select a Dump Site</option>
+                    <option *ngFor="let site of dump_site_list" value="{{site.id}}" >{{ site.name }}</option>
+                </select>
+            </div>
+        </div>
+        <hr>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+    
+            <!-- search project -->
+            <div *ngIf="rows">
+                <h5>Search Projects</h5>
+                <hr>
+    
+                <div class="row justify-content-start">
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <select name="filter" id="" [(ngModel)]="selectFilter" class="form-control custom-select col-sm-12 col-md-5 col-lg-5" (change)="onFilterProjects()">
+                                <option value="0">Select a Search Option</option>
+                                <option value="1">Search Next 7 Days</option>
+                                <option value="2">Search by Month (This Year) </option>
+                                        
+                            </select>
+                    </div>
+    
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                            <select *ngIf="searchByMonth" name="s_month" id="" [(ngModel)]="searchInputMonth" class="form-control custom-select col-sm-12 col-md-5 col-lg-5" (change)="filterProjects()">
+                                    <option value="0">Select a Month</option>
+                                    <option value="jan">January</option>
+                                    <option value="feb">February</option>
+                                    <option value="mar">March</option>
+                                    <option value="apr">April</option>
+                                    <option value="may">May</option>
+                                    <option value="jun">June</option>
+                                    <option value="jul">July</option>
+                                    <option value="aug">August</option>
+                                    <option value="sep">September</option>
+                                    <option value="oct">October</option>
+                                    <option value="nov">November</option>
+                                    <option value="dec">December</option>
+                                            
+                                </select>
+                    </div>
+    
+                </div>
+                <br>
+            </div>
+    
+    
+    
+            <ngx-datatable class="material" [headerHeight]="50" [rowHeight]="'auto'" [columnMode]="'force'" [footerHeight]="50" [count]="true" [limit]="10" [rows]="rows">
+    
+                <ngx-datatable-column name="index">
+                    <ng-template ngx-datatable-header-template>
+                        <span>#</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.index }}
+                    </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="job_name">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Job Name</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.job_name }}
+    
+                    </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="job_number">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Job Number</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.job_number }}
+                    </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="job_status">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Job Status</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.job_status }}
+                    </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="date">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Date</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        {{ row.date }}
+                    </ng-template>
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="action">
+                    <ng-template ngx-datatable-header-template>
+                        <span>Action</span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        <a class="cus-btn-1 btn btn-sm btn-primary" [routerLink]="['/pages/projects/past/job',row.id]">
+                                View
+                            </a>
+                    </ng-template>
+                </ngx-datatable-column>
+    
+            </ngx-datatable>
+        </div>
+    
     </div>
-    <hr>
-
-    <div class="row justify-content-center">
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" [routerLink]="['/pages/projects/upcoming/date','Monday']">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Monday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_mon | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Tuesday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_tue | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Wednesday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_wed | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Thursday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_thur | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Friday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_fri | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Saturday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_sat | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_proj_week()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">Sunday</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_sun | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <br>
-    <hr>
-    <div class="row justify-content-center">
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" [routerLink]="['/pages/projects/upcoming/month','January']">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">January</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_jan | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">February</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_feb | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">March</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_mar | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">April</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_apr | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">May</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_may | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">June</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_jun | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">July</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_jul | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">August</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_aug | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">September</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_sep | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">October</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_oct | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">November</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_nov | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <a class="waves-effect waves-light text-white col-sm-12" (click)="get_projects()">
-                        <div class="align-self-center text-center">
-                            <h6 class="text-white m-t-10 m-b-0">December</h6>
-                            <h2 class="m-t-0 text-white"> {{ proj_dec | number }} </h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-</div>

@@ -190,6 +190,8 @@ export class HistoryComponent implements OnInit {
         } else {
             this.searchByYear = false;
             this.searchByMonth = false;
+
+            this.rows = this.temp;
         }
 
     }
@@ -260,9 +262,6 @@ export class HistoryComponent implements OnInit {
 
     // filter by last week 
     doFilterLastWeek() {
-        // month list 
-        let months_list = ['jan','feb','mar','apr','jun','jul','aug','sep','oct','nov','dec'];
-
         // get today
         let getToday = new Date();
         let timestamp = getToday.getTime();

@@ -2,7 +2,7 @@ import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ROUTES } from './menu-items';
 import { RouteInfo } from "./sidebar.metadata";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, RoutesRecognized } from "@angular/router";
 
 import { ApiServicesService } from '../../services/api-services/api-services.service';
 
@@ -57,20 +57,6 @@ export class SidebarComponent implements OnInit {
     // End open close
 
     ngOnInit() {
-
-        $(function () {
-            $(".sidebartoggler").on('click', function () {
-                if ($("#main-wrapper").hasClass("mini-sidebar")) {
-                    $("body").trigger("resize");
-                    $("#main-wrapper").removeClass("mini-sidebar");
-
-                } else {
-                    $("body").trigger("resize");
-                    $("#main-wrapper").addClass("mini-sidebar");
-                }
-            });
-
-        });
 
         this.allSideNavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
 
@@ -143,10 +129,26 @@ export class SidebarComponent implements OnInit {
         //   this.sidebarnavItems =ROUTES.filter(sidebarnavItem => sidebarnavItem);
 
         
+        $(function () {
+            $(".sidebartoggler").on('click', function () {
+                if ($("#main-wrapper").hasClass("mini-sidebar")) {
+                    $("body").trigger("resize");
+                    $("#main-wrapper").removeClass("mini-sidebar");
+
+                } else {
+                    $("body").trigger("resize");
+                    $("#main-wrapper").addClass("mini-sidebar");
+                }
+            });
+
+        });
 
     }
 
-    ngAfterViewInit() { }
+
+    ngAfterViewInit() { 
+        
+    }
 
 
 }

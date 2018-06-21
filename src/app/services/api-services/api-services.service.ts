@@ -216,5 +216,11 @@ export class ApiServicesService {
 		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { dump_id: data } });
 	}
 
+	// get project history all
+	getProjectUpcomingAll(data, token) {
+		const url = SERVER_URL + 'web/dumpcompany/dumpsite/projects/upcoming';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { dump_id: data } });
+	}
+
 
 }
