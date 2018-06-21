@@ -1,0 +1,87 @@
+<div class="page-content">
+
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-8">
+			<h2 class=""> Current Employees </h2>
+		</div>
+		<div class="col-sm-12 col-md-4">
+			<h2 class="text-right"> {{ company_name }}</h2>
+		</div>
+	</div>
+	<hr>
+
+	<div class="col-sm-12 col-md-12 col-lg-12">
+
+		<div class="form-group row justify-content-center">
+			<label for="" class="col-sm-12 col-md-5 col-lg-5 text-right">Search</label>
+			<input type='text' placeholder='Type Customer name..' class="form-control col-sm-12 col-md-5 col-lg-5" (keyup)='updateFilter($event)'>
+		</div>
+
+
+		<ngx-datatable class="material" [headerHeight]="50" [rowHeight]="'auto'" [columnMode]="'force'" [footerHeight]="50" [count]="true"
+			[limit]="10" [rows]="rows">
+
+			<ngx-datatable-column name="index">
+				<ng-template ngx-datatable-header-template>
+					<span>#</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.index }}
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="emp_name">
+				<ng-template ngx-datatable-header-template>
+					<span>Employee Name</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.emp_name }}
+
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="emp_phone">
+				<ng-template ngx-datatable-header-template>
+					<span>Phone Number</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.emp_phone }}
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="email">
+				<ng-template ngx-datatable-header-template>
+					<span>Email</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.email }}
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="status">
+				<ng-template ngx-datatable-header-template>
+					<span>Status</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					{{ row.status }}
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="">
+				<ng-template ngx-datatable-header-template>
+					<span>view</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					<a class="cus-btn-1 btn btn-sm btn-primary" [routerLink]="['/pages/employees/employee/',row.emp_id]">
+						View
+					</a>
+				</ng-template>
+			</ngx-datatable-column>
+
+
+
+		</ngx-datatable>
+
+	</div>
+	
+</div>

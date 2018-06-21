@@ -30,12 +30,14 @@ import { CurrentCustomersComponent } from './customers/current-customers/current
 import { CustomerComponent } from './customers/customer/customer.component';
 
 // material
-import { MaterialsComponent } from './materials/materials.component';
+import { CreateMaterialsComponent } from './materials/create-materials/create-materials.component';
+import { UpdateMaterialsComponent } from './materials/update-materials/update-materials.component';
 
 // settings
-import { PermissionsComponent } from './settings/permissions/permissions.component';
 import { SettingsComponent } from './settings/settings/settings.component';
 import { EmployeeComponent } from './settings/employee/employee.component';
+import { CurrentEmployeesComponent } from './settings/current-employees/current-employees.component';
+import { CreateEmployeesComponent } from './settings/create-employees/create-employees.component';
 
 
 import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
@@ -73,12 +75,14 @@ const routes: Routes = [
     { path: 'customers/current/customer/:id', component: CustomerComponent },
 
     // material
-    { path: 'material', component: MaterialsComponent },
+    { path: 'material/create', component: CreateMaterialsComponent },
+    { path: 'material/update', component: UpdateMaterialsComponent },
 
     // settings
     { path: 'settings', component: SettingsComponent },
-    { path: 'permissions', component: PermissionsComponent },
-    { path: 'permissions/employee/:id', component: EmployeeComponent },
+    { path: 'employees', component: CurrentEmployeesComponent },
+    { path: 'employees/create', component: CreateEmployeesComponent },
+    { path: 'employees/employee/:id', component: EmployeeComponent },
 
     // admin 
     { path: 'admin/dump-companies', component: DumpCompaniesComponent },

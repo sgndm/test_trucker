@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <button type="button" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12" (click)="onUpdateCustonmer(customer_id)" >Save Customer</button>
+                        <button type="button" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12" (click)="onUpdateCustonmer(customer_id)">Save Customer</button>
                     </div>
 
                 </div>
@@ -175,7 +175,7 @@
                             <span>End Time</span>
                         </ng-template>
                         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                            {{ row.end_time | date:'MM-dd-yyyy HH:mm:ss'  }}
+                            {{ row.end_time | date:'MM-dd-yyyy HH:mm:ss' }}
                         </ng-template>
                     </ngx-datatable-column>
 
@@ -196,11 +196,9 @@
                 <h5>Put Account Into Temparary Hold Status</h5>
                 <hr>
                 <div class="form-check col-sm-6 col-md-6 col-lg-6">
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" (change)="onPutHoldAccount(customer_id, $event)">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Yes</span>
-                    </label>
+                        <label for="" *ngIf="userStatus == 'ONHOLD'" class="cus-lbl bg-warning">On Hold</label>
+                        <button *ngIf="userStatus == 'ACTIVE'" class="cus-btn-1 btn btn-danger" (click)="onPutHoldAccount(customer_id, $event)">Hold Account</button>
+                    
                 </div>
             </div>
             <div class="c_tab_panel" id="tab_4">
@@ -208,28 +206,26 @@
                 <h5>Put Account Into Active Status</h5>
                 <hr>
                 <div class="form-check col-sm-6 col-md-6 col-lg-6">
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" (change)="onActivateAccount(customer_id, $event)">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Yes</span>
-                    </label>
+
+                    <label for="" *ngIf="userStatus == 'ACTIVE'" class="cus-lbl bg-success">Active</label>
+                    <button *ngIf="userStatus == 'ONHOLD'" class="cus-btn-1 btn btn-success" (click)="onActivateAccount(customer_id, $event)">Activate Account</button>
                 </div>
             </div>
             <div class="c_tab_panel" id="tab_5">
                 <br>
                 <h5>Reset Password</h5>
                 <hr>
-                
+
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
                     <label for="company_name">New Password</label>
                     <div class="col-xs-12">
-                        <input type="password" name="newpassword" class="form-control" required="" placeholder="" [(ngModel)]="newPassword" >
+                        <input type="password" name="newpassword" class="form-control" required="" placeholder="" [(ngModel)]="newPassword">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                    <button class="btn btn-primary col-sm-12 col-md-8 col-lg-8" (click)="onResetPassword(customer_id)" >Save Password</button>
+                    <button class="btn btn-primary col-sm-12 col-md-8 col-lg-8" (click)="onResetPassword(customer_id)">Save Password</button>
                 </div>
-                
+
             </div>
             <div class="c_tab_panel" id="tab_6">
                 <br>
@@ -238,7 +234,8 @@
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
                     <label for="company_name">Are You Sure?</label>
                     <br>
-                    <button type="button" class="btn btn-danger col-sm-12 col-md-8 col-lg-8" name="button" (click)="onDeleteCustomer(customer_id)"> Yes Delete This</button>
+                    <button type="button" class="btn btn-danger col-sm-12 col-md-8 col-lg-8" name="button" (click)="onDeleteCustomer(customer_id)">
+                    Yes Delete This</button>
                 </div>
             </div>
         </div>

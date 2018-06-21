@@ -2,7 +2,7 @@
 
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8">
-            <h2 class=""> Employee Permissions  </h2>
+            <h2 class=""> Employee Permissions </h2>
         </div>
         <div class="col-sm-12 col-md-4">
             <h2 class="text-right"> {{ company_name }} </h2>
@@ -10,75 +10,68 @@
     </div>
     <hr>
 
-    <h5>Employees and Permissions</h5><hr>
+    <h5>Employees and Permissions</h5>
+    <hr>
 
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8 col-lg-8">
             <br>
             <div class="form-group row">
                 <label for="" class="col-sm-12 col-md-6 col-lg-6">Owner / Manager Name</label>
-                <label for="" class="col-sm-12 col-md-6 col-lg-6">{{ manager_name }}</label>
+                <label for="" class="col-sm-12 col-md-6 col-lg-6">{{ employee_name }}</label>
             </div>
 
-            <div class="form-group">
-                <div class="row">
-                    <label for="" class="col-sm-12 col-md-6 col-lg-6">Administration Permissions</label>
-                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
-                        <label class="custom-control custom-radio">
-                            <input id="radio1" name="admin_per" type="radio" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Allow</span>
-                        </label>
-                    </div>
-                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
-                        <label class="custom-control custom-radio">
-                            <input id="radio2" name="admin_per" type="radio" class="custom-control-input" checked>
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Don't Allow</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Permissions Type</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Administration Permissions</td>
+                        <td>
+                            <label for="" *ngIf="admin_per == true" class="cus-lbl btn-sm bg-success">Enabled</label>
+                            <label for="" *ngIf="admin_per == false" class="cus-lbl btn-sm bg-warning">Disabled</label>
+                          </td>
+                        <td>
+                                <button for="" *ngIf="admin_per == false" class="cus-btn-1 btn btn-sm btn-success" (click)="change_permission('admin', true)" >Enable</button>
+                                <button for="" *ngIf="admin_per == true" class="cus-btn-1 btn btn-sm btn-danger" (click)="change_permission('admin', false)" >Disable</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Financial Permissions</td>
+                        <td>
+                            <label for="" *ngIf="finance_per == true" class="cus-lbl btn-sm bg-success">Enabled</label>
+                            <label for="" *ngIf="finance_per == false" class="cus-lbl btn-sm bg-warning">Disabled</label>
+                        </td>
+                        <td>
+                                <button for="" *ngIf="finance_per == false" class="cus-btn-1 btn btn-sm btn-success" (click)="change_permission('finance', true)" >Enable</button>
+                                <button for="" *ngIf="finance_per == true" class="cus-btn-1 btn btn-sm btn-danger" (click)="change_permission('finance', false)" >Disable</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Field Permissions</td>
+                        <td>
+                                <label for="" *ngIf="field_per == true" class="cus-lbl btn-sm bg-success">Enabled</label>
+                                <label for="" *ngIf="field_per == false" class="cus-lbl btn-sm bg-warning"> Disabled</label>
+                        </td>
+                        <td>
+                                <button *ngIf="field_per == false" class="cus-btn-1 btn btn-sm btn-success" (click)="change_permission('field', true)" >Enable</button>
+                                <button  *ngIf="field_per == true" class="cus-btn-1 btn btn-sm btn-danger" (click)="change_permission('field', false)" >Disable</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <button class="btn btn-primary pull-right" (click)="onSavePermissions()" >Save Permissions</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <div class="form-group">
-                <div class="row">
-                    <label for="" class="col-sm-12 col-md-6 col-lg-6">Financial Permissions</label>
-                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
-                        <label class="custom-control custom-radio">
-                            <input id="radio1" name="financial_per" type="radio" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Allow</span>
-                        </label>
-                    </div>
-                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
-                        <label class="custom-control custom-radio">
-                            <input id="radio2" name="financial_per" type="radio" class="custom-control-input" checked>
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Don't Allow</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="row">
-                    <label for="" class="col-sm-12 col-md-6 col-lg-6">Field Permissions</label>
-                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
-                        <label class="custom-control custom-radio">
-                            <input id="radio1" name="field_per" type="radio" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Allow</span>
-                        </label>
-                    </div>
-                    <div class="form-check col-sm-6 col-md-3 col-lg-3">
-                        <label class="custom-control custom-radio">
-                            <input id="radio2" name="field_per" type="radio" class="custom-control-input" checked>
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Don't Allow</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
+            
 
         </div>
     </div>

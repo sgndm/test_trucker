@@ -1,0 +1,43 @@
+<div class="page-content">
+
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8">
+            <h2 class=""> Edit Dump Fees </h2>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <h2 class="text-right"> {{ company_name }}</h2>
+        </div>
+    </div>
+    <hr>
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group">
+            <label for="">Materials</label>
+            <select name="" id="" class="form-control custom-select col-sm-12 col-md-5 col-lg-5" [(ngModel)]="materialType" (change)="onChangeMaterial()">
+                <option value="0">Select a Material</option>
+                <option *ngFor="let material of materials_list" value="{{material.type}}"> {{ material.type}} </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <h4>Material Fees</h4>
+        <hr>
+
+        <div class="row">
+            <div class="form-group col-sm-12 col-md-6 col-lg-6 row" *ngFor="let mat_fees of material_fees">
+                <label for="" class="col-sm-12 col-md-6 col-lg-6 text-right"> {{ mat_fees.truckType.type }} : </label>
+                <input type="number" class="form-control col-sm-12 col-md-6 col-lg-6" name="" value="{{ mat_fees.fee }}" min="0" step="0.1" id="inputFee_{{ mat_fees.id }}">
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6 pull-right" *ngIf="showBtn">
+            <button class="btn btn-primary col-sm-12 col-md-12 col-lg-12" (click)="onUpdateMatFees()" >Update Material Fees</button>
+        </div>
+
+
+    </div>
+
+
+
+</div>

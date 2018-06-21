@@ -35,6 +35,8 @@ export class CustomerComponent implements OnInit {
 
     public accountHold: boolean;
 
+    public userStatus: any;
+
     constructor(
         private activeRoute: ActivatedRoute,
         public router: Router,
@@ -93,6 +95,8 @@ export class CustomerComponent implements OnInit {
                     this.streetAddress = res.customer.streetAddress;
                     this.zipcode = res.customer.zipcode;
                     this.ssnEin = res.customer.ssnEin;
+
+                    this.userStatus = res.customer.dumpUserStatus;
                 }
             },
             err => {
@@ -107,19 +111,18 @@ export class CustomerComponent implements OnInit {
             customerId: id
         }
 
-        if (event.target.checked) {
-            this.apiServices.putAccountOnHold(data, this.access_token).subscribe(
-                (res: any) => {
-                    console.log(res);
-                    if ((res.status == "successful") && (res.message == "account_onhold")) {
-                        alert("Successfully blocked customer");
-                    }
-                },
-                err => {
-                    console.log(err);
+        this.apiServices.putAccountOnHold(data, this.access_token).subscribe(
+            (res: any) => {
+                console.log(res);
+                if ((res.status == "successful") && (res.message == "account_onhold")) {
+                    alert("Successfully blocked customer");
+                    location.reload();
                 }
-            )
-        }
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 
     onActivateAccount(id, event) {
@@ -128,19 +131,18 @@ export class CustomerComponent implements OnInit {
             customerId: id
         }
 
-        if (event.target.checked) {
-            this.apiServices.activateCustomer(data, this.access_token).subscribe(
-                (res: any) => {
-                    console.log(res);
-                    if ((res.status == "successful") && (res.message == "account_active")) {
-                        alert("Successfully activated customer");
-                    }
-                },
-                err => {
-                    console.log(err);
+        this.apiServices.activateCustomer(data, this.access_token).subscribe(
+            (res: any) => {
+                console.log(res);
+                if ((res.status == "successful") && (res.message == "account_active")) {
+                    alert("Successfully activated customer");
+                    location.reload();
                 }
-            )
-        }
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 
     getDumpActivities(id, token) {

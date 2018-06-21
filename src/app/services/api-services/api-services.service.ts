@@ -223,4 +223,72 @@ export class ApiServicesService {
 	}
 
 
+	// materials 
+	
+	// get truck types 
+	getTruckTypes(token) {
+		const url = SERVER_URL + 'web/trucktypes';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	// get materials 
+	getMaterials(token) {
+		const url = SERVER_URL + 'web/materials';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	createMaterialFees(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('material_id ', data.material_id);
+		formData.append('fees', JSON.stringify(data.mat_fees));
+
+		const url = SERVER_URL + 'web/dumpcompany/materialfee/create';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	// get material fees 
+	getMaterialFees(token) {
+		const url = SERVER_URL + 'web/dumpcompany/materialfees';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	// update fees 
+	updateMaterialFees(data, token) { 
+		const formData: FormData = new FormData();
+		formData.append('updatedFees', JSON.stringify(data.mat_fees));
+
+		const url = SERVER_URL + 'web/dumpcompany/materialfees/update';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+
+	// settings 
+
+	// current employees 
+	getCurrentEmployees(token) {
+		const url = SERVER_URL + 'web/dumpcompany/employees';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	// create employee 
+	createEmployee(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('dump_employee_details', JSON.stringify(data.employee));
+
+		const url = SERVER_URL + 'web/dumpcompany/register/employee';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	// update permissions
+	updatePermission(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('dump_user_id', data.u_id);
+		formData.append('administrationPermission', data.admin);
+		formData.append('fieldPermission', data.finance);
+		formData.append('financialPermission', data.field);
+
+		const url = SERVER_URL + 'web/dumpcompany/employee/permission/edit';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
 }

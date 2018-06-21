@@ -1,0 +1,128 @@
+<div class="page-content">
+
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-8">
+			<h2 class=""> Create Material Fees </h2>
+		</div>
+		<div class="col-sm-12 col-md-4">
+			<h2 class="text-right"> {{ company_name }} </h2>
+		</div>
+	</div>
+	<hr>
+
+	<div class="col-sm-12 col-md-6 col-lg-6">
+		<div class="form-group">
+			<label for="">Materials</label>
+			<select name="" id="" class="form-control custom-select col-sm-12 col-md-5 col-lg-5" [(ngModel)]="materialType" >
+				<option value="0">Select a Material</option>
+				<option *ngFor="let material of materials_list" value="{{material.id}}"> {{ material.type}} </option>
+			</select>
+		</div>
+	</div>
+
+	<div class="col-sm-12 col-md-12 col-lg-12">
+
+		<div class="row">
+			<div class="col-sm-12 col-md-6 col-lg-6">
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<th>Truck Type</th>
+							<th>Price Per Load</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType1">
+									<option value="0">Select a Truck Type</option>
+									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
+								</select>
+							</td>
+							<td>
+								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees1">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType2">
+									<option value="0">Select a Truck Type</option>
+									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
+								</select>
+							</td>
+							<td>
+								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees2">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType3">
+									<option value="0">Select a Truck Type</option>
+									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
+								</select>
+							</td>
+							<td>
+								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees3">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-sm-12 col-md-6 col-lg-6">
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<th>Truck Type</th>
+							<th>Price Per Load</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType4">
+									<option value="0">Select a Truck Type</option>
+									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
+								</select>
+							</td>
+							<td>
+								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees4">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType5">
+									<option value="0">Select a Truck Type</option>
+									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
+								</select>
+							</td>
+							<td>
+								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees5">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType6">
+									<option value="0">Select a Truck Type</option>
+									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
+								</select>
+							</td>
+							<td>
+								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees6">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			
+		</div>
+
+	</div>
+
+	<div class="col-sm-12 col-md-6 col-lg-6 pull-right">
+		<button class="btn btn-primary col-sm-12 col-md-12 col-lg-8" (click)="onSaving()">Save Material Fees</button>
+	</div>
+
+
+</div>

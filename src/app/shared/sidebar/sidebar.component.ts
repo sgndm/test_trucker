@@ -82,7 +82,7 @@ export class SidebarComponent implements OnInit {
                             case "DUMPUSER" :
                                 // task
                                 this.user_name = res.dumpUser.name;
-                                tempSideNavItems = ['Dump Site Dashboard','Projects','Customer Accounts','Settings And Permissions'];
+                                tempSideNavItems = ['Dump Site Dashboard','Projects','Customer Accounts','Settings And Permissions', 'Material Costs'];
                                 break;
 
                             default:
