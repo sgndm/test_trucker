@@ -46,9 +46,8 @@ export class DumpCompaniesComponent implements OnInit {
 			(res: any) => {
 				console.log(res);
 				if ((res.status == "successful") && (res.message == "account_approved")) {
-					alert("Successfully approved");
-					// get dump company details
-					this.getDetailsAndCreatTable();
+					
+					this.apiServices.altScc('Successfully approved', this.getDetailsAndCreatTable());
 				}
 			},
 
@@ -68,9 +67,9 @@ export class DumpCompaniesComponent implements OnInit {
 			(res: any) => {
 				console.log(res);
 				if ((res.status == "successful") && (res.message == "account_blocked")) {
-					alert("Successfully blocked");
-					// get dump company details
-					this.getDetailsAndCreatTable();
+				
+					this.apiServices.altScc('Successfully blocked', this.getDetailsAndCreatTable());
+					
 				}
 			},
 

@@ -106,10 +106,10 @@
                 <br>
                 <h5>Dump Activities</h5>
                 <hr>
-                <div class="form-group row justify-content-center">
+                <!-- <div class="form-group row justify-content-center">
                     <label for="" class="col-sm-12 col-md-5 col-lg-5 text-right">Search</label>
                     <input type='text' placeholder='Type Customer name..' class="form-control col-sm-12 col-md-5 col-lg-5" (keyup)='updateFilter($event)'>
-                </div>
+                </div> -->
 
 
                 <ngx-datatable class="material" [headerHeight]="50" [rowHeight]="'auto'" [columnMode]="'force'" [footerHeight]="50" [count]="true"
@@ -196,9 +196,9 @@
                 <h5>Put Account Into Temparary Hold Status</h5>
                 <hr>
                 <div class="form-check col-sm-6 col-md-6 col-lg-6">
-                        <label for="" *ngIf="userStatus == 'ONHOLD'" class="cus-lbl bg-warning">On Hold</label>
-                        <button *ngIf="userStatus == 'ACTIVE'" class="cus-btn-1 btn btn-danger" (click)="onPutHoldAccount(customer_id, $event)">Hold Account</button>
-                    
+                    <label for="" *ngIf="userStatus == 'ONHOLD'" class="cus-lbl bg-warning">On Hold</label>
+                    <button *ngIf="userStatus == 'ACTIVE'" class="cus-btn-1 btn btn-danger" (click)="onPutHoldAccount(customer_id, $event)">Hold Account</button>
+
                 </div>
             </div>
             <div class="c_tab_panel" id="tab_4">
@@ -234,8 +234,13 @@
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
                     <label for="company_name">Are You Sure?</label>
                     <br>
-                    <button type="button" class="btn btn-danger col-sm-12 col-md-8 col-lg-8" name="button" (click)="onDeleteCustomer(customer_id)">
-                    Yes Delete This</button>
+
+                    <swal #deleteSwal title="Are Sure?" text="This cannot be undone" type="question"       [showCancelButton]="true"
+                        [focusCancel]="true" (confirm)="onDeleteCustomer(customer_id)">
+                    </swal>
+
+                    <button type="button" class="btn btn-danger col-sm-12 col-md-8 col-lg-8" name="button" [swal]="deleteSwal" >
+                        Yes Delete This</button> 
                 </div>
             </div>
         </div>

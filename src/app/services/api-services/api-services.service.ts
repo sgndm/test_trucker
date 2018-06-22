@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpResponse } from 'selenium-webdriver/http';
+import swal from 'sweetalert2';
 
 const httpOptions = {
 	// responseType: 'string'
@@ -19,6 +20,52 @@ export class ApiServicesService {
 		private http: HttpClient
 	) {
 		this.access_token = localStorage.getItem('access_token')
+	}
+
+	altScc(content, callback) {
+		swal({
+			type: 'success',
+            title: '<span class="text-success">Success</span>',
+            text: content,
+            showConfirmButton: false,
+            timer: 2000,
+            width: 500,
+            padding: 20
+		}).then(
+            callback
+        )
+	}
+
+	altErr(content, callback) {
+		swal({
+            type: 'error',
+            title: '<span class="text-danger">Oops..</span>',
+            text: content,
+            showConfirmButton: false,
+            timer: 2000,
+            width: 500,
+            padding: 20
+        }).then(
+            callback
+        )
+	}
+
+	altDelConfirm(callback) {
+		swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                callback
+            }
+        })
+	}
+
+	reload(){
+		window.setTimeout(function(){window.location.reload()}, 3000);
 	}
 
 	// login function
@@ -288,6 +335,33 @@ export class ApiServicesService {
 		formData.append('financialPermission', data.field);
 
 		const url = SERVER_URL + 'web/dumpcompany/employee/permission/edit';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	// delete employee
+	deleteEmployee(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('dump_user_id', data.u_id);
+
+		const url = SERVER_URL + 'web/dumpcompany/employee/delete';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	// on hold employee 
+	onHoldEmployee(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('dump_user_id', data.u_id);
+
+		const url = SERVER_URL + 'web/dumpcompany/employee/block';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	// on activate employee 
+	onActivateEmployee(data, token){
+		const formData: FormData = new FormData();
+		formData.append('dump_user_id', data.u_id);
+
+		const url = SERVER_URL + 'web/dumpcompany/employee/unblock';
 		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
 	}
 

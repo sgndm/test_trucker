@@ -122,8 +122,8 @@ export class EmployeeComponent implements OnInit {
                 console.log(res);
 
                 if((res.status == "successful") && (res.message == "dump_employee_permissions_updated")) {
-                    alert('Permissions Updated Successfully');
-                    location.reload();
+                    this.apiServices.altScc('Permissions Updated Successfully', this.apiServices.reload());
+                    
                 }
             },
             err => {

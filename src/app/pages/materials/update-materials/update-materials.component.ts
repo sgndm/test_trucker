@@ -166,8 +166,9 @@ export class UpdateMaterialsComponent implements OnInit {
 			(res:any) => {
 				console.log(res);
 				if((res.status == "successful") && (res.message == "material_fees_updated")){
-					alert("Material Fees updated successfully");
-					location.reload();
+					
+					this.apiServices.altScc('Material Fees updated successfully', this.apiServices.reload());
+					
 				}
 			},
 			err => {

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import api services
 import { ApiServicesService } from '../../../services/api-services/api-services.service';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'app-current-customers',
@@ -130,11 +131,11 @@ export class CurrentCustomersComponent implements OnInit {
         // alert(id);
         this.apiServices.putAccountOnHold(data, this.access_token).subscribe(
             (res: any) => {
-                console.log(res);
+                // console.log(res);
                 if ((res.status == "successful") && (res.message == "account_onhold")) {
-                    alert("Successfully blocked customer");
-                    // get dump company details
-                    this.getDetailsAndCreatTable();
+                    
+                    this.apiServices.altScc('Successfully blocked customer',  this.getDetailsAndCreatTable());
+
                 }
             },
 
@@ -151,12 +152,11 @@ export class CurrentCustomersComponent implements OnInit {
         // alert(id);
         this.apiServices.activateCustomer(data, this.access_token).subscribe(
             (res: any) => {
-                console.log(res);
+                // console.log(res);
                 if ((res.status == "successful") && (res.message == "account_active")) {
-                    alert("Successfully activated customer");
-
-                    // get dump company details
-                    this.getDetailsAndCreatTable();
+                    
+                   this.apiServices.altScc('Successfully activated customer',  this.getDetailsAndCreatTable());
+                    
                 }
             },
 
@@ -199,6 +199,5 @@ export class CurrentCustomersComponent implements OnInit {
         // update the rows
         this.rows = temp_data;
     }
-
 
 }

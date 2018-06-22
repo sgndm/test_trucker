@@ -50,7 +50,7 @@ export class SidebarComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         public apiServices: ApiServicesService
-    ) { 
+    ) {
         this.access_token = localStorage.getItem('access_token');
     }
 
@@ -66,28 +66,45 @@ export class SidebarComponent implements OnInit {
         if (this.access_token) {
             // check user 
             this.apiServices.getDetailsSetHeader(this.access_token).subscribe(
-                (res:any) => {
+                (res: any) => {
                     console.log(res);
-                    if(res.status == 'successful') {
+                    if (res.status == 'successful') {
                         // get user type 
                         let userType = res.userType;
 
-                        switch(userType) {
-                            case "WEBADMIN" :
+                        switch (userType) {
+                            case "WEBADMIN":
                                 // tasks 
                                 this.user_name = res.systemadmin.name;
                                 tempSideNavItems = ['Admin Dashboard', 'Dump Companies'];
 
                                 break;
-                            case "DUMPUSER" :
-                                // task
-                                this.user_name = res.dumpUser.name;
-                                tempSideNavItems = ['Dump Site Dashboard','Projects','Customer Accounts','Settings And Permissions', 'Material Costs'];
+                            case "DUMPUSER":
+
+                                switch (res.dumpUser.dumpUserType) {
+                                    case "DUMPOWNER":
+                                        // task
+                                        this.user_name = res.dumpUser.name;
+                                        tempSideNavItems = ['Dump Site Dashboard', 'Projects', 'Customer Accounts', 'Settings And Permissions', 'Material Costs'];
+                                        break;
+
+                                    case "DUMPEMPLOYEE":
+
+                                        if (res.dumpUser.dumpEmployeePermission.administrationPermission == true) {
+                                            this.user_name = res.dumpUser.name;
+                                            tempSideNavItems = ['Dump Site Dashboard', 'Projects', 'Customer Accounts', 'Settings And Permissions', 'Material Costs'];
+                                            break;
+                                        } else {
+                                            this.user_name = res.dumpUser.name;
+                                            tempSideNavItems = ['Dump Site Dashboard', 'Projects', 'Customer Accounts'];
+                                            break;
+                                        }
+
+
+                                }
+                                
                                 break;
 
-                            default:
-                                // task 
-                                break;
                         }
 
 
@@ -95,19 +112,19 @@ export class SidebarComponent implements OnInit {
                         for (let x in this.allSideNavItems) {
 
                             let n_item = this.allSideNavItems[x]['title'];
-                  
+
                             // for all nav items this user is allowed
                             for (let i in tempSideNavItems) {
-                              let t_item = tempSideNavItems[i];
-                  
-                              // if user allowed to these pages
-                              if (n_item == t_item) {
-                                tempArray.push(this.allSideNavItems[x]);
-                              }
-                  
+                                let t_item = tempSideNavItems[i];
+
+                                // if user allowed to these pages
+                                if (n_item == t_item) {
+                                    tempArray.push(this.allSideNavItems[x]);
+                                }
+
                             }
-                          }
-                
+                        }
+
 
                     }
                 },
@@ -118,17 +135,17 @@ export class SidebarComponent implements OnInit {
                 }
             )
 
-            
+
         } else {
             this.apiServices.clearLocalStorage();
             this.router.navigate(['/sign-in']);
         }
-        
+
 
         this.sidebarnavItems = tempArray;
         //   this.sidebarnavItems =ROUTES.filter(sidebarnavItem => sidebarnavItem);
 
-        
+
         $(function () {
             $(".sidebartoggler").on('click', function () {
                 if ($("#main-wrapper").hasClass("mini-sidebar")) {
@@ -146,8 +163,8 @@ export class SidebarComponent implements OnInit {
     }
 
 
-    ngAfterViewInit() { 
-        
+    ngAfterViewInit() {
+
     }
 
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import api services
 import { ApiServicesService } from '../../../services/api-services/api-services.service';
+import swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-current-employees',
@@ -112,6 +113,66 @@ export class CurrentEmployeesComponent implements OnInit {
 	}
 
 	updateFilter(event) {}
+
+	onPutHoldCustomer(id) {
+
+		const data = { u_id: id}
+
+		this.apiServices.onHoldEmployee(data, this.access_token).subscribe(
+			(res: any) => {
+				console.log(res);
+
+				if((res.status == "successful") && (res.message == "dump_employee_blocked")) {
+					this.apiServices.altScc('Employee Blocked Successfully', this.getCurrentEmployees(this.access_token));
+				}
+			},
+
+			err => {
+				console.log(err)
+			}
+		)
+
+	}
+
+	onActivateCustomer(id) {
+
+		const data = { u_id: id}
+
+		this.apiServices.onActivateEmployee(data, this.access_token).subscribe(
+			(res: any) => {
+				console.log(res);
+
+				if((res.status == "successful") && (res.message == "dump_employee_unblocked")) {
+					this.apiServices.altScc('Employee Activated Successfully', this.getCurrentEmployees(this.access_token));
+				}
+			},
+
+			err => {
+				console.log(err)
+			}
+		)
+
+	}
+
+	onDeleteCustomer(id) {
+		
+		const data = { u_id: id}
+
+		this.apiServices.deleteEmployee(data, this.access_token).subscribe(
+			(res: any) => {
+				console.log(res);
+
+				if((res.status == "successful") && (res.message == "dump_employee_deleted")) {
+					this.apiServices.altScc('Employee Deleted Successfully', this.getCurrentEmployees(this.access_token));
+				}
+			},
+
+			err => {
+				console.log(err)
+			}
+		)
+
+	}
 
 	
 

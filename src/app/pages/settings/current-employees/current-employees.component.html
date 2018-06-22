@@ -19,7 +19,7 @@
 
 
 		<ngx-datatable class="material" [headerHeight]="50" [rowHeight]="'auto'" [columnMode]="'force'" [footerHeight]="50" [count]="true"
-			[limit]="10" [rows]="rows">
+		 [limit]="10" [rows]="rows">
 
 			<ngx-datatable-column name="index">
 				<ng-template ngx-datatable-header-template>
@@ -63,7 +63,20 @@
 					<span>Status</span>
 				</ng-template>
 				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-					{{ row.status }}
+					<!-- {{ row.status }} -->
+					<label class="cus-lbl btn-sm bg-success" *ngIf="row.status == 'APPROVED'">Active</label>
+					<label class="cus-lbl btn-sm bg-danger" *ngIf="row.status == 'BLOCKED'">On Hold</label>
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="">
+				<ng-template ngx-datatable-header-template>
+					<span>Action</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					<button *ngIf="row.status == 'APPROVED'" class="cus-btn-1 btn btn-sm btn-danger" (click)="onPutHoldCustomer(row.emp_id)">Hold</button>
+					<button *ngIf="row.status == 'BLOCKED'" class="cus-btn-1 btn btn-sm btn-success" (click)="onActivateCustomer(row.emp_id)">Activate</button>
+
 				</ng-template>
 			</ngx-datatable-column>
 
@@ -78,10 +91,25 @@
 				</ng-template>
 			</ngx-datatable-column>
 
+			<ngx-datatable-column name="">
+				<ng-template ngx-datatable-header-template>
+					<span>Delete</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+
+					<swal #deleteSwal title="Are Sure?" text="This cannot be undone" type="warning" [showCancelButton]="true" [focusCancel]="true"
+					 (confirm)="onDeleteCustomer(row.emp_id)">
+					</swal>
+
+					<button class="cus-btn-1 btn btn-sm btn-danger" [swal]="deleteSwal">Delete</button>
+
+				</ng-template>
+			</ngx-datatable-column>
+
 
 
 		</ngx-datatable>
 
 	</div>
-	
+
 </div>

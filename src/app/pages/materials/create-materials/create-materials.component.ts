@@ -143,7 +143,7 @@ export class CreateMaterialsComponent implements OnInit {
 	onSaving() {
 
 		if (this.materialType == 0) {
-			alert("Select a material first");
+			this.apiServices.altErr('Select a material first', '')
 		}
 		else {
 			let trucks = this.truck_ids;
@@ -175,9 +175,9 @@ export class CreateMaterialsComponent implements OnInit {
 					console.log(res);
 
 					if ((res.status == "successful") && (res.message == "material_fees_created")) {
-						alert('Successfully created Material fees');
-						// this.goToUpdate();
-						location.reload();
+
+						this.apiServices.altScc('Successfully created Material fees', this.apiServices.reload());
+						
 					}
 				},
 				err => {
@@ -238,7 +238,7 @@ export class CreateMaterialsComponent implements OnInit {
 				}
 			}
 
-			// alert(matType);
+			
 			this.getMaterialFees(matType, this.access_token);
 		}
 		

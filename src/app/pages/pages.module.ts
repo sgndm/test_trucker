@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 // fullcalendar
 import { FullCalendarModule } from 'ng-fullcalendar';
 
+// sweet alerts 
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+
 // datatables
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -54,7 +57,8 @@ import { CreateEmployeesComponent } from './settings/create-employees/create-emp
     PagesRoutingModule,
     FormsModule,
     FullCalendarModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    SweetAlert2Module
   ],
   declarations: [
     DashboardComponent,

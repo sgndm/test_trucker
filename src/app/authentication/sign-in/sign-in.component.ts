@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import { Router } from '@angular/router';
 // import api services
 import { ApiServicesService } from '../../services/api-services/api-services.service';
+import swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-sign-in',
@@ -28,38 +29,7 @@ export class SignInComponent implements OnInit {
 
 	ngOnInit() {
 		if(this.access_token){
-			this.apiServices.getDetailsSetHeader(this.access_token).subscribe(
-				(res: any) => {
-					console.log(res);
-					
-					if(res.status == 'successful') {
-						let userType = res.userType;
-
-						switch(userType) {
-							case "WEBADMIN" :
-								this.goToAdminDashboard();
-								break;
-							case "DUMPUSER" :
-								this.goToDumpDashboard();
-							   break;
-
-							default:
-								this.goToDashboard();
-								break;
-						}
-						
-
-					} else {
-						alert('Please Refresh again..');
-					}
-
-				},
-
-				err => {
-					console.log(err);
-					this.apiServices.clearLocalStorage();
-				}
-			)
+			this.getDetails(this.access_token);
 		} else {
 			this.apiServices.clearLocalStorage();
 		}
@@ -90,55 +60,59 @@ export class SignInComponent implements OnInit {
 				// store token in local storage 
 				this.apiServices.saveToLocalStorage(get_access_token);
 
-				// get details
-				this.apiServices.getDetailsSetHeader(get_access_token).subscribe(
-					(res: any) => {
-						console.log(res);
-						
-						if(res.status == 'successful') {
-							let userType = res.userType;
-	
-							switch(userType) {
-								case "WEBADMIN" :
-									this.goToAdminDashboard();
-									break;
-								case "DUMPUSER" :
-									this.goToDumpDashboard();
-								   break;
-	
-								default:
-									this.goToDashboard();
-									break;
-							}
-							
-	
-						} else {
-							alert('Please Refresh again..');
-						}
-	
-					},
-	
-					err => {
-						console.log(err);
-						this.apiServices.clearLocalStorage();
-					}
-				)
+				// get user details 
+				this.getDetails(get_access_token);
 					
-				
-
 			},
 
 			err => {
 				// if login has failed
 				console.log(err);
 				if(err.status == 403) {
-					alert('Login Failed.. Please Check your credentials..');
+					this.apiServices.altErr('Username or password is incorrect', this.apiServices.reload());
+				} 
+				else if(err.status == 500) {
+					this.apiServices.altErr('Server Error',this.apiServices.reload());
 				}
 				
 			}
 		)
 
 	}
+
+	// get details
+	getDetails(token) {
+		this.apiServices.getDetailsSetHeader(token).subscribe(
+			(res: any) => {
+				console.log(res);
+				
+				if(res.status == 'successful') {
+					let userType = res.userType;
+	
+					switch(userType) {
+						case "WEBADMIN" :
+							this.goToAdminDashboard();
+							break;
+						case "DUMPUSER" :
+							this.goToDumpDashboard();
+						   break;
+	
+						default:
+							this.goToDashboard();
+							break;
+					}
+					
+	
+				} 
+			},
+	
+			err => {
+				console.log(err);
+				this.apiServices.clearLocalStorage();
+			}
+		)
+	}
+	
 
 	// redirect to dashboard
 	goToDashboard() {
@@ -152,5 +126,7 @@ export class SignInComponent implements OnInit {
 	goToDumpDashboard() {
 		this.router.navigate(['/pages/projects/today']);
 	}
+
+	
 
 }

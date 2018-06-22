@@ -66,7 +66,7 @@ export class CustomerComponent implements OnInit {
     }
 
     show_tab(tab_id, count) {
-        // alert(tab_id);
+
         $('#' + tab_id).show();
         for (let x = 1; x <= count; x++) {
             if (x == tab_id) {
@@ -115,8 +115,8 @@ export class CustomerComponent implements OnInit {
             (res: any) => {
                 console.log(res);
                 if ((res.status == "successful") && (res.message == "account_onhold")) {
-                    alert("Successfully blocked customer");
-                    location.reload();
+                    this.apiServices.altScc('Successfully blocked customer', this.apiServices.reload());
+
                 }
             },
             err => {
@@ -135,8 +135,8 @@ export class CustomerComponent implements OnInit {
             (res: any) => {
                 console.log(res);
                 if ((res.status == "successful") && (res.message == "account_active")) {
-                    alert("Successfully activated customer");
-                    location.reload();
+
+                    this.apiServices.altScc('Successfully activated customer', this.apiServices.reload());
                 }
             },
             err => {
@@ -208,30 +208,21 @@ export class CustomerComponent implements OnInit {
             customerId: id
         }
 
-        // alert(id);
-        if (confirm("Are you sure?")) {
-            this.apiServices.deleteCustomer(data, this.access_token).subscribe(
-                (res: any) => {
-                    console.log(res);
+        this.apiServices.deleteCustomer(data, this.access_token).subscribe(
+            (res: any) => {
+                // console.log(res);
 
-                    if ((res.status == "successful") && (res.message == "account_deleted")) {
-                        alert("Account Delete Successfully");
+                if ((res.status == "successful") && (res.message == "account_deleted")) {
 
-                        // redirect to current customers
-                        this.goToCurrentCustomer();
-
-                    }
-                },
-
-                err => {
-                    console.log(err);
+                    this.apiServices.altScc('Account Delete Successfully', this.goToCurrentCustomer());
                 }
-            )
-        } else {
-            alert("canceled");
-        }
+            },
 
-
+            err => {
+                console.log(err);
+            }
+        )
+        
     }
 
     goToCurrentCustomer() {
@@ -256,9 +247,7 @@ export class CustomerComponent implements OnInit {
                 console.log(res);
 
                 if ((res.status == "successful") && (res.message == "cutomer_account_updated")) {
-                    alert("Customer Updated Successfully");
-                    location.reload();
-     
+                    this.apiServices.altScc('Customer Updated Successfully', this.apiServices.reload());
                 }
 
             },
@@ -278,10 +267,11 @@ export class CustomerComponent implements OnInit {
 
         this.apiServices.resetPassword(data, this.access_token).subscribe(
             (res: any) => {
-                console.log(res);
+                // console.log(res);
                 if ((res.status == "successful") && (res.message == "cutomer_account_updated")) {
-                    alert("Password Updated Successfully");
-                    location.reload()
+
+                    this.apiServices.altScc('Password Updated Successfully', this.apiServices.reload());
+
                 }
 
             },

@@ -76,9 +76,8 @@ export class CreateEmployeesComponent implements OnInit {
 				console.log(res);
 
 				if((res.status == "successful") && (res.message == "account_created")) {
-					alert("Employee created successfully");
+					this.apiServices.altScc("Employee created successfully", this.goToCurrentEmployees());
 
-					this.goToCurrentEmployees();
 				}
 			},
 
