@@ -94,13 +94,32 @@ export class CurrentCustomersComponent implements OnInit {
         // alert(category);
         const val = category.toLowerCase();
 
-        // filter our data
-        const temp_data = this.temp.filter(function(d) {
-          return d.cust_name.toLowerCase().indexOf(val) !== -1 || !val;
-        });
+        // get data
+        const temp_data = this.temp;
+
+        let result = [];
+        // filter
+        for(let data of temp_data) {
+            let t_name = data.cust_name.substring(0,1);
+
+            if(val == '0-9') {
+                for(let i = 0; i < 10; i++) {
+                    if(val == parseInt(t_name)) {
+                        result.push(data);
+                    }
+                }
+            } 
+            else {
+                if(val == t_name) {
+                    result.push(data);
+                }
+            }
+            
+
+        }
 
         // update the rows
-        this.rows = temp_data;
+        this.rows = result;
 
     }
 
