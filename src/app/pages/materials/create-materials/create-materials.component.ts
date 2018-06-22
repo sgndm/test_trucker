@@ -17,9 +17,11 @@ export class CreateMaterialsComponent implements OnInit {
 
 	public materials_list: any[];
 	public truck_types_list: any[];
+	public material_fees: any[];
+	public truck_ids: any[];
 
 	public materialType: any;
-	
+
 	public truckType1: any;
 	public truckType2: any;
 	public truckType3: any;
@@ -32,7 +34,7 @@ export class CreateMaterialsComponent implements OnInit {
 	public matFees4: any;
 	public matFees5: any;
 	public matFees6: any;
-	
+
 
 	constructor(
 		public router: Router,
@@ -65,7 +67,7 @@ export class CreateMaterialsComponent implements OnInit {
 		this.getCompanyName(this.access_token);
 
 		// get truck types 
-		this.getTruckTypes(this.access_token);
+		this.getTruckTypes([], this.access_token);
 
 		// get materials 
 		this.getMaterials(this.access_token);
@@ -94,12 +96,25 @@ export class CreateMaterialsComponent implements OnInit {
 		)
 	}
 	// get truck types
-	getTruckTypes(token) {
+	getTruckTypes(trucks_arr, token) {
 		this.apiServices.getTruckTypes(token).subscribe(
 			(res: any) => {
 				console.log(res);
-				if( (res.status == "successful") && (res.message == "truck_types")) {
-					this.truck_types_list = res.truck_types;
+				if ((res.status == "successful") && (res.message == "truck_types")) {
+
+					let temp_trucks = res.truck_types;
+					let result = [];
+					let t_truck_ids = [];
+
+					for (let truck of temp_trucks) {
+						if (!(trucks_arr.includes(truck.id))) {
+							result.push(truck);
+							t_truck_ids.push(truck.id);
+						}
+					}
+
+					this.truck_types_list = result;
+					this.truck_ids = t_truck_ids;
 				}
 			},
 
@@ -114,7 +129,7 @@ export class CreateMaterialsComponent implements OnInit {
 		this.apiServices.getMaterials(token).subscribe(
 			(res: any) => {
 				console.log(res);
-				if( (res.status == "successful") && (res.message == "material")) {
+				if ((res.status == "successful") && (res.message == "material")) {
 					this.materials_list = res.material;
 				}
 			},
@@ -127,41 +142,49 @@ export class CreateMaterialsComponent implements OnInit {
 
 	onSaving() {
 
-		let truck1 = this.truckType1;
-		let truck2 = this.truckType2;
-		let truck3 = this.truckType3;
-		let truck4 = this.truckType4;
-		let truck5 = this.truckType5;
-		let truck6 = this.truckType6;
-
-		let temp = [];
-
-		if(truck1 !== 0) { let xx = { truckType: { id: truck1 }, fee: this.matFees1 }; temp.push(xx) };
-		if(truck2 !== 0) { let xx = { truckType: { id: truck2 }, fee: this.matFees2 }; temp.push(xx) };
-		if(truck3 !== 0) { let xx = { truckType: { id: truck3 }, fee: this.matFees3 }; temp.push(xx) };
-		if(truck4 !== 0) { let xx = { truckType: { id: truck4 }, fee: this.matFees4 }; temp.push(xx) };
-		if(truck5 !== 0) { let xx = { truckType: { id: truck5 }, fee: this.matFees5 }; temp.push(xx) };
-		if(truck6 !== 0) { let xx = { truckType: { id: truck6 }, fee: this.matFees6 }; temp.push(xx) };
-
-
-		const data = {
-			material_id: this.materialType,
-			mat_fees: temp
+		if (this.materialType == 0) {
+			alert("Select a material first");
 		}
-		
-		this.apiServices.createMaterialFees(data, this.access_token).subscribe(
-			(res: any) => {
-				console.log(res);
+		else {
+			let trucks = this.truck_ids;
+			let temp = [];
 
-				if((res.status == "successful") && (res.message == "material_fees_created")) {
-					alert('Successfully created Material fees');
-					this.goToUpdate();
+			for (let id of trucks) {
+				// get value from form 
+				let t_fee = $('#inputFee_' + id).val();
+
+				if (t_fee > 0) {
+					let obj = {
+						truckType: {
+							id: id
+						},
+						fee: t_fee
+					}
+
+					temp.push(obj);
 				}
-			},
-			err => {
-				console.log(err);
 			}
-		)
+
+			const data = {
+				material_id: this.materialType,
+				mat_fees: temp
+			}
+
+			this.apiServices.createMaterialFees(data, this.access_token).subscribe(
+				(res: any) => {
+					console.log(res);
+
+					if ((res.status == "successful") && (res.message == "material_fees_created")) {
+						alert('Successfully created Material fees');
+						// this.goToUpdate();
+						location.reload();
+					}
+				},
+				err => {
+					console.log(err);
+				}
+			)
+		}
 
 	}
 
@@ -169,6 +192,56 @@ export class CreateMaterialsComponent implements OnInit {
 		this.router.navigate(['/pages/material/update']);
 	}
 
-	
+	// get material fees 
+	getMaterialFees(type, token) {
+
+		this.apiServices.getMaterialFees(token).subscribe(
+			(res: any) => {
+				console.log(res);
+
+				if ((res.status == "successful") && (res.message == "material_fees")) {
+
+					let material_fees = res.material_fees[type];
+					let t_t_ids = [];
+
+					for (let mat of material_fees) {
+						let t_id = mat.truckType.id;
+						t_t_ids.push(t_id);
+					}
+
+					// this.truck_ids = t_t_ids;
+
+					// get the trucks
+					this.getTruckTypes(t_t_ids, token);
+
+				}
+
+			},
+			err => {
+				console.log(err);
+			}
+		)
+	}
+
+	// on change materials
+	onChangeMaterials() {
+		let matId = this.materialType;
+
+		if (matId > 0) {
+			let matType = '';
+
+			let temp_materials = this.materials_list;
+
+			for (let mat of temp_materials) {
+				if (mat.id == parseInt(matId)) {
+					matType = mat.type;
+				}
+			}
+
+			// alert(matType);
+			this.getMaterialFees(matType, this.access_token);
+		}
+		
+	}
 
 }

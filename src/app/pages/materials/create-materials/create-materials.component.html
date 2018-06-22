@@ -13,7 +13,7 @@
 	<div class="col-sm-12 col-md-6 col-lg-6">
 		<div class="form-group">
 			<label for="">Materials</label>
-			<select name="" id="" class="form-control custom-select col-sm-12 col-md-5 col-lg-5" [(ngModel)]="materialType" >
+			<select name="" id="" class="form-control custom-select col-sm-12 col-md-5 col-lg-5" [(ngModel)]="materialType" (change)="onChangeMaterials()" >
 				<option value="0">Select a Material</option>
 				<option *ngFor="let material of materials_list" value="{{material.id}}"> {{ material.type}} </option>
 			</select>
@@ -23,99 +23,10 @@
 	<div class="col-sm-12 col-md-12 col-lg-12">
 
 		<div class="row">
-			<div class="col-sm-12 col-md-6 col-lg-6">
-				<table class="table table-sm">
-					<thead>
-						<tr>
-							<th>Truck Type</th>
-							<th>Price Per Load</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType1">
-									<option value="0">Select a Truck Type</option>
-									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
-								</select>
-							</td>
-							<td>
-								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees1">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType2">
-									<option value="0">Select a Truck Type</option>
-									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
-								</select>
-							</td>
-							<td>
-								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees2">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType3">
-									<option value="0">Select a Truck Type</option>
-									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
-								</select>
-							</td>
-							<td>
-								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees3">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<div class="col-sm-12 col-md-6 col-lg-6">
-				<table class="table table-sm">
-					<thead>
-						<tr>
-							<th>Truck Type</th>
-							<th>Price Per Load</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType4">
-									<option value="0">Select a Truck Type</option>
-									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
-								</select>
-							</td>
-							<td>
-								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees4">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType5">
-									<option value="0">Select a Truck Type</option>
-									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
-								</select>
-							</td>
-							<td>
-								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees5">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<select name="" id="" class="form-control custom-select" [(ngModel)]="truckType6">
-									<option value="0">Select a Truck Type</option>
-									<option *ngFor="let truck of truck_types_list" value="{{truck.id}}"> {{ truck.type}} </option>
-								</select>
-							</td>
-							<td>
-								<input type="number" class="form-control" name="" value="0" min="0" step="0.1" [(ngModel)]="matFees6">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			
+			<div class="form-group col-sm-12 col-md-6 col-lg-6 row" *ngFor="let truck of truck_types_list">
+                <label for="" class="col-sm-12 col-md-6 col-lg-6 text-right"> {{ truck.type }} : </label>
+                <input type="number" class="form-control col-sm-12 col-md-6 col-lg-6" name="" value="0" min="0" step="0.1" id="inputFee_{{ truck.id }}">
+            </div>
 		</div>
 
 	</div>

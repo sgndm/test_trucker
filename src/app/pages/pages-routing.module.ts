@@ -60,14 +60,10 @@ const routes: Routes = [
     { path: 'projects/today', component: TodayComponent },
     { path: 'projects/today/job/:id', component: PJobComponent },
     { path: 'projects/upcoming', component: UpcomingComponent },
-    { path: 'projects/upcoming/date/:id', component: PDayComponent },
     { path: 'projects/upcoming/job/:id', component: PJobComponent },
-    { path: 'projects/upcoming/month/:id', component: PMonthComponent },
     { path: 'projects/past', component: HistoryComponent },
     { path: 'projects/past/date/:id', component: PDayComponent },
     { path: 'projects/past/job/:id', component: PJobComponent },
-    { path: 'projects/past/month/:id', component: PMonthComponent },
-    { path: 'projects/past/year/:id', component: PYearComponent },
 
     // customer
     { path: 'customers/new', component: NewCustomerComponent },
@@ -79,7 +75,6 @@ const routes: Routes = [
     { path: 'material/update', component: UpdateMaterialsComponent },
 
     // settings
-    { path: 'settings', component: SettingsComponent },
     { path: 'employees', component: CurrentEmployeesComponent },
     { path: 'employees/create', component: CreateEmployeesComponent },
     { path: 'employees/employee/:id', component: EmployeeComponent },
