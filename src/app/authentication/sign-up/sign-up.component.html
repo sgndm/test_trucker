@@ -1,182 +1,203 @@
-<div class="login-register">
-  <div class="card">
-    <div class="card-body sign-up-container">
-      <form class="form-horizontal form-material" id="loginform">
-        <h3 class="box-title m-b-20 text-center">Create New Account</h3>
+<div class="login-register" style="background-image:url(assets/images/background/trucker_login.jpg);">
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-11 col-lg-11">
+			<div class="card">
+				<div class="card-body sign-up-container">
+					<form class="form-horizontal form-material" id="loginform">
+						<br>
+						<h2 class="text-center">TRUCKER</h2>
+						<h3 class="box-title m-b-20 text-center">Create New Dump Site Account</h3>
 
-        <div class="row justify-content-center">
-          <div class="col-sm-12 col-md-3 col-lg-3">
+						<div class="row justify-content-center">
+							<div class="col-sm-12 col-md-4 col-lg-4 dump-comp">
 
-            <div class="form-group">
-              <label for="company_name">Company Name</label>
-              <div class="col-xs-12">
-                <input type="text" name="company_name" id="company_name" class="form-control" required=""  placeholder="">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="">Company Address</label>
+								<h4 class="text-center">Dump Company</h4>
+								<hr>
+								<div class="form-group">
+									<label for="company_name">Company Name</label>
+									<div class="col-xs-12">
+										<input type="text" name="company_name" class="form-control" required="" placeholder="" [(ngModel)]="compName">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="">Company Address</label>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="c_street_address"><small>Street Address</small></label>
-                <input type="text" name="c_street_address" id="c_street_address" class="form-control" required=""  placeholder="">
-              </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="c_street_address">
+											<small>Street Address</small>
+										</label>
+										<input type="text" name="c_street_address" id="c_street_address" class="form-control" required="" placeholder="" [(ngModel)]="compStrAddress">
+									</div>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="c_street_address_d"><small>Street Address Details</small></label>
-                <input type="text" name="c_street_address_d" id="c_street_address_d" class="form-control" required=""  placeholder="">
-              </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="c_city">
+											<small>City</small>
+										</label>
+										<input type="text" name="c_city" id="c_city" class="form-control" required="" placeholder="" [(ngModel)]="compCity">
+									</div>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="c_city"><small>City</small></label>
-                <input type="text" name="c_city" id="c_city" class="form-control" required=""  placeholder="">
-              </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="c_country">
+											<small>Country</small>
+										</label>
+										<input type="text" name="c_country" id="c_country" class="form-control" required="" placeholder="" [(ngModel)]="compCountry">
+									</div>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="c_zip_code"><small>ZIP Code</small></label>
-                <input type="text" name="c_zip_code" id="c_zip_code" class="form-control" required=""  placeholder="">
-              </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="c_zip_code">
+											<small>ZIP Code</small>
+										</label>
+										<input type="text" name="c_zip_code" id="c_zip_code" class="form-control" required="" placeholder="" [(ngModel)]="compZipCode">
+									</div>
+								</div>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="c_phone_number"><small>Phone Number</small></label>
-                <input type="text" name="c_phone_number" id="c_phone_number" class="form-control" required=""  placeholder="">
-              </div>
+								<div class="form-group">
+									<label for="">Company Location</label>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="c_cell_phone"><small>Cell Phone </small></label>
-                <input type="text" name="c_cell_phone" id="c_cell_phone" class="form-control" required=""  placeholder="">
-              </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="c_phone_number">
+											<small>Latitude</small>
+										</label>
+										<input type="text" name="latitude" id="" class="form-control" required="" placeholder="" [(ngModel)]="compLatitude">
+									</div>
 
-            </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="c_cell_phone">
+											<small>Longitude</small>
+										</label>
+										<input type="text" name="Longitude" id="" class="form-control" required="" placeholder="" [(ngModel)]="compLongitude">
+									</div>
 
+								</div>
 
-          </div>
-          <div class="col-sm-12 col-md-3 col-lg-3">
+							</div>
 
-            <div class="form-group">
-              <label for="manager_name">Owner / Manager Name</label>
-              <div class="col-xs-12">
-                <input type="text" name="manager_name" id="manager_name" class="form-control" required=""  placeholder="">
-              </div>
-            </div>
+							<div class="col-sm-12 col-md-4 col-lg-4 dump-comp">
 
-            <div class="form-group">
-              <label for="manager_name">Dump Site Address </label>
+								<h4 class="text-center">Dump Site</h4>
+								<hr>
+								<div class="form-group">
+									<label for="manager_name">Dump Site Name</label>
+									<div class="col-xs-12">
+										<input type="text" name="dump_site" id="dump_site" class="form-control" required="" placeholder="" [(ngModel)]="dumpSiteName">
+									</div>
+								</div>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="d_street_address"><small>Street Address</small></label>
-                <input type="text" name="d_street_address" id="d_street_address" class="form-control" required=""  placeholder="">
-              </div>
+								<div class="form-group">
+									<label for="manager_name">Dump Site Address </label>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="d_street_address_d"><small>Street Address Details</small></label>
-                <input type="text" name="d_street_address_d" id="d_street_address_d" class="form-control" required=""  placeholder="">
-              </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="d_street_address">
+											<small>Street Address</small>
+										</label>
+										<input type="text" name="d_street_address" id="d_street_address" class="form-control" required="" placeholder="" [(ngModel)]="dumpStrAddress">
+									</div>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="d_city"><small>City</small></label>
-                <input type="text" name="d_city" id="d_city" class="form-control" required=""  placeholder="">
-              </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="d_street_address_d">
+											<small>Street Address Details</small>
+										</label>
+										<input type="text" name="d_street_address_d" id="d_street_address_d" class="form-control" required="" placeholder="" [(ngModel)]="dumpStrDetails">
+									</div>
 
-              <div class="col-xs-12 custom-form-1">
-                <label for="d_zip_code"><small>ZIP Code</small></label>
-                <input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required=""  placeholder="">
-              </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="d_city">
+											<small>City</small>
+										</label>
+										<input type="text" name="d_city" id="d_city" class="form-control" required="" placeholder="" [(ngModel)]="dumpCity">
+									</div>
 
-            </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="d_zip_code">
+											<small>ZIP Code</small>
+										</label>
+										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" [(ngModel)]="dumpZipCode">
+									</div>
 
-
-          </div>
-          <div class="col-sm-12 col-md-3 col-lg-3">
-
-            <div class="form-group">
-              <label for="user_name">Username</label>
-              <div class="col-xs-12">
-                <input type="text" name="user_name" id="user_name" class="form-control" required=""  placeholder="">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="password">Password</label>
-              <div class="col-xs-12">
-                <input type="text" name="password" id="password" class="form-control" required=""  placeholder="">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <div class="col-xs-12">
-                <input type="text" name="email" id="email" class="form-control" required=""  placeholder="">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <br>
-              <label for="manager_name">On Site Phone Number </label>
-
-              <div class="col-xs-12 custom-form-1">
-                <label for="d_phone_1"><small>Phone Number 01</small></label>
-                <input type="text" name="d_phone_1" id="d_phone_1" class="form-control" required=""  placeholder="">
-              </div>
-
-              <div class="col-xs-12 custom-form-1">
-                <label for="d_phone_2"><small>Phone Number 01</small></label>
-                <input type="text" name="d_phone_2" id="d_phone_2" class="form-control" required=""  placeholder="">
-              </div>
-
-            </div>
+								</div>
 
 
-          </div>
+								<div class="form-group">
+									<label for="manager_name">Dump Site Location </label>
+									<div class="col-xs-12 custom-form-1">
+										<label for="d_zip_code">
+											<small>Latitude</small>
+										</label>
+										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" [(ngModel)]="dumpLatitude">
+									</div>
 
-          <div class="col-sm-12 col-md-9 col-lg-9 text-right">
-            <a class="btn btn-primary col-md-3 col-lg-4 push-right" [routerLink]="['/sign-in']"><b>Create Account</b></a>
-          </div>
+									<div class="col-xs-12 custom-form-1">
+										<label for="d_zip_code">
+											<small>Longitude</small>
+										</label>
+										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" [(ngModel)]="dumpLongitude">
+									</div>
+								</div>
 
-        </div>
+								<div class="form-group">
+									<label for="manager_name">Dump Site Phone</label>
+									<div class="col-xs-12">
+										<input type="text" name="d_phone" id="" class="form-control" required="" placeholder="" [(ngModel)]="dumpSitePhone">
+									</div>
+								</div>
 
 
 
+							</div>
 
-        <!-- <div class="form-group">
-          <label class="control-lable">COMPANY NAME</label>
-          <div class="col-xs-12">
-            <input class="form-control" required="" type="text" placeholder="Enter your company name...">
-          </div>
-        </div>
-        <div class="form-group ">
-          <div class="col-xs-12">
-            <input class="form-control" required="" type="text" placeholder="Email">
-          </div>
-        </div>
-        <div class="form-group ">
-          <div class="col-xs-12">
-            <input class="form-control" required="" type="password" placeholder="Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-xs-12">
-            <input class="form-control" required="" type="password" placeholder="Confirm Password">
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-md-12">
-            <div class="checkbox checkbox-success p-t-0">
-              <input id="checkbox-signup" type="checkbox" required="" class="filled-in chk-col-light-blue">
-              <label for="checkbox-signup"> I agree to all <a href="javascript:void(0)">Terms</a></label>
-            </div>
-          </div>
-        </div>
-        <div class="form-group text-center p-b-20">
-          <div class="col-xs-12">
-            <a [routerLink]="['/authentication/login']" class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light">Sign Up</a>
-          </div>
-        </div>
-        <div class="form-group m-b-0">
-          <div class="col-sm-12 text-center">
-            Already have an account? <a class="text-info m-l-5" [routerLink]="['/authentication/login']"><b>Sign In</b></a>
-          </div>
-        </div> -->
-      </form>
-    </div>
-  </div>
+							<div class="col-sm-12 col-md-4 col-lg-4 dump-comp">
+								<h4 class="text-center">User</h4>
+								<hr>
+								<div class="form-group">
+									<label for="user_name">Name</label>
+									<div class="col-xs-12">
+										<input type="text" name="dump_user_name" id="dump_user_name" class="form-control" required="" placeholder="" [(ngModel)]="dumpuserName">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="email">Email Address</label>
+									<div class="col-xs-12">
+										<input type="text" name="email" id="email" class="form-control" required="" placeholder="" [(ngModel)]="email">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="email">Phone Number</label>
+									<div class="col-xs-12">
+										<input type="text" name="user_phone" id="userphone" class="form-control" required="" placeholder="" [(ngModel)]="userPhone">
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label for="user_name">Username</label>
+									<div class="col-xs-12">
+										<input type="text" name="username" id="username" class="form-control" required="" placeholder="" [(ngModel)]="userName">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="password">Password</label>
+									<div class="col-xs-12">
+										<input type="text" name="password" id="password" class="form-control" required="" placeholder="" [(ngModel)]="password">
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-sm-12 col-md-9 col-lg-9 text-right">
+								<br>
+								<button class="btn btn-primary col-md-3 col-lg-4 push-right" (click)="onSignUp()">Save Dump Site Account</button>
+								<br>
+							</div>
+
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>

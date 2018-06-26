@@ -13,7 +13,7 @@ export class AuthGuardService {
   canActivate(): boolean {
 
     // check if user has already logged in
-    if (this.auth.access_token) {
+    if (this.auth.access_token) {  // 
         return true;
     }
     else {

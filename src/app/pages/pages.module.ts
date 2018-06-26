@@ -5,6 +5,12 @@ import { FormsModule } from '@angular/forms';
 // fullcalendar
 import { FullCalendarModule } from 'ng-fullcalendar';
 
+// sweet alerts 
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+
+// datatables
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 import { PagesRoutingModule } from './pages-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
@@ -16,7 +22,7 @@ import { ThCompleteComponent } from './trucking-history/th-complete/th-complete.
 import { DshWeekComponent } from './dump-site-history/dsh-week/dsh-week.component';
 import { DshYearComponent } from './dump-site-history/dsh-year/dsh-year.component';
 import { DshCompleteComponent } from './dump-site-history/dsh-complete/dsh-complete.component';
-import { TruckerComponent } from './trucker/trucker.component';
+// import { TruckerComponent } from './trucker/trucker.component';
 import { JobComponent } from './job/job.component';
 import { SiteComponent } from './site/site.component';
 
@@ -35,12 +41,22 @@ import { CurrentCustomersComponent } from './customers/current-customers/current
 import { CustomerComponent } from './customers/customer/customer.component';
 
 // material
-import { MaterialsComponent } from './materials/materials.component';
+import { CreateMaterialsComponent } from './materials/create-materials/create-materials.component';
+import { UpdateMaterialsComponent } from './materials/update-materials/update-materials.component';
 
 // settings
-import { PermissionsComponent } from './settings/permissions/permissions.component';
 import { SettingsComponent } from './settings/settings/settings.component';
 import { EmployeeComponent } from './settings/employee/employee.component';
+import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
+import { CurrentEmployeesComponent } from './settings/current-employees/current-employees.component';
+import { CreateEmployeesComponent } from './settings/create-employees/create-employees.component';
+import { CompanyComponent } from './admin-pages/company/company.component';
+
+// trucker 
+import { TodayJobsComponent } from './trucker/today-jobs/today-jobs.component';
+import { UpcomingJobsComponent } from './trucker/upcoming-jobs/upcoming-jobs.component';
+import { PastJobsComponent } from './trucker/past-jobs/past-jobs.component';
+import { TJobComponent } from './trucker/t-job/t-job.component';
 
 @NgModule({
   imports: [
@@ -48,6 +64,8 @@ import { EmployeeComponent } from './settings/employee/employee.component';
     PagesRoutingModule,
     FormsModule,
     FullCalendarModule,
+    NgxDatatableModule,
+    SweetAlert2Module
   ],
   declarations: [
     DashboardComponent,
@@ -58,7 +76,7 @@ import { EmployeeComponent } from './settings/employee/employee.component';
     DshWeekComponent,
     DshYearComponent,
     DshCompleteComponent,
-    TruckerComponent,
+    // TruckerComponent,
     JobComponent,
     SiteComponent,
     TodayComponent,
@@ -71,10 +89,18 @@ import { EmployeeComponent } from './settings/employee/employee.component';
     NewCustomerComponent,
     CurrentCustomersComponent,
     CustomerComponent,
-    MaterialsComponent,
-    PermissionsComponent,
     SettingsComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    DumpCompaniesComponent,
+    CreateMaterialsComponent,
+    UpdateMaterialsComponent,
+    CurrentEmployeesComponent,
+    CreateEmployeesComponent,
+    CompanyComponent,
+    TodayJobsComponent,
+    UpcomingJobsComponent,
+    PastJobsComponent,
+    TJobComponent
   ]
 })
 export class PagesModule { }

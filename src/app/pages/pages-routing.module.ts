@@ -11,7 +11,7 @@ import { ThCompleteComponent } from './trucking-history/th-complete/th-complete.
 import { DshWeekComponent } from './dump-site-history/dsh-week/dsh-week.component';
 import { DshYearComponent } from './dump-site-history/dsh-year/dsh-year.component';
 import { DshCompleteComponent } from './dump-site-history/dsh-complete/dsh-complete.component';
-import { TruckerComponent } from './trucker/trucker.component';
+// import { TruckerComponent } from './trucker/trucker.component';
 import { JobComponent } from './job/job.component';
 import { SiteComponent } from './site/site.component';
 
@@ -30,12 +30,26 @@ import { CurrentCustomersComponent } from './customers/current-customers/current
 import { CustomerComponent } from './customers/customer/customer.component';
 
 // material
-import { MaterialsComponent } from './materials/materials.component';
+import { CreateMaterialsComponent } from './materials/create-materials/create-materials.component';
+import { UpdateMaterialsComponent } from './materials/update-materials/update-materials.component';
 
 // settings
-import { PermissionsComponent } from './settings/permissions/permissions.component';
 import { SettingsComponent } from './settings/settings/settings.component';
 import { EmployeeComponent } from './settings/employee/employee.component';
+import { CurrentEmployeesComponent } from './settings/current-employees/current-employees.component';
+import { CreateEmployeesComponent } from './settings/create-employees/create-employees.component';
+
+
+import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
+import { CompanyComponent } from './admin-pages/company/company.component';
+
+
+// trucker 
+import { TodayJobsComponent } from './trucker/today-jobs/today-jobs.component';
+import { UpcomingJobsComponent } from './trucker/upcoming-jobs/upcoming-jobs.component';
+import { PastJobsComponent } from './trucker/past-jobs/past-jobs.component';
+import { TJobComponent } from './trucker/t-job/t-job.component';
+
 
 const routes: Routes = [
     // loader history
@@ -49,20 +63,16 @@ const routes: Routes = [
     { path: 'history/dsh-week/job/:id', component: JobComponent },
     { path: 'history/dsh-year', component: DshYearComponent },
     { path: 'history/dsh-complete', component: DshCompleteComponent },
-    { path: 'history/trucker/:id', component: TruckerComponent },
+    // { path: 'history/trucker/:id', component: TruckerComponent },
 
     // project
     { path: 'projects/today', component: TodayComponent },
     { path: 'projects/today/job/:id', component: PJobComponent },
     { path: 'projects/upcoming', component: UpcomingComponent },
-    { path: 'projects/upcoming/date/:id', component: PDayComponent },
     { path: 'projects/upcoming/job/:id', component: PJobComponent },
-    { path: 'projects/upcoming/month/:id', component: PMonthComponent },
     { path: 'projects/past', component: HistoryComponent },
     { path: 'projects/past/date/:id', component: PDayComponent },
     { path: 'projects/past/job/:id', component: PJobComponent },
-    { path: 'projects/past/month/:id', component: PMonthComponent },
-    { path: 'projects/past/year/:id', component: PYearComponent },
 
     // customer
     { path: 'customers/new', component: NewCustomerComponent },
@@ -70,12 +80,26 @@ const routes: Routes = [
     { path: 'customers/current/customer/:id', component: CustomerComponent },
 
     // material
-    { path: 'material', component: MaterialsComponent },
+    { path: 'material/create', component: CreateMaterialsComponent },
+    { path: 'material/update', component: UpdateMaterialsComponent },
 
     // settings
-    { path: 'settings', component: SettingsComponent },
-    { path: 'permissions', component: PermissionsComponent },
-    { path: 'premissions/employee/:id', component: EmployeeComponent },
+    { path: 'employees', component: CurrentEmployeesComponent },
+    { path: 'employees/create', component: CreateEmployeesComponent },
+    { path: 'employees/employee/:id', component: EmployeeComponent },
+
+    // admin 
+    { path: 'admin/dump-companies', component: DumpCompaniesComponent },
+    { path: 'admin/dump-companies/company/:id', component: CompanyComponent },
+
+    // trucker 
+    { path: 'trucker/jobs/today', component: TodayJobsComponent },
+    { path: 'trucker/jobs/upcoming', component: UpcomingJobsComponent },
+    { path: 'trucker/jobs/past', component: PastJobsComponent },
+    { path: 'trucker/jobs/today/job/:id', component: TJobComponent },
+    { path: 'trucker/jobs/upcoming/job/:id', component: TJobComponent },
+    { path: 'trucker/jobs/past/job/:id', component: TJobComponent },
+
 
 
 

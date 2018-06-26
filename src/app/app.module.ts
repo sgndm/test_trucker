@@ -18,6 +18,9 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+// sweet alerts 
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+
 // routing module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -38,54 +41,66 @@ import { AppComponent } from './app.component';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { PageNotFoundComponent } from './pages/error/page-not-found/page-not-found.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+import { AccountSelectComponent } from './authentication/account-select/account-select.component';
+import { CreateTruckerComponent } from './authentication/create-trucker/create-trucker.component';
+import { CreateLoaderComponent } from './authentication/create-loader/create-loader.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true,
-  wheelSpeed: 2,
-  wheelPropagation: true,
+	suppressScrollX: true,
+	wheelSpeed: 2,
+	wheelPropagation: true,
 };
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SpinnerComponent,
-    FullComponent,
-    BlankComponent,
-    NavigationComponent,
-    BreadcrumbComponent,
-    SidebarComponent,
-    SignInComponent,
-    PageNotFoundComponent,
-    SignUpComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpModule,
-    HttpClientModule,
-    NgbModule.forRoot(),
-    PerfectScrollbarModule,
-    AppRoutingModule
-  ],
-  providers: [
-    {
-      provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    },
-    ApiServicesService,
-    AuthGuardService,
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
-  ],
-    bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		SpinnerComponent,
+		FullComponent,
+		BlankComponent,
+		NavigationComponent,
+		BreadcrumbComponent,
+		SidebarComponent,
+		SignInComponent,
+		PageNotFoundComponent,
+		SignUpComponent,
+		AccountSelectComponent,
+		CreateTruckerComponent,
+		CreateLoaderComponent
+	],
+	imports: [
+		CommonModule,
+		BrowserModule,
+		BrowserAnimationsModule,
+		FormsModule,
+		HttpModule,
+		HttpClientModule,
+		NgbModule.forRoot(),
+		PerfectScrollbarModule,
+		AppRoutingModule,
+		SweetAlert2Module.forRoot({
+			buttonsStyling: true,
+			customClass: 'modal-content',
+			confirmButtonClass: 'btn btn-success',
+			cancelButtonClass: 'btn btn-danger'
+		})
+	],
+	providers: [
+		{
+			provide: PERFECT_SCROLLBAR_CONFIG,
+			useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+		},
+		ApiServicesService,
+		AuthGuardService,
+		{
+			provide: LocationStrategy,
+			useClass: HashLocationStrategy
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
+			multi: true
+		}
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

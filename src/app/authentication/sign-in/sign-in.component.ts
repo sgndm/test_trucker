@@ -4,95 +4,149 @@ import * as $ from 'jquery';
 import { Router } from '@angular/router';
 // import api services
 import { ApiServicesService } from '../../services/api-services/api-services.service';
+import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+	selector: 'app-sign-in',
+	templateUrl: './sign-in.component.html',
+	styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
 
-  // declare variables
-  public username = '';
-  public password = '';
+	// declare variables
+	public username = '';
+	public password = '';
 
-  constructor(
-    public router: Router,
-    private apiServices: ApiServicesService
-  ) { }
+	public access_token = '';
 
-  ngOnInit() {
-    // check if user has already logged in
+	constructor(
+		public router: Router,
+		private apiServices: ApiServicesService,
 
-    if (this.apiServices.access_token != '') {
-      // if access token is not empty
-      // check user
-      this.apiServices.checkLogin().subscribe(
-        res => {
-          // if access token is valid
-          // go to dashboard
-          console.log(res);
-          this.goToDashboard();
-        },
-        err => {
-          // if access token is not valid
-          // clea local storage
-          this.apiServices.clearLocalStorage();
-          console.log(err);
+	) {
+		this.access_token = localStorage.getItem('access_token')
+	}
 
-        }
-      )
-    }
-  }
+	ngOnInit() {
+		if (this.access_token) {
+			this.getDetails(this.access_token);
+		} else {
+			this.apiServices.clearLocalStorage();
+		}
+	}
 
-  ngAfterViewInit() {
-    $(function() {
-        $(".preloader").fadeOut();
-    });
-    // $(function() {
-    //     (<any>$('[data-toggle="tooltip"]')).tooltip()
-    // });
-    // $('#to-recover').on("click", function() {
-    //     $("#loginform").slideUp();
-    //     $("#recoverform").fadeIn();
-    // });
-  }
+	ngAfterViewInit() {
+		$(function () {
+			$(".preloader").fadeOut();
+		});
 
-  onLoggedin(){
+	}
 
-    const data = {
-      u: this.username,
-      p: this.password
-    };
+	onLoggedin() {
 
-    // call the login end point
-    this.apiServices.login(data).subscribe(
-      res => {
-        // if succeccfully loged in
-        // set access token
-        let token = res['access_token'];
-        this.apiServices.saveToLocalStorage(token);
+		//this.goToDashboard();
+		const data = {
+			u: this.username,
+			p: this.password
+		};
 
-        //console.log(res);
+		// call the login end point
+		this.apiServices.login(data).subscribe(
+			(res: Response) => {
+				// if login success
+				console.log(res);
+				let get_access_token = res.headers.get('X-AUTH-TOKEN');
 
-        //redirect to dashboard
-        this.goToDashboard();
-      },
+				// store token in local storage 
+				this.apiServices.saveToLocalStorage(get_access_token);
 
-      err => {
-        // if login has failed
-        alert('Login Failed');
-        console.log(err);
-      }
-    )
+				// get user details 
+				this.getDetails(get_access_token);
 
-    console.log(data);
+			},
 
-  }
+			err => {
+				// if login has failed
+				console.log(err);
+				if (err.status == 403) {
+					this.apiServices.altErr('Username or password is incorrect', this.apiServices.reload());
+				}
+				else if (err.status == 500) {
+					this.apiServices.altErr('Server Error', this.apiServices.reload());
+				}
 
-  // redirect to dashboard
-  goToDashboard() {
-    this.router.navigate(['/pages']);
-  }
+			}
+		)
+
+	}
+
+	// get details
+	getDetails(token) {
+		this.apiServices.getDetailsSetHeader(token).subscribe(
+			(res: any) => {
+				console.log(res);
+
+				if (res.status == 'successful') {
+					let userType = res.userType;
+
+					switch (userType) {
+						case "WEBADMIN":
+							this.goToAdminDashboard();
+							break;
+						case "DUMPUSER":
+							this.goToDumpDashboard();
+							break;
+
+						case "DRIVER":
+							this.goToTruckerDashboard();
+							break;
+
+						case "LOADER":
+							this.goToLoaderDashboard();
+							break;
+
+						default:
+							this.goToDashboard();
+							break;
+					}
+
+
+				}
+			},
+
+			err => {
+				console.log(err);
+				this.apiServices.clearLocalStorage();
+
+				if (err.status == 500) {
+					this.apiServices.altErr('Server Error', this.apiServices.reload());
+				}
+
+			}
+		)
+	}
+
+
+	// redirect to dashboard
+	goToDashboard() {
+		this.router.navigate(['/pages']);
+	}
+
+	goToAdminDashboard() {
+		this.router.navigate(['/pages/admin/dump-companies']);
+	}
+
+	goToDumpDashboard() {
+		this.router.navigate(['/pages/projects/today']);
+	}
+
+	goToTruckerDashboard() {
+		this.router.navigate(['/pages/trucker/jobs/today']);
+	}
+
+	goToLoaderDashboard() {
+		this.router.navigate(['/pages/trucker/jobs/today']);
+	}
+
 
 }
