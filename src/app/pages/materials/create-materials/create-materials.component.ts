@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+
 // import routes
 import { Router } from '@angular/router';
 // import api services
@@ -35,6 +37,8 @@ export class CreateMaterialsComponent implements OnInit {
 	public matFees5: any;
 	public matFees6: any;
 
+	// myform: FormGroup;
+
 
 	constructor(
 		public router: Router,
@@ -45,6 +49,10 @@ export class CreateMaterialsComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
+		// this.myform = new FormGroup({
+		// 	test_name: new FormControl('', Validators.required)
+		// })
 
 		this.materialType = 0;
 

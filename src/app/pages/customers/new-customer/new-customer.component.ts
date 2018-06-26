@@ -96,6 +96,9 @@ export class NewCustomerComponent implements OnInit {
 					this.apiServices.altScc('Customer Created Successfully', this.goToCurrentCustomer());
 					
 				} 
+				else if((res.status == "successful") && (res.message == "no_loader_account_associated_with_this_email")) {
+					this.apiServices.altErr('Please Enter a Existing Loader Email', '');
+				}
 
 			}, 
 			err => {

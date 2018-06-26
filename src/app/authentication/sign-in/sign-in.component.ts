@@ -109,6 +109,11 @@ export class SignInComponent implements OnInit {
 			err => {
 				console.log(err);
 				this.apiServices.clearLocalStorage();
+
+				if(err.status == 500) {
+					this.apiServices.altErr('Server Error',this.apiServices.reload());
+				}
+				
 			}
 		)
 	}
