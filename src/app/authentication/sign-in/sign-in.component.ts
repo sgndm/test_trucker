@@ -101,6 +101,10 @@ export class SignInComponent implements OnInit {
 							this.goToTruckerDashboard();
 							break;
 
+						case "LOADER":
+							this.goToLoaderDashboard();
+							break;
+
 						default:
 							this.goToDashboard();
 							break;
@@ -136,10 +140,13 @@ export class SignInComponent implements OnInit {
 		this.router.navigate(['/pages/projects/today']);
 	}
 
-	goToTruckerDashboard(){
+	goToTruckerDashboard() {
 		this.router.navigate(['/pages/trucker/jobs/today']);
 	}
 
+	goToLoaderDashboard() {
+		this.router.navigate(['/pages/trucker/jobs/today']);
+	}
 
 
 }

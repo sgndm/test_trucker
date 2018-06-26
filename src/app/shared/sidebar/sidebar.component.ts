@@ -109,6 +109,11 @@ export class SidebarComponent implements OnInit {
                                 tempSideNavItems = ['Trucker Dashboard', 'Jobs'];
                                 break;
 
+                            case "LOADER":
+                            this.user_name = res.loader.name;
+                                tempSideNavItems = ['Trucker Dashboard', 'Jobs'];
+                                break;
+
                         }
 
 

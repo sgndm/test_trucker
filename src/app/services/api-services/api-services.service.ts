@@ -125,6 +125,16 @@ export class ApiServicesService {
 		return this.http.post(url, formData);
 	}
 
+	// sign up loader
+	signUpLoader(data) {
+		const formData: FormData = new FormData();
+		formData.append('loader_user_details', JSON.stringify(data.user)); 
+		formData.append('token', data.card_token); 
+
+		const url = SERVER_URL + 'register/loader';
+		return this.http.post(url, formData);
+	}
+
 
 	/// admin end points 
 
