@@ -41,6 +41,9 @@ import { UpcomingJobsComponent } from './trucker/upcoming-jobs/upcoming-jobs.com
 import { PastJobsComponent } from './trucker/past-jobs/past-jobs.component';
 import { TJobComponent } from './trucker/t-job/t-job.component';
 
+// loader
+import { LoaderDashboardComponent } from './loader/loader-dashboard/loader-dashboard.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -68,7 +71,8 @@ import { TJobComponent } from './trucker/t-job/t-job.component';
     TodayJobsComponent,
     UpcomingJobsComponent,
     PastJobsComponent,
-    TJobComponent
+    TJobComponent,
+    LoaderDashboardComponent
   ]
 })
 export class PagesModule { }

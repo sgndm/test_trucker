@@ -21,7 +21,7 @@ import { EmployeeComponent } from './settings/employee/employee.component';
 import { CurrentEmployeesComponent } from './settings/current-employees/current-employees.component';
 import { CreateEmployeesComponent } from './settings/create-employees/create-employees.component';
 
-
+// admin
 import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
 import { CompanyComponent } from './admin-pages/company/company.component';
 
@@ -31,6 +31,9 @@ import { TodayJobsComponent } from './trucker/today-jobs/today-jobs.component';
 import { UpcomingJobsComponent } from './trucker/upcoming-jobs/upcoming-jobs.component';
 import { PastJobsComponent } from './trucker/past-jobs/past-jobs.component';
 import { TJobComponent } from './trucker/t-job/t-job.component';
+
+// loader
+import { LoaderDashboardComponent } from './loader/loader-dashboard/loader-dashboard.component';
 
 
 const routes: Routes = [
@@ -68,6 +71,9 @@ const routes: Routes = [
     { path: 'trucker/jobs/today/job/:id', component: TJobComponent },
     { path: 'trucker/jobs/upcoming/job/:id', component: TJobComponent },
     { path: 'trucker/jobs/past/job/:id', component: TJobComponent },
+
+    // loader
+    { path: 'loader', component: LoaderDashboardComponent },
 
 ];
 

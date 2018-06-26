@@ -145,7 +145,7 @@ export class SignInComponent implements OnInit {
 	}
 
 	goToLoaderDashboard() {
-		this.router.navigate(['/pages/trucker/jobs/today']);
+		this.router.navigate(['/pages/loader']);
 	}
 
 
