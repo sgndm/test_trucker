@@ -100,9 +100,13 @@ export class SidebarComponent implements OnInit {
                                             break;
                                         }
 
-
                                 }
-                                
+
+                                break;
+
+                            case "DRIVER":
+                                this.user_name = res.driver.name;
+                                tempSideNavItems = ['Trucker Dashboard', 'Jobs'];
                                 break;
 
                         }

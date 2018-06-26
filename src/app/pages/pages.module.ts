@@ -22,7 +22,7 @@ import { ThCompleteComponent } from './trucking-history/th-complete/th-complete.
 import { DshWeekComponent } from './dump-site-history/dsh-week/dsh-week.component';
 import { DshYearComponent } from './dump-site-history/dsh-year/dsh-year.component';
 import { DshCompleteComponent } from './dump-site-history/dsh-complete/dsh-complete.component';
-import { TruckerComponent } from './trucker/trucker.component';
+// import { TruckerComponent } from './trucker/trucker.component';
 import { JobComponent } from './job/job.component';
 import { SiteComponent } from './site/site.component';
 
@@ -52,6 +52,12 @@ import { CurrentEmployeesComponent } from './settings/current-employees/current-
 import { CreateEmployeesComponent } from './settings/create-employees/create-employees.component';
 import { CompanyComponent } from './admin-pages/company/company.component';
 
+// trucker 
+import { TodayJobsComponent } from './trucker/today-jobs/today-jobs.component';
+import { UpcomingJobsComponent } from './trucker/upcoming-jobs/upcoming-jobs.component';
+import { PastJobsComponent } from './trucker/past-jobs/past-jobs.component';
+import { TJobComponent } from './trucker/t-job/t-job.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -70,7 +76,7 @@ import { CompanyComponent } from './admin-pages/company/company.component';
     DshWeekComponent,
     DshYearComponent,
     DshCompleteComponent,
-    TruckerComponent,
+    // TruckerComponent,
     JobComponent,
     SiteComponent,
     TodayComponent,
@@ -90,7 +96,11 @@ import { CompanyComponent } from './admin-pages/company/company.component';
     UpdateMaterialsComponent,
     CurrentEmployeesComponent,
     CreateEmployeesComponent,
-    CompanyComponent
+    CompanyComponent,
+    TodayJobsComponent,
+    UpcomingJobsComponent,
+    PastJobsComponent,
+    TJobComponent
   ]
 })
 export class PagesModule { }

@@ -11,7 +11,7 @@ import { ThCompleteComponent } from './trucking-history/th-complete/th-complete.
 import { DshWeekComponent } from './dump-site-history/dsh-week/dsh-week.component';
 import { DshYearComponent } from './dump-site-history/dsh-year/dsh-year.component';
 import { DshCompleteComponent } from './dump-site-history/dsh-complete/dsh-complete.component';
-import { TruckerComponent } from './trucker/trucker.component';
+// import { TruckerComponent } from './trucker/trucker.component';
 import { JobComponent } from './job/job.component';
 import { SiteComponent } from './site/site.component';
 
@@ -43,6 +43,14 @@ import { CreateEmployeesComponent } from './settings/create-employees/create-emp
 import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
 import { CompanyComponent } from './admin-pages/company/company.component';
 
+
+// trucker 
+import { TodayJobsComponent } from './trucker/today-jobs/today-jobs.component';
+import { UpcomingJobsComponent } from './trucker/upcoming-jobs/upcoming-jobs.component';
+import { PastJobsComponent } from './trucker/past-jobs/past-jobs.component';
+import { TJobComponent } from './trucker/t-job/t-job.component';
+
+
 const routes: Routes = [
     // loader history
     { path: '', redirectTo: 'history/th-week' },
@@ -55,7 +63,7 @@ const routes: Routes = [
     { path: 'history/dsh-week/job/:id', component: JobComponent },
     { path: 'history/dsh-year', component: DshYearComponent },
     { path: 'history/dsh-complete', component: DshCompleteComponent },
-    { path: 'history/trucker/:id', component: TruckerComponent },
+    // { path: 'history/trucker/:id', component: TruckerComponent },
 
     // project
     { path: 'projects/today', component: TodayComponent },
@@ -83,6 +91,13 @@ const routes: Routes = [
     // admin 
     { path: 'admin/dump-companies', component: DumpCompaniesComponent },
     { path: 'admin/dump-companies/company/:id', component: CompanyComponent },
+
+    // trucker 
+    { path: 'trucker/jobs/today', component: TodayJobsComponent },
+    { path: 'trucker/jobs/upcoming', component: UpcomingJobsComponent },
+    { path: 'trucker/jobs/past', component: PastJobsComponent },
+    { path: 'trucker/jobs/job/:id', component: TJobComponent },
+
 
 
 

@@ -22,13 +22,13 @@ export class SignInComponent implements OnInit {
 	constructor(
 		public router: Router,
 		private apiServices: ApiServicesService,
-		
-	) { 
+
+	) {
 		this.access_token = localStorage.getItem('access_token')
 	}
 
 	ngOnInit() {
-		if(this.access_token){
+		if (this.access_token) {
 			this.getDetails(this.access_token);
 		} else {
 			this.apiServices.clearLocalStorage();
@@ -62,19 +62,19 @@ export class SignInComponent implements OnInit {
 
 				// get user details 
 				this.getDetails(get_access_token);
-					
+
 			},
 
 			err => {
 				// if login has failed
 				console.log(err);
-				if(err.status == 403) {
+				if (err.status == 403) {
 					this.apiServices.altErr('Username or password is incorrect', this.apiServices.reload());
-				} 
-				else if(err.status == 500) {
-					this.apiServices.altErr('Server Error',this.apiServices.reload());
 				}
-				
+				else if (err.status == 500) {
+					this.apiServices.altErr('Server Error', this.apiServices.reload());
+				}
+
 			}
 		)
 
@@ -85,39 +85,43 @@ export class SignInComponent implements OnInit {
 		this.apiServices.getDetailsSetHeader(token).subscribe(
 			(res: any) => {
 				console.log(res);
-				
-				if(res.status == 'successful') {
+
+				if (res.status == 'successful') {
 					let userType = res.userType;
-	
-					switch(userType) {
-						case "WEBADMIN" :
+
+					switch (userType) {
+						case "WEBADMIN":
 							this.goToAdminDashboard();
 							break;
-						case "DUMPUSER" :
+						case "DUMPUSER":
 							this.goToDumpDashboard();
-						   break;
-	
+							break;
+
+						case "DRIVER":
+							this.goToTruckerDashboard();
+							break;
+
 						default:
 							this.goToDashboard();
 							break;
 					}
-					
-	
-				} 
+
+
+				}
 			},
-	
+
 			err => {
 				console.log(err);
 				this.apiServices.clearLocalStorage();
 
-				if(err.status == 500) {
-					this.apiServices.altErr('Server Error',this.apiServices.reload());
+				if (err.status == 500) {
+					this.apiServices.altErr('Server Error', this.apiServices.reload());
 				}
-				
+
 			}
 		)
 	}
-	
+
 
 	// redirect to dashboard
 	goToDashboard() {
@@ -132,6 +136,10 @@ export class SignInComponent implements OnInit {
 		this.router.navigate(['/pages/projects/today']);
 	}
 
-	
+	goToTruckerDashboard(){
+		this.router.navigate(['/pages/trucker/jobs/today']);
+	}
+
+
 
 }

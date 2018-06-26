@@ -63,4 +63,14 @@ export const ROUTES: RouteInfo[] = [
    
     { path: '/pages/admin/dump-companies', title: 'Dump Companies', icon: 'mdi mdi-view-dashboard', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
 
+    { path: '', title: 'Trucker Dashboard', icon: '', class: 'nav-small-cap', label: '', labelClass: '', extralink: true, submenu: [] },
+    {
+        path: '', title: 'Jobs', icon: 'mdi mdi-history', class: 'has-arrow', label: '', labelClass: 'label label-rouded label-themecolor pull-right', extralink: false,
+        submenu: [
+            { path: '/pages/trucker/jobs/today', title: 'Current Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+            { path: '/pages/trucker/jobs/upcoming', title: 'Upcoming Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+            { path: '/pages/trucker/jobs/past', title: 'History of Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+        ]
+    },
+
 ];

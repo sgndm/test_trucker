@@ -42,6 +42,8 @@ import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { PageNotFoundComponent } from './pages/error/page-not-found/page-not-found.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { AccountSelectComponent } from './authentication/account-select/account-select.component';
+import { CreateTruckerComponent } from './authentication/create-trucker/create-trucker.component';
+import { CreateLoaderComponent } from './authentication/create-loader/create-loader.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	suppressScrollX: true,
@@ -61,7 +63,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 		SignInComponent,
 		PageNotFoundComponent,
 		SignUpComponent,
-		AccountSelectComponent
+		AccountSelectComponent,
+		CreateTruckerComponent,
+		CreateLoaderComponent
 	],
 	imports: [
 		CommonModule,

@@ -84,10 +84,9 @@ export class SignUpComponent implements OnInit {
 		// call server 
 		this.apiServices.signUp(data).subscribe(
 			(res: any) => {
-				alert('successfully created a dump site');
-				console.log(res);
-				
-				this.goToLogin();
+				if(res.status == "successful") {
+					this.apiServices.altScc('successfully created a dump site', this.goToLogin());
+				}
 			},
 
 			err => {

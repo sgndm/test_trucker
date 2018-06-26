@@ -98,7 +98,7 @@ export class ApiServicesService {
 		// this.access_token = '';
 	}
 
-	// sign up 
+	// sign up dump site
 	signUp(data) {
 
 		const formData: FormData = new FormData();
@@ -108,7 +108,21 @@ export class ApiServicesService {
 
 		const url = SERVER_URL + 'register/dumpcompany';
 		return this.http.post(url, formData);
+	}
 
+	// get truck types
+	getTruckTypesSignUp(){
+		const url = SERVER_URL + 'gettrucktypes';
+		return this.http.get(url);
+	}
+
+	signUpTrucker(data) {
+		const formData: FormData = new FormData();
+		formData.append('driver_user_details', JSON.stringify(data.user));
+		formData.append('truck_type', data.truckType);
+
+		const url = SERVER_URL + 'register/driver';
+		return this.http.post(url, formData);
 	}
 
 
@@ -369,6 +383,31 @@ export class ApiServicesService {
 
 		const url = SERVER_URL + 'web/dumpcompany/employee/unblock';
 		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+
+	// trucker 
+
+	// jobs
+	// current jobs 
+	getCurrentJobsTrucker(token){
+		const url = SERVER_URL + 'web/driver/myjobs';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	getUpcomingJobsTrucker(token){
+		const url = SERVER_URL + 'web/driver/myjobs';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_status: "UPCOMING" } });
+	}
+
+	getNewJobsTrucker(token){
+		const url = SERVER_URL + 'web/driver/myjobs';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_status: "NEW" } });
+	}
+
+	getPastJobsTrucker(token){
+		const url = SERVER_URL + 'web/driver/myjobs';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_status: "END" } });
 	}
 
 }
