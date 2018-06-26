@@ -96,7 +96,9 @@ const routes: Routes = [
     { path: 'trucker/jobs/today', component: TodayJobsComponent },
     { path: 'trucker/jobs/upcoming', component: UpcomingJobsComponent },
     { path: 'trucker/jobs/past', component: PastJobsComponent },
-    { path: 'trucker/jobs/job/:id', component: TJobComponent },
+    { path: 'trucker/jobs/today/job/:id', component: TJobComponent },
+    { path: 'trucker/jobs/upcoming/job/:id', component: TJobComponent },
+    { path: 'trucker/jobs/past/job/:id', component: TJobComponent },
 
 
 
