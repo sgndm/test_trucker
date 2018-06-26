@@ -41,6 +41,7 @@ import { CreateEmployeesComponent } from './settings/create-employees/create-emp
 
 
 import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
+import { CompanyComponent } from './admin-pages/company/company.component';
 
 const routes: Routes = [
     // loader history
@@ -81,6 +82,7 @@ const routes: Routes = [
 
     // admin 
     { path: 'admin/dump-companies', component: DumpCompaniesComponent },
+    { path: 'admin/dump-companies/company/:id', component: CompanyComponent },
 
 
 

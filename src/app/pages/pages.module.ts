@@ -50,6 +50,7 @@ import { EmployeeComponent } from './settings/employee/employee.component';
 import { DumpCompaniesComponent } from './admin-pages/dump-companies/dump-companies.component';
 import { CurrentEmployeesComponent } from './settings/current-employees/current-employees.component';
 import { CreateEmployeesComponent } from './settings/create-employees/create-employees.component';
+import { CompanyComponent } from './admin-pages/company/company.component';
 
 @NgModule({
   imports: [
@@ -88,7 +89,8 @@ import { CreateEmployeesComponent } from './settings/create-employees/create-emp
     CreateMaterialsComponent,
     UpdateMaterialsComponent,
     CurrentEmployeesComponent,
-    CreateEmployeesComponent
+    CreateEmployeesComponent,
+    CompanyComponent
   ]
 })
 export class PagesModule { }

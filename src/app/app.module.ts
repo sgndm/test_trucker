@@ -41,6 +41,7 @@ import { AppComponent } from './app.component';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { PageNotFoundComponent } from './pages/error/page-not-found/page-not-found.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+import { AccountSelectComponent } from './authentication/account-select/account-select.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	suppressScrollX: true,
@@ -59,7 +60,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 		SidebarComponent,
 		SignInComponent,
 		PageNotFoundComponent,
-		SignUpComponent
+		SignUpComponent,
+		AccountSelectComponent
 	],
 	imports: [
 		CommonModule,

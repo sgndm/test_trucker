@@ -138,6 +138,12 @@ export class ApiServicesService {
 		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
 	}
 
+	// get company details
+	getCompanyDetailsById(data, token) {
+		const url = SERVER_URL + 'admin/dumpaccount/view';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { dump_user_id: data } });
+	}
+
 
 	/// company / owner 
 

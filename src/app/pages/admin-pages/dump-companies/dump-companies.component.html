@@ -73,6 +73,16 @@
 					<button *ngIf="row.status == 'BLOCKED'" class="cus-btn-1 btn btn-sm btn-success" (click)="onUnblockCompany(row.comp_id)">Unblock</button>
 				</ng-template>
 			</ngx-datatable-column>
+			<ngx-datatable-column name="view">
+				<ng-template ngx-datatable-header-template>
+					<span>View</span>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					<a class="cus-btn-1 btn btn-sm btn-primary" [routerLink]="['/pages/admin/dump-companies/company',row.comp_id]">
+						View
+					</a>
+				</ng-template>
+			</ngx-datatable-column>
 
 		</ngx-datatable>
 	</div>
