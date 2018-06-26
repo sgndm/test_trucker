@@ -58,8 +58,34 @@ export class PJobComponent implements OnInit {
 
 		this.truckers = [];
 
+		this.getCompanyName(this.access_token);
+
 		// get job details
 		this.getJobDetails(this.job_id, this.access_token);
+	}
+
+	// get company name
+	getCompanyName(token) {
+		this.apiServices.getDetailsSetHeader(token).subscribe(
+			(res: any) => {
+				if (res.status == 'successful') {
+					let userType = res.userType;
+
+					switch (userType) {
+						case "DUMPUSER":
+							this.company_name = res.dumpUser.dumpCompany.companyName;
+							break;
+
+						default:
+							this.company_name = '';
+							this.apiServices.altErr('You are not Authorized to go to this page', this.apiServices.logOut());
+							break;
+					}
+
+
+				}
+			}
+		)
 	}
 
 	// get job details 

@@ -49,7 +49,32 @@ export class CompanyComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
+		this.getUserDetails(this.access_token);
+		
 		this.getCompanyDetails(this.company_id, this.access_token);
+	}
+
+	// get user details 
+	getUserDetails(token) {
+		this.apiServices.getDetailsSetHeader(token).subscribe(
+			(res: any) => {
+				if (res.status == 'successful') {
+					let userType = res.userType;
+
+					switch (userType) {
+						case "WEBADMIN":
+							break;
+
+						default:
+							this.apiServices.altErr('You are not Authorized to go to this page', this.apiServices.logOut());
+							break;
+					}
+
+
+				}
+			}
+		)
 	}
 
 	getCompanyDetails(id, token) {

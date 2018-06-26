@@ -58,12 +58,39 @@ export class CustomerComponent implements OnInit {
         this.accountHold = true;
         $('#tab_1').show();
 
+        this.getCompanyName(this.access_token);
+
         // get customer details
         this.getCustomerDetails(this.customer_id, this.access_token);
 
         // get dump activies 
         this.getDumpActivities(this.customer_id, this.access_token);
     }
+
+
+    getCompanyName(token) {
+        this.apiServices.getDetailsSetHeader(token).subscribe(
+            (res: any) => {
+                if (res.status == 'successful') {
+                    let userType = res.userType;
+
+                    switch (userType) {
+                        case "DUMPUSER":
+                            this.company_name = res.dumpUser.dumpCompany.companyName;
+                            break;
+
+                        default:
+                            this.company_name = '';
+                            this.apiServices.altErr('You are not Authorized to go to this page', this.apiServices.logOut());
+                            break;
+                    }
+
+
+                }
+            }
+        )
+    }
+
 
     show_tab(tab_id, count) {
 

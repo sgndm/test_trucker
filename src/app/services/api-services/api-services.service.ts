@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpResponse } from 'selenium-webdriver/http';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 const httpOptions = {
 	// responseType: 'string'
@@ -17,6 +18,7 @@ export class ApiServicesService {
 	public access_token = '';
 
 	constructor(
+		public router: Router,
 		private http: HttpClient
 	) {
 		this.access_token = localStorage.getItem('access_token')
@@ -77,6 +79,12 @@ export class ApiServicesService {
 		const url = SERVER_URL + 'login';
 		return this.http.post(url, { 'username': data.u, 'password': data.p }, { observe: 'response', responseType: 'text' });
 
+	}
+
+	// log out 
+	logOut() {
+		this.clearLocalStorage();
+		this.router.navigate(['/sign-in']);
 	}
 
 	// get user details 
