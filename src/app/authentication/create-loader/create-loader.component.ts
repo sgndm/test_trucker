@@ -35,7 +35,7 @@ export class CreateLoaderComponent implements OnInit {
 
 	openCheckout() {
 		var handler = (<any>window).StripeCheckout.configure({
-			key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
+			key: 'pk_test_UtC8f0nLARqp9eP09I3B5u2s',
 			locale: 'auto',
 			token: token => {
 				console.log(token);
