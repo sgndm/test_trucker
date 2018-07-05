@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, MinLengthValidator } from '@angular/forms';
 // import routes
 import { Router } from '@angular/router';
 // import api services
@@ -15,11 +16,13 @@ export class CreateEmployeesComponent implements OnInit {
 
 	public company_name: string = '';
 
-	public email: any;
-	public employeeName: any;
-	public phone: any;
-	public userName: any;
-	public password: any;
+	myForm: FormGroup;
+
+	 email: FormControl;
+	 employeeName: FormControl;
+	 phone: FormControl;
+	 userName: FormControl;
+	 password: FormControl;
 
 	constructor(
 		public router: Router,
@@ -30,10 +33,47 @@ export class CreateEmployeesComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
+		this.createFormControls();
+		this.createForm();
 		this.getCompanyName(this.access_token);
 
 	}
+
+	createFormControls() {
+		this.employeeName = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.phone = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.userName = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.email = new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]);
+		this.password = new FormControl('', [Validators.required, Validators.minLength(1)]);
+	}
+
+	createForm() {
+		this.myForm = new FormGroup({
+			employeeName: this.employeeName,
+			phone: this.phone,
+			userName: this.userName,
+			email: this.email,
+			password: this.password,
+		});
+	}
+
+	validateAllFormFields(formGroup: FormGroup) {
+
+		Object.keys(formGroup.controls).forEach(field => {
+
+			const control = formGroup.get(field);
+
+			if (control instanceof FormControl) {
+				control.markAsTouched({ onlySelf: true });
+			}
+			else if (control instanceof FormGroup) {
+				this.validateAllFormFields(control);
+			}
+
+		});
+
+	}
+
 
 	// get company name
 	getCompanyName(token) {
@@ -60,32 +100,39 @@ export class CreateEmployeesComponent implements OnInit {
 	}
 
 	onSaveEmployee() {
-		const data = {
-			employee: {
-				email: this.email,
-				name: this.employeeName,
-				phoneNumber: this.phone,
-				user: {
-					username: this.userName,
-					password: this.password
+
+		if(this.myForm.valid) {
+			const data = {
+				employee: {
+					email: this.myForm.value.email,
+					name: this.myForm.value.employeeName,
+					phoneNumber: this.myForm.value.phone,
+					user: {
+						username: this.myForm.value.userName,
+						password: this.myForm.value.password
+					}
 				}
 			}
+	
+			this.apiServices.createEmployee(data, this.access_token).subscribe(
+				(res: any) => {
+					console.log(res);
+	
+					if((res.status == "successful") && (res.message == "account_created")) {
+						this.apiServices.altScc("Employee created successfully", this.goToCurrentEmployees());
+	
+					}
+				},
+	
+				err => {
+					console.log(err);
+				}
+			)
 		}
-
-		this.apiServices.createEmployee(data, this.access_token).subscribe(
-			(res: any) => {
-				console.log(res);
-
-				if((res.status == "successful") && (res.message == "account_created")) {
-					this.apiServices.altScc("Employee created successfully", this.goToCurrentEmployees());
-
-				}
-			},
-
-			err => {
-				console.log(err);
-			}
-		)
+		else {
+			this.validateAllFormFields(this.myForm);
+		}
+		
 	}
 
 	goToCurrentEmployees() {

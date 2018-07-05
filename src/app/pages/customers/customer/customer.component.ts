@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, MinLengthValidator } from '@angular/forms';
 // import routes
 import { Router, ActivatedRoute } from '@angular/router';
 // import api services
@@ -17,17 +18,20 @@ export class CustomerComponent implements OnInit {
 
     public access_token = '';
 
-    public customerName: '';
-    public email: '';
-    public phone: '';
-    public city: '';
-    public street: '';
-    public streetAddress: '';
-    public state: '';
-    public zipcode: '';
-    public ssnEin: '';
+    myForm: FormGroup;
+    myForm2: FormGroup;
 
-    public newPassword: '';
+    customerName: FormControl;
+    email: FormControl;
+    phone: FormControl;
+    city: FormControl;
+    street: FormControl;
+    streetAddress: FormControl;
+    state: FormControl;
+    zipcode: FormControl;
+    ssnEin: FormControl;
+
+    newPassword: FormControl;
 
     public rows: any[];
     public columns: any[];
@@ -58,6 +62,10 @@ export class CustomerComponent implements OnInit {
         this.accountHold = true;
         $('#tab_1').show();
 
+        this.createFormControls();
+        this.createForm();
+        this.createForm2();
+
         this.getCompanyName(this.access_token);
 
         // get customer details
@@ -65,6 +73,58 @@ export class CustomerComponent implements OnInit {
 
         // get dump activies 
         this.getDumpActivities(this.customer_id, this.access_token);
+    }
+
+    createFormControls() {
+        this.customerName = new FormControl('', [Validators.required, Validators.minLength(1)]);
+        this.phone = new FormControl('', [Validators.required, Validators.minLength(1)]);
+        this.city = new FormControl('', [Validators.required, Validators.minLength(1)]);
+        this.street = new FormControl('', [Validators.required, Validators.minLength(1)]);
+        this.streetAddress = new FormControl('', [Validators.required, Validators.minLength(1)]);
+        this.state = new FormControl('', [Validators.required, Validators.minLength(1)]);
+        this.zipcode = new FormControl('', [Validators.required, Validators.minLength(1)]);
+        this.ssnEin = new FormControl('', [Validators.required, Validators.minLength(1)]);
+        this.email = new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]);
+        this.newPassword = new FormControl('', [Validators.required, Validators.minLength(1)]);
+
+    }
+
+    createForm() {
+        this.myForm = new FormGroup({
+            customerName: this.customerName,
+            phone: this.phone,
+            city: this.city,
+            street: this.street,
+            streetAddress: this.streetAddress,
+            state: this.state,
+            zipcode: this.zipcode,
+
+            ssnEin: this.ssnEin,
+            email: this.email,
+        });
+    }
+
+    createForm2() {
+        this.myForm2 = new FormGroup({
+            newPassword : this.newPassword
+        });
+    }
+
+    validateAllFormFields(formGroup: FormGroup) {
+
+        Object.keys(formGroup.controls).forEach(field => {
+
+            const control = formGroup.get(field);
+
+            if (control instanceof FormControl) {
+                control.markAsTouched({ onlySelf: true });
+            }
+            else if (control instanceof FormGroup) {
+                this.validateAllFormFields(control);
+            }
+
+        });
+
     }
 
 
@@ -110,18 +170,29 @@ export class CustomerComponent implements OnInit {
             (res: any) => {
                 console.log(res);
                 if (res.status == "successful") {
+                    this.myForm.setValue({
+                        customerName: res.customer.name,
+                        email: res.customer.email,
+                        phone: res.customer.phoneNumber,
+                        city: res.customer.city,
+                        street: res.customer.streetAddress,
+                        streetAddress: res.customer.streetAddress,
+                        state: res.customer.state,
+                        zipcode: res.customer.zipcode,
+                        ssnEin: res.customer.ssnEin
+                    });
                     this.customer_name = res.customer.name;
                     this.company_name = res.customer.dumpCompany.companyName;
 
-                    this.customerName = res.customer.name;
-                    this.email = res.customer.email;
-                    this.phone = res.customer.phoneNumber;
-                    this.city = res.customer.city;
-                    this.state = res.customer.state;
-                    this.street = res.customer.streetAddress;
-                    this.streetAddress = res.customer.streetAddress;
-                    this.zipcode = res.customer.zipcode;
-                    this.ssnEin = res.customer.ssnEin;
+                    // this.customerName = res.customer.name;
+                    // this.email = res.customer.email;
+                    // this.phone = res.customer.phoneNumber;
+                    // this.city = res.customer.city;
+                    // this.state = res.customer.state;
+                    // this.street = res.customer.streetAddress;
+                    // this.streetAddress = res.customer.streetAddress;
+                    // this.zipcode = res.customer.zipcode;
+                    // this.ssnEin = res.customer.ssnEin;
 
                     this.userStatus = res.customer.dumpUserStatus;
                 }
@@ -226,9 +297,7 @@ export class CustomerComponent implements OnInit {
         )
     }
 
-    updateFilter(event) {
-
-    }
+    updateFilter(event) {}
 
     onDeleteCustomer(id) {
         const data = {
@@ -249,63 +318,77 @@ export class CustomerComponent implements OnInit {
                 console.log(err);
             }
         )
-        
+
     }
 
     goToCurrentCustomer() {
         this.router.navigate(['/pages/customers/current']);
     }
 
-    onUpdateCustonmer(id) {
-        const data = {
-            name: this.customerName,
-            email: this.email,
-            phoneNumber: this.phone,
-            state: this.state,
-            city: this.city,
-            streetAddress: this.streetAddress,
-            zipcode: this.zipcode,
-            ssnEin: this.ssnEin,
-            dump_customer_id: id
+    onUpdateCustomer(id) {
+
+        if (this.myForm.valid) {
+            const data = {
+                name: this.myForm.value.customerName,
+                email: this.myForm.value.email,
+                phoneNumber: this.myForm.value.phone,
+                state: this.myForm.value.state,
+                city: this.myForm.value.city,
+                streetAddress: this.myForm.value.streetAddress,
+                zipcode: this.myForm.value.zipcode,
+                ssnEin: this.myForm.value.ssnEin,
+                dump_customer_id: id
+            }
+
+            this.apiServices.updateCustomer(data, this.access_token).subscribe(
+                (res: any) => {
+                    console.log(res);
+
+                    if ((res.status == "successful") && (res.message == "cutomer_account_updated")) {
+                        this.apiServices.altScc('Customer Updated Successfully', this.apiServices.reload());
+                    }
+
+                },
+
+                err => {
+                    console.log(err);
+                }
+            )
+        }
+        else {
+            this.validateAllFormFields(this.myForm);
         }
 
-        this.apiServices.updateCustomer(data, this.access_token).subscribe(
-            (res: any) => {
-                console.log(res);
-
-                if ((res.status == "successful") && (res.message == "cutomer_account_updated")) {
-                    this.apiServices.altScc('Customer Updated Successfully', this.apiServices.reload());
-                }
-
-            },
-
-            err => {
-                console.log(err);
-            }
-        )
 
     }
 
     onResetPassword(id) {
-        const data = {
-            customerId: id,
-            newPassword: this.newPassword
-        }
 
-        this.apiServices.resetPassword(data, this.access_token).subscribe(
-            (res: any) => {
-                // console.log(res);
-                if ((res.status == "successful") && (res.message == "cutomer_account_updated")) {
-
-                    this.apiServices.altScc('Password Updated Successfully', this.apiServices.reload());
-
-                }
-
-            },
-            err => {
-                console.log(err);
+        if(this.myForm2.valid) {
+            const data = {
+                customerId: id,
+                newPassword: this.myForm2.value.newPassword
             }
-        )
+    
+            this.apiServices.resetPassword(data, this.access_token).subscribe(
+                (res: any) => {
+                    // console.log(res);
+                    if ((res.status == "successful") && (res.message == "cutomer_account_updated")) {
+    
+                        this.apiServices.altScc('Password Updated Successfully', this.apiServices.reload());
+    
+                    }
+    
+                },
+                err => {
+                    console.log(err);
+                }
+            )
+        }
+        else {
+            this.validateAllFormFields(this.myForm2);
+        }
+        
     }
 
 }

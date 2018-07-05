@@ -9,39 +9,70 @@
         </div>
     </div>
     <hr>
-
+    <form novalidate [formGroup]="myForm" (ngSubmit)="onSaveEmployee()">
     <div class="row">
-        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+            'has-danger': employeeName.invalid && (employeeName.dirty || employeeName.touched),
+            'has-success': employeeName.valid && (employeeName.dirty || employeeName.touched)
+            }">
             <label for="company_name">Employee Name</label>
             <div class="col-xs-12">
-                <input type="text" name="emp_name" class="form-control" required=""  placeholder="" [(ngModel)]="employeeName" >
+                <input type="text" name="emp_name" class="form-control" required=""  placeholder="" formControlName="employeeName" >
+                <div class="form-control-feedback" *ngIf="employeeName.errors && (employeeName.dirty || employeeName.touched)">
+                        <p *ngIf="employeeName.errors.required">Employee Name is required</p>
+                    </div>
             </div>
         </div>
-        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+            'has-danger': email.invalid && (email.dirty || email.touched),
+            'has-success': email.valid && (email.dirty || email.touched)
+            }">
             <label for="email_1">Email Address</label>
             <div class="col-xs-12">
-                <input type="text" name="email_1" class="form-control" required=""  placeholder="" [(ngModel)]="email" >
+                <input type="text" name="email_1" class="form-control" required=""  placeholder="" formControlName="email" >
+                <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+                        <p *ngIf="email.errors.required">Email Address is required</p>
+                        <p *ngIf="email.errors.pattern">Pleas provide valid email address</p>
+                    </div>
             </div>
         </div>
 
-        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+            'has-danger': phone.invalid && (phone.dirty || phone.touched),
+            'has-success': phone.valid && (phone.dirty || phone.touched)
+            }">
             <label for="phone">Phone Number</label>
             <div class="col-xs-12">
-                <input type="text" name="phone" class="form-control" required=""  placeholder="" [(ngModel)]="phone" >
+                <input type="text" name="phone" class="form-control" required=""  placeholder="" formControlName="phone" >
+                <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+                        <p *ngIf="phone.errors.required">Phone Number is required</p>
+                    </div>
             </div>
         </div>
 
-        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+            'has-danger': userName.invalid && (userName.dirty || userName.touched),
+            'has-success': userName.valid && (userName.dirty || userName.touched)
+            }">
             <label for="phone">Username</label>
             <div class="col-xs-12">
-                <input type="text" name="Username" class="form-control" required=""  placeholder="" [(ngModel)]="userName" >
+                <input type="text" name="Username" class="form-control" required=""  placeholder="" formControlName="userName" >
+                <div class="form-control-feedback" *ngIf="userName.errors && (userName.dirty || userName.touched)">
+                        <p *ngIf="userName.errors.required">Username is required</p>
+                    </div>
             </div>
         </div>
 
-        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+            'has-danger': password.invalid && (password.dirty || password.touched),
+            'has-success': password.valid && (password.dirty || password.touched)
+            }">
             <label for="ssn">Password</label>
             <div class="col-xs-12">
-                <input type="password" name="pass" class="form-control" required=""  placeholder="" [(ngModel)]="password" >
+                <input type="password" name="pass" class="form-control" required=""  placeholder="" formControlName="password" >
+                <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+                        <p *ngIf="password.errors.required">Password is required</p>
+                    </div>
             </div>
         </div>
 
@@ -50,8 +81,9 @@
 
     </div>
     <div class="form-group col-sm-12 col-md-6 col-lg-6 pull-right">
-        <button type="button" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12" (click)="onSaveEmployee()" >Save Customer</button>
+        <button type="submit" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12">Save Customer</button>
     </div>
+    </form>
 
 </div>
 
