@@ -3,7 +3,7 @@
 		<div class="col-sm-12 col-md-11 col-lg-11">
 			<div class="card">
 				<div class="card-body sign-up-container">
-					<form class="form-horizontal form-material" id="loginform">
+					<form class="form-horizontal form-material" [formGroup]="myForm" (ngSubmit)="onSignUp()">
 						<br>
 						<h2 class="text-center">TRUCKER</h2>
 						<h3 class="box-title m-b-20 text-center">Create New Dump Site Account</h3>
@@ -13,59 +13,101 @@
 
 								<h4 class="text-center">Dump Company</h4>
 								<hr>
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': compName.invalid && (compName.dirty || compName.touched),
+									'has-success': compName.valid && (compName.dirty || compName.touched)
+									}">
 									<label for="company_name">Company Name</label>
 									<div class="col-xs-12">
-										<input type="text" name="company_name" class="form-control" required="" placeholder="" [(ngModel)]="compName">
+										<input type="text" name="company_name" class="form-control" required="" placeholder="" formControlName="compName">
+										<div class="form-control-feedback" *ngIf="compName.errors && (compName.dirty || compName.touched)">
+											<p *ngIf="compName.errors.required">Company Name is required</p>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="">Company Address</label>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': compStrAddress.invalid && (compStrAddress.dirty || compStrAddress.touched),
+										'has-success': compStrAddress.valid && (compStrAddress.dirty || compStrAddress.touched)
+										}">
 										<label for="c_street_address">
 											<small>Street Address</small>
 										</label>
-										<input type="text" name="c_street_address" id="c_street_address" class="form-control" required="" placeholder="" [(ngModel)]="compStrAddress">
+										<input type="text" name="c_street_address" id="c_street_address" class="form-control" required="" placeholder="" formControlName="compStrAddress">
+										<div class="form-control-feedback" *ngIf="compStrAddress.errors && (compStrAddress.dirty || compStrAddress.touched)">
+											<p *ngIf="compStrAddress.errors.required">Street Address is required</p>
+										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': compCity.invalid && (compCity.dirty || compCity.touched),
+										'has-success': compCity.valid && (compCity.dirty || compCity.touched)
+										}">
 										<label for="c_city">
 											<small>City</small>
 										</label>
-										<input type="text" name="c_city" id="c_city" class="form-control" required="" placeholder="" [(ngModel)]="compCity">
+										<input type="text" name="c_city" id="c_city" class="form-control" required="" placeholder="" formControlName="compCity">
+										<div class="form-control-feedback" *ngIf="compCity.errors && (compCity.dirty || compCity.touched)">
+											<p *ngIf="compCity.errors.required">City is required</p>
+										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': compCountry.invalid && (compCountry.dirty || compCountry.touched),
+										'has-success': compCountry.valid && (compCountry.dirty || compCountry.touched)
+										}">
 										<label for="c_country">
 											<small>Country</small>
 										</label>
-										<input type="text" name="c_country" id="c_country" class="form-control" required="" placeholder="" [(ngModel)]="compCountry">
+										<input type="text" name="c_country" id="c_country" class="form-control" required="" placeholder="" formControlName="compCountry">
+										<div class="form-control-feedback" *ngIf="compCountry.errors && (compCountry.dirty || compCountry.touched)">
+											<p *ngIf="compCountry.errors.required">Country is required</p>
+										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': compZipCode.invalid && (compZipCode.dirty || compZipCode.touched),
+										'has-success': compZipCode.valid && (compZipCode.dirty || compZipCode.touched)
+										}">
 										<label for="c_zip_code">
 											<small>ZIP Code</small>
 										</label>
-										<input type="text" name="c_zip_code" id="c_zip_code" class="form-control" required="" placeholder="" [(ngModel)]="compZipCode">
+										<input type="text" name="c_zip_code" id="c_zip_code" class="form-control" required="" placeholder="" formControlName="compZipCode">
+										<div class="form-control-feedback" *ngIf="compZipCode.errors && (compZipCode.dirty || compZipCode.touched)">
+											<p *ngIf="compZipCode.errors.required">ZIP Code is required</p>
+										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="">Company Location</label>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': compLatitude.invalid && (compLatitude.dirty || compLatitude.touched),
+										'has-success': compLatitude.valid && (compLatitude.dirty || compLatitude.touched)
+										}">
 										<label for="c_phone_number">
 											<small>Latitude</small>
 										</label>
-										<input type="text" name="latitude" id="" class="form-control" required="" placeholder="" [(ngModel)]="compLatitude">
+										<input type="text" name="latitude" id="" class="form-control" required="" placeholder="" formControlName="compLatitude">
+										<div class="form-control-feedback" *ngIf="compLatitude.errors && (compLatitude.dirty || compLatitude.touched)">
+											<p *ngIf="compLatitude.errors.required">Latitude is required</p>
+										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': compLongitude.invalid && (compLongitude.dirty || compLongitude.touched),
+										'has-success': compLongitude.valid && (compLongitude.dirty || compLongitude.touched)
+										}">
 										<label for="c_cell_phone">
 											<small>Longitude</small>
 										</label>
-										<input type="text" name="Longitude" id="" class="form-control" required="" placeholder="" [(ngModel)]="compLongitude">
+										<input type="text" name="Longitude" id="" class="form-control" required="" placeholder="" formControlName="compLongitude">
+										<div class="form-control-feedback" *ngIf="compLongitude.errors && (compLongitude.dirty || compLongitude.touched)">
+											<p *ngIf="compLongitude.errors.required">Longitude is required</p>
+										</div>
 									</div>
 
 								</div>
@@ -76,42 +118,72 @@
 
 								<h4 class="text-center">Dump Site</h4>
 								<hr>
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': dumpSiteName.invalid && (dumpSiteName.dirty || dumpSiteName.touched),
+									'has-success': dumpSiteName.valid && (dumpSiteName.dirty || dumpSiteName.touched)
+									}">
 									<label for="manager_name">Dump Site Name</label>
 									<div class="col-xs-12">
-										<input type="text" name="dump_site" id="dump_site" class="form-control" required="" placeholder="" [(ngModel)]="dumpSiteName">
+										<input type="text" name="dump_site" id="dump_site" class="form-control" required="" placeholder="" formControlName="dumpSiteName">
+										<div class="form-control-feedback" *ngIf="dumpSiteName.errors && (dumpSiteName.dirty || dumpSiteName.touched)">
+											<p *ngIf="dumpSiteName.errors.required">Dump Site Name is required</p>
+										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="manager_name">Dump Site Address </label>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': dumpStrAddress.invalid && (dumpStrAddress.dirty || dumpStrAddress.touched),
+										'has-success': dumpStrAddress.valid && (dumpStrAddress.dirty || dumpStrAddress.touched)
+										}">
 										<label for="d_street_address">
 											<small>Street Address</small>
 										</label>
-										<input type="text" name="d_street_address" id="d_street_address" class="form-control" required="" placeholder="" [(ngModel)]="dumpStrAddress">
+										<input type="text" name="d_street_address" id="d_street_address" class="form-control" required="" placeholder="" formControlName="dumpStrAddress">
+										<div class="form-control-feedback" *ngIf="dumpStrAddress.errors && (dumpStrAddress.dirty || dumpStrAddress.touched)">
+											<p *ngIf="dumpStrAddress.errors.required">Street Address is required</p>
+										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': dumpStrDetails.invalid && (dumpStrDetails.dirty || dumpStrDetails.touched),
+										'has-success': dumpStrDetails.valid && (dumpStrDetails.dirty || dumpStrDetails.touched)
+										}">
 										<label for="d_street_address_d">
 											<small>Street Address Details</small>
 										</label>
-										<input type="text" name="d_street_address_d" id="d_street_address_d" class="form-control" required="" placeholder="" [(ngModel)]="dumpStrDetails">
+										<input type="text" name="d_street_address_d" id="d_street_address_d" class="form-control" required="" placeholder="" formControlName="dumpStrDetails">
+										<div class="form-control-feedback" *ngIf="dumpStrDetails.errors && (dumpStrDetails.dirty || dumpStrDetails.touched)">
+											<p *ngIf="dumpStrDetails.errors.required">Street Address Details is required</p>
+										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': dumpCity.invalid && (dumpCity.dirty || dumpCity.touched),
+										'has-success': dumpCity.valid && (dumpCity.dirty || dumpCity.touched)
+										}">
 										<label for="d_city">
 											<small>City</small>
 										</label>
-										<input type="text" name="d_city" id="d_city" class="form-control" required="" placeholder="" [(ngModel)]="dumpCity">
+										<input type="text" name="d_city" id="d_city" class="form-control" required="" placeholder="" formControlName="dumpCity">
+										<div class="form-control-feedback" *ngIf="dumpCity.errors && (dumpCity.dirty || dumpCity.touched)">
+											<p *ngIf="dumpCity.errors.required">City is required</p>
+										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': dumpZipCode.invalid && (dumpZipCode.dirty || dumpZipCode.touched),
+										'has-success': dumpZipCode.valid && (dumpZipCode.dirty || dumpZipCode.touched)
+										}">
 										<label for="d_zip_code">
 											<small>ZIP Code</small>
 										</label>
-										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" [(ngModel)]="dumpZipCode">
+										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" formControlName="dumpZipCode">
+										<div class="form-control-feedback" *ngIf="dumpZipCode.errors && (dumpZipCode.dirty || dumpZipCode.touched)">
+											<p *ngIf="dumpZipCode.errors.required">ZIP Code is required</p>
+										</div>
 									</div>
 
 								</div>
@@ -119,25 +191,43 @@
 
 								<div class="form-group">
 									<label for="manager_name">Dump Site Location </label>
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': dumpLatitude.invalid && (dumpLatitude.dirty || dumpLatitude.touched),
+										'has-success': dumpLatitude.valid && (dumpLatitude.dirty || dumpLatitude.touched)
+										}">
 										<label for="d_zip_code">
 											<small>Latitude</small>
 										</label>
-										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" [(ngModel)]="dumpLatitude">
+										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" formControlName="dumpLatitude">
+										<div class="form-control-feedback" *ngIf="dumpLatitude.errors && (dumpLatitude.dirty || dumpLatitude.touched)">
+											<p *ngIf="dumpLatitude.errors.required">Latitude is required</p>
+										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1">
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': dumpLongitude.invalid && (dumpLongitude.dirty || dumpLongitude.touched),
+										'has-success': dumpLongitude.valid && (dumpLongitude.dirty || dumpLongitude.touched)
+										}">
 										<label for="d_zip_code">
 											<small>Longitude</small>
 										</label>
-										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" [(ngModel)]="dumpLongitude">
+										<input type="text" name="d_zip_code" id="d_zip_code" class="form-control" required="" placeholder="" formControlName="dumpLongitude">
+										<div class="form-control-feedback" *ngIf="dumpLongitude.errors && (dumpLongitude.dirty || dumpLongitude.touched)">
+											<p *ngIf="dumpLongitude.errors.required">Longitude is required</p>
+										</div>
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': dumpSitePhone.invalid && (dumpSitePhone.dirty || dumpSitePhone.touched),
+									'has-success': dumpSitePhone.valid && (dumpSitePhone.dirty || dumpSitePhone.touched)
+									}">
 									<label for="manager_name">Dump Site Phone</label>
 									<div class="col-xs-12">
-										<input type="text" name="d_phone" id="" class="form-control" required="" placeholder="" [(ngModel)]="dumpSitePhone">
+										<input type="text" name="d_phone" id="" class="form-control" required="" placeholder="" formControlName="dumpSitePhone">
+										<div class="form-control-feedback" *ngIf="dumpSitePhone.errors && (dumpSitePhone.dirty || dumpSitePhone.touched)">
+											<p *ngIf="dumpSitePhone.errors.required">Dump Site Phone is required</p>
+										</div>
 									</div>
 								</div>
 
@@ -148,39 +238,70 @@
 							<div class="col-sm-12 col-md-4 col-lg-4 dump-comp">
 								<h4 class="text-center">User</h4>
 								<hr>
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': dumpuserName.invalid && (dumpuserName.dirty || dumpuserName.touched),
+									'has-success': dumpuserName.valid && (dumpuserName.dirty || dumpuserName.touched)
+									}">
 									<label for="user_name">Name</label>
 									<div class="col-xs-12">
-										<input type="text" name="dump_user_name" id="dump_user_name" class="form-control" required="" placeholder="" [(ngModel)]="dumpuserName">
+										<input type="text" name="dump_user_name" id="dump_user_name" class="form-control" required="" placeholder="" formControlName="dumpuserName">
+										<div class="form-control-feedback" *ngIf="dumpuserName.errors && (dumpuserName.dirty || dumpuserName.touched)">
+											<p *ngIf="dumpuserName.errors.required">User's Name is required</p>
+										</div>
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': email.invalid && (email.dirty || email.touched),
+									'has-success': email.valid && (email.dirty || email.touched)
+									}">
 									<label for="email">Email Address</label>
 									<div class="col-xs-12">
-										<input type="text" name="email" id="email" class="form-control" required="" placeholder="" [(ngModel)]="email">
+										<input type="text" name="email" id="email" class="form-control" required="" placeholder="" formControlName="email">
+										<div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+											<p *ngIf="email.errors.required">Email Address is required</p>
+											<p *ngIf="email.errors.pattern">Pleas provide valid email address</p>
+										</div>
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': userPhone.invalid && (userPhone.dirty || userPhone.touched),
+									'has-success': userPhone.valid && (userPhone.dirty || userPhone.touched)
+									}">
 									<label for="email">Phone Number</label>
 									<div class="col-xs-12">
-										<input type="text" name="user_phone" id="userphone" class="form-control" required="" placeholder="" [(ngModel)]="userPhone">
+										<input type="text" name="user_phone" id="userphone" class="form-control" required="" placeholder="" formControlName="userPhone">
+										<div class="form-control-feedback" *ngIf="userPhone.errors && (userPhone.dirty || userPhone.touched)">
+											<p *ngIf="userPhone.errors.required">Trucker Name is required</p>
+										</div>
 									</div>
 								</div>
 
 
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': userName.invalid && (userName.dirty || userName.touched),
+									'has-success': userName.valid && (userName.dirty || userName.touched)
+									}">
 									<label for="user_name">Username</label>
 									<div class="col-xs-12">
-										<input type="text" name="username" id="username" class="form-control" required="" placeholder="" [(ngModel)]="userName">
+										<input type="text" name="username" id="username" class="form-control" required="" placeholder="" formControlName="userName">
+										<div class="form-control-feedback" *ngIf="userName.errors && (userName.dirty || userName.touched)">
+											<p *ngIf="userName.errors.required">Username is required</p>
+										</div>
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': password.invalid && (password.dirty || password.touched),
+									'has-success': password.valid && (password.dirty || password.touched)
+									}">
 									<label for="password">Password</label>
 									<div class="col-xs-12">
-										<input type="text" name="password" id="password" class="form-control" required="" placeholder="" [(ngModel)]="password">
+										<input type="password" name="password" id="password" class="form-control" required="" placeholder="" formControlName="password">
+										<div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+											<p *ngIf="password.errors.required">Password is required</p>
+										</div>
 									</div>
 								</div>
 
@@ -188,7 +309,7 @@
 
 							<div class="col-sm-12 col-md-9 col-lg-9 text-right">
 								<br>
-								<button class="btn btn-primary col-md-3 col-lg-4 push-right" (click)="onSignUp()">Save Dump Site Account</button>
+								<button type="submit" class="btn btn-primary col-md-6 col-lg-6 push-right">Save Dump Site Account</button>
 								<br>
 							</div>
 

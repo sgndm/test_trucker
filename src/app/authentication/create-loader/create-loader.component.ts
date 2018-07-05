@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, MinLengthValidator } from '@angular/forms';
 // import routes
 import { Router } from '@angular/router';
 // import api services
@@ -11,11 +12,13 @@ import { ApiServicesService } from '../../services/api-services/api-services.ser
 })
 export class CreateLoaderComponent implements OnInit {
 
-	public loaderName: any;
-	public loaderEmail: any;
-	public loaderPhone: any;
-	public userName: any;
-	public password: any;
+	myForm: FormGroup;
+
+	loaderName: FormControl;
+	loaderEmail: FormControl;
+	loaderPhone: FormControl;
+	userName: FormControl;
+	password: FormControl;
 
 	public has_card_token: boolean;
 	public show_btn: boolean;
@@ -28,8 +31,47 @@ export class CreateLoaderComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+
+		this.createFormControls();
+		this.createForm();
+
 		this.has_card_token = false;
 		this.show_btn = true;
+	}
+
+	createFormControls() {
+		this.loaderName = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.loaderEmail = new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]); 
+		this.loaderPhone = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.userName = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.password = new FormControl('', [Validators.required, Validators.minLength(1)]);
+	}
+
+	createForm() {
+		this.myForm = new FormGroup({
+			loaderName: this.loaderName,
+			loaderEmail: this.loaderEmail,
+			loaderPhone: this.loaderPhone,
+			userName: this.userName,
+			password: this.password
+		});
+	}
+
+	validateAllFormFields(formGroup: FormGroup) {
+
+		Object.keys(formGroup.controls).forEach(field => {
+
+			const control = formGroup.get(field);
+
+			if (control instanceof FormControl) {
+				control.markAsTouched({ onlySelf: true });
+			}
+			else if (control instanceof FormGroup) {
+				this.validateAllFormFields(control);
+			}
+
+		});
+
 	}
 
 
@@ -58,34 +100,41 @@ export class CreateLoaderComponent implements OnInit {
 	}
 
 	onSaveTrucker() {
-		let user = {
-			email: this.loaderEmail,
-			name: this.loaderName,
-			phoneNumber: this.loaderPhone,
-			user: {
-				password: this.password,
-				username: this.userName
-			}
-		}
 
-		const data = {
-			user: user,
-			card_token: this.card_token
-		}
-
-		this.apiServices.signUpLoader(data).subscribe(
-			(res: any) => {
-				console.log(res);
-
-				if(res.status == "successful") {
-					this.apiServices.altScc('Loader Created Successfully', this.goToLogin);
+		if(this.myForm.valid) {
+			let user = {
+				email: this.myForm.value.loaderEmail,
+				name: this.myForm.value.loaderName,
+				phoneNumber: this.myForm.value.loaderPhone,
+				user: {
+					password: this.myForm.value.password,
+					username: this.myForm.value.userName
 				}
-			}, 
-			err => {
-				console.log(err);
 			}
-		)
+	
+			const data = {
+				user: user,
+				card_token: this.card_token
+			}
+	
+			this.apiServices.signUpLoader(data).subscribe(
+				(res: any) => {
+					console.log(res);
+	
+					if (res.status == "successful") {
+						this.apiServices.altScc('Loader Created Successfully', (this.goToLogin()));
+					}
+				},
+				err => {
+					console.log(err);
+				}
+			)
+		}
+		else {
+			this.validateAllFormFields(this.myForm);
+		}
 		
+
 	}
 
 

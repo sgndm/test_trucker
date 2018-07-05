@@ -3,72 +3,124 @@
 		<div class="col-sm-12 col-md-11 col-lg-11">
 			<div class="card">
 				<div class="card-body sign-up-container">
-					<form class="form-horizontal form-material" id="loginform">
+
+					<form novalidate class="form-horizontal form-material" [formGroup]="myForm" (ngSubmit)="onSaveTrucker()">
 						<br>
 						<h2 class="text-center">TRUCKER</h2>
 						<h3 class="box-title m-b-20 text-center">Create New Trucker Account</h3>
 						<div class="row justify-content-center">
 							<div class="col-sm-12 col-md-4 col-lg-4 dump-comp">
 
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+								'has-danger': truckerName.invalid && (truckerName.dirty || truckerName.touched),
+								'has-success': truckerName.valid && (truckerName.dirty || truckerName.touched)
+								}">
 									<label for=" ">Name</label>
 									<div class="col-xs-12">
-										<input type="text" name="name" class="form-control" required="" placeholder="" [(ngModel)]="truckerName">
+										<input type="text" name="name" class="form-control" required="" placeholder="" formControlName="truckerName">
+										<div class="form-control-feedback" *ngIf="truckerName.errors && (truckerName.dirty || truckerName.touched)">
+											<p *ngIf="truckerName.errors.required">Trucker Name is required</p>
+										</div>
 									</div>
 								</div>
-								<div class="form-group">
+
+								<div class="form-group" [ngClass]="{
+								'has-danger': truckerEmail.invalid && (truckerEmail.dirty || truckerEmail.touched),
+								'has-success': truckerEmail.valid && (truckerEmail.dirty || truckerEmail.touched)
+								}">
 									<label for=" ">Email</label>
 									<div class="col-xs-12">
-										<input type="text" name="email" class="form-control" required="" placeholder="" [(ngModel)]="truckerEmail">
+										<input type="text" name="email" class="form-control" required="" placeholder="" formControlName="truckerEmail">
+										<div class="form-control-feedback" *ngIf="truckerEmail.errors && (truckerEmail.dirty || truckerEmail.touched)">
+											<p *ngIf="truckerEmail.errors.required">Email is required</p>
+											<p *ngIf="truckerEmail.errors.pattern">Pleas provide valid email address</p>
+										</div>
 									</div>
 								</div>
-								<div class="form-group">
+
+								<div class="form-group" [ngClass]="{
+								'has-danger': truckerPhone.invalid && (truckerPhone.dirty || truckerPhone.touched),
+								'has-success': truckerPhone.valid && (truckerPhone.dirty || truckerPhone.touched)
+								}">
 									<label for=" ">Phone Number</label>
 									<div class="col-xs-12">
-										<input type="text" name="phone" class="form-control" required="" placeholder="" [(ngModel)]="truckerPhone">
+										<input type="text" name="phone" class="form-control" required="" placeholder="" formControlName="truckerPhone">
+										<div class="form-control-feedback" *ngIf="truckerPhone.errors && (truckerPhone.dirty || truckerPhone.touched)">
+											<p *ngIf="truckerPhone.errors.required">Phone Number is required</p>
+										</div>
 									</div>
 								</div>
-								<div class="form-group">
+
+								<div class="form-group" [ngClass]="{
+								'has-danger': truckerCompany.invalid && (truckerCompany.dirty || truckerCompany.touched),
+								'has-success': truckerCompany.valid && (truckerCompany.dirty || truckerCompany.touched)
+								}">
 									<label for=" ">Company</label>
 									<div class="col-xs-12">
-										<input type="text" name="company" class="form-control" required="" placeholder="" [(ngModel)]="TruckerCompany">
+										<input type="text" name="company" class="form-control" required="" placeholder="" formControlName="truckerCompany">
+										<div class="form-control-feedback" *ngIf="truckerCompany.errors && (truckerCompany.dirty || truckerCompany.touched)">
+											<p *ngIf="truckerCompany.errors.required">Company Name is required</p>
+										</div>
 									</div>
 								</div>
-								
+
 							</div>
 							<div class="col-sm-12 col-md-4 col-lg-4 dump-comp">
-								<div class="form-group">
-										<label for=" ">Truck Type</label>
-										<div class="col-xs-12">
-											<select name="type" id="" [(ngModel)]="truckType" class="form-control custom-select">
-												<option value="0">Select a truck Type</option>
-												<option *ngFor="let truck of truck_types_list" value="{{ truck.id }}"> {{ truck.type }}</option>
-											</select>
-											
-										</div>
-									</div>
-									<div class="form-group">
-											<label for=" ">license Number</label>
-											<div class="col-xs-12">
-												<input type="text" name="licensenumber" class="form-control" required="" placeholder="" [(ngModel)]="licenseNumber">
-											</div>
-										</div>
-
-								<div class="form-group">
-									<label for=" ">Username</label>
+								<div class="form-group" [ngClass]="{
+								'has-danger': truckType.invalid && (truckType.dirty || truckType.touched),
+								'has-success': truckType.valid && (truckType.dirty || truckType.touched)
+								}">
+									<label for=" ">Truck Type</label>
 									<div class="col-xs-12">
-										<input type="text" name="username" class="form-control" required="" placeholder="" [(ngModel)]="userName">
+										<select name="type" id="" formControlName="truckType" class="form-control custom-select">
+											<option value="0" selected>Select a truck Type</option>
+											<option *ngFor="let truck of truck_types_list" value="{{ truck.id }}"> {{ truck.type }}</option>
+										</select>
+										<div class="form-control-feedback" *ngIf="truckType.errors && (truckType.dirty || truckType.touched)">
+											<p *ngIf="truckType.errors.required">Truck Type is required</p>
+										</div>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': licenseNumber.invalid && (licenseNumber.dirty || licenseNumber.touched),
+									'has-success': licenseNumber.valid && (licenseNumber.dirty || licenseNumber.touched)
+									}">
+									<label for=" ">license Number</label>
+									<div class="col-xs-12">
+										<input type="text" name="licenseNumber" class="form-control" required="" placeholder="" formControlName="licenseNumber" >
+										<div class="form-control-feedback" *ngIf="licenseNumber.errors && (licenseNumber.dirty || licenseNumber.touched)">
+											<p *ngIf="licenseNumber.errors.required">license Number is required</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group" [ngClass]="{
+								'has-danger': userName.invalid && (userName.dirty || userName.touched),
+								'has-success': userName.valid && (userName.dirty || userName.touched)
+								}">
+									<label for=" ">Username</label>
+									<div class="col-xs-12">
+										<input type="text" name="username" class="form-control" required="" placeholder="" formControlName="userName">
+										<div class="form-control-feedback" *ngIf="userName.errors && (userName.dirty || userName.touched)">
+											<p *ngIf="userName.errors.required">Username is required</p>
+										</div>
+									</div>
+								</div>
+								<div class="form-group" [ngClass]="{
+								'has-danger': password.invalid && (password.dirty || password.touched),
+								'has-success': password.valid && (password.dirty || password.touched)
+								}">
 									<label for=" ">Password</label>
 									<div class="col-xs-12">
-										<input type="text" name="password" class="form-control" required="" placeholder="" [(ngModel)]="password">
+										<input type="password" name="password" class="form-control" required="" placeholder="" formControlName="password">
+										<div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+											<p *ngIf="password.errors.required">Password is required</p>
+										</div>
 									</div>
 								</div>
 
 								<div class="form-group row justify-content-center">
-									<button type="button" class="btn btn-primary col-md-10 col-lg-10" (click)="onSaveTrucker()" >Save Trucker Account</button>
+									<button type="submit" class="btn btn-primary col-md-10 col-lg-10">Save Trucker Account</button>
 								</div>
 
 							</div>
