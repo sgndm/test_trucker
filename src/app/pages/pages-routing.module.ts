@@ -34,6 +34,9 @@ import { TJobComponent } from './trucker/t-job/t-job.component';
 
 // loader
 import { LoaderDashboardComponent } from './loader/loader-dashboard/loader-dashboard.component';
+import { CompanyThisWeekComponent } from './loader/company-this-week/company-this-week.component';
+import { DupmThisYearComponent } from './loader/dupm-this-year/dupm-this-year.component';
+import { DupmCompleteComponent } from './loader/dupm--complete/dupm--complete.component';
 
 
 const routes: Routes = [
@@ -73,7 +76,11 @@ const routes: Routes = [
     { path: 'trucker/jobs/past/job/:id', component: TJobComponent },
 
     // loader
-    { path: 'loader', component: LoaderDashboardComponent },
+    { path: 'loader/dump-history/th-week', component: LoaderDashboardComponent },
+    { path: 'loader/dump-history/th-year', component: DupmThisYearComponent },
+    { path: 'loader/dump-history/complete', component: DupmCompleteComponent },
+    { path: 'loader/dump-history/th-week/company/:name', component: CompanyThisWeekComponent },
+    
 
 ];
 

@@ -45,22 +45,25 @@ export const ROUTES: RouteInfo[] = [
 
     // admin dashboard 
     { path: '', title: 'Admin Dashboard', icon: '', class: 'nav-small-cap', label: '', labelClass: '', extralink: true, submenu: [] },
-   
+
     // dump companies
     { path: '/pages/admin/dump-companies', title: 'Dump Companies', icon: 'mdi mdi-view-dashboard', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
 
 
     // trucker dashboard
     { path: '', title: 'Trucker Dashboard', icon: '', class: 'nav-small-cap', label: '', labelClass: '', extralink: true, submenu: [] },
+    { path: '/pages/trucker/jobs/today', title: 'Current Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+    { path: '/pages/trucker/jobs/upcoming', title: 'Upcoming Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+    { path: '/pages/trucker/jobs/past', title: 'History of Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
 
-    // jobs
-    {
-        path: '', title: 'Jobs', icon: 'mdi mdi-history', class: 'has-arrow', label: '', labelClass: 'label label-rouded label-themecolor pull-right', extralink: false,
-        submenu: [
-            { path: '/pages/trucker/jobs/today', title: 'Current Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
-            { path: '/pages/trucker/jobs/upcoming', title: 'Upcoming Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
-            { path: '/pages/trucker/jobs/past', title: 'History of Jobs', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
-        ]
-    },
+
+    // loader
+    { path: '', title: 'Dump History', icon: '', class: 'nav-small-cap', label: '', labelClass: '', extralink: true, submenu: [] },
+    { path: '/pages/loader/dump-history/th-week', title: 'This Week', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+    { path: '/pages/loader/dump-history/th-year', title: 'This Year', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+    { path: '/pages/loader/dump-history/complete', title: 'Complete', icon: '', class: '', label: '', labelClass: '', extralink: false, submenu: [] },
+
+
+
 
 ];

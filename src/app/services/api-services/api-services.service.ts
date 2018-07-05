@@ -428,4 +428,34 @@ export class ApiServicesService {
 		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_status: "END" } });
 	}
 
+	// loader 
+	getDumpHistoryThisWeek(token){
+		const url = SERVER_URL + 'mobile/loader/totalloadsthisweek';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	// get dump history by company name this week
+	getDumpHistoryByCompanyName(data, token) {
+		const url = SERVER_URL + 'mobile/loader/jobsthisweekperdump';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { companyName: data } });
+	}
+
+	// get stat for dump history this year
+	getDumpHistoryThisYear(token) {
+		const url = SERVER_URL + 'mobile/loader/totalloadsthisyear';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	// get jobs by month 
+	getJobsByMonth(data, token) {
+		const url = SERVER_URL + 'mobile/loader/getjobsformonth';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { month : data.month, selectedYear: data.year } });
+	}
+
+	// get job details 
+	getLoaderJobDetails(data, token) {
+		const url = SERVER_URL + 'mobile/loader/getjobsformonth';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_id : data} });
+	}
+
 }

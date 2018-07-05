@@ -1,44 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 // import routes
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 // import api services
 import { ApiServicesService } from '../../../services/api-services/api-services.service';
-import swal from 'sweetalert2';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
-	selector: 'app-loader-dashboard',
-	templateUrl: './loader-dashboard.component.html',
-	styleUrls: ['./loader-dashboard.component.css']
+	selector: 'app-company-this-week',
+	templateUrl: './company-this-week.component.html',
+	styleUrls: ['./company-this-week.component.css']
 })
+export class CompanyThisWeekComponent implements OnInit {
 
-export class LoaderDashboardComponent implements OnInit {
+
+	public company_name: '';
+	public dump_site_name: '';
 
 	public access_token = '';
 
-	public company_name: string = '';
-	public total_loads: any;
-	public total_fees: any = '';
-
-	public loads_dump_site = [];
+	public total_loads : any;
+	public total_fees : any;
 
 	constructor(
+		private activeRoute: ActivatedRoute,
 		public router: Router,
 		private apiServices: ApiServicesService,
-
 	) {
+		this.activeRoute.params.subscribe(
+			params => {
+				this.dump_site_name = params.name;
+				console.log(params);
+			}
+
+		);
+
 		this.access_token = localStorage.getItem('access_token')
+
 	}
 
 	ngOnInit() {
-
 		this.total_fees = 0;
-		// this.total_loads = 0;
-
 		// get company name
 		this.getCompanyName(this.access_token);
-		// get dump stats this week
-		this.getThisWeekLoads(this.access_token);
+
+		this.getDumpHistoryThisWeekByCompany(this.dump_site_name, this.access_token);
 	}
 
 	// get company name
@@ -65,25 +69,14 @@ export class LoaderDashboardComponent implements OnInit {
 		)
 	}
 
-	getThisWeekLoads(token) {
-		this.apiServices.getDumpHistoryThisWeek(token).subscribe(
+	// get dump history this week 
+	getDumpHistoryThisWeekByCompany(company_name, token) {
+		this.apiServices.getDumpHistoryByCompanyName(company_name, token).subscribe(
 			(res: any) => {
 				console.log(res);
 
 				if(res.status == "successful") {
-					this.total_loads = res.loads_this_week;
-
-					let temp = res.loads_this_week_by_dump;
-					
-					let t_arr = [];
-					for(let key in temp) {
-
-						let arr = {'company': key, 'loads': temp[key] };
-						t_arr.push(arr);
-						
-					}
-					this.loads_dump_site = t_arr;
-					console.log(this.loads_dump_site);
+					this.total_loads = res.loads_count_for_dump_this_week;
 				}
 			},
 			err => {

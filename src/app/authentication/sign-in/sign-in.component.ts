@@ -184,7 +184,7 @@ export class SignInComponent implements OnInit {
 	}
 
 	goToLoaderDashboard() {
-		this.router.navigate(['/pages/loader']);
+		this.router.navigate(['/pages/loader/dump-history/th-week']);
 	}
 
 
