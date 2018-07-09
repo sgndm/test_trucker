@@ -106,7 +106,23 @@ export class DumpCompaniesComponent implements OnInit {
 	}
 
 	onUnblockCompany(id) {
-		alert('unbloking');
+		const data = {
+			companyId: id
+		}
+
+		this.apiServices.approveDumpCompany(data, this.access_token).subscribe(
+			(res: any) => {
+				console.log(res);
+				if ((res.status == "successful") && (res.message == "account_approved")) {
+
+					this.apiServices.altScc('Successfully approved', this.getDetailsAndCreatTable());
+				}
+			},
+
+			err => {
+				console.log(err);
+			}
+		)
 	}
 
 	getDetailsAndCreatTable() {

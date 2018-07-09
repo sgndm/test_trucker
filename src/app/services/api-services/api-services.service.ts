@@ -452,6 +452,12 @@ export class ApiServicesService {
 		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { month : data.month, selectedYear: data.year } });
 	}
 
+	// get complete dump history 
+	getCompleteDumpHistory(token){
+		const url = SERVER_URL + 'mobile/loader/completehistory';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
 	// get job details 
 	getLoaderJobDetails(data, token) {
 		const url = SERVER_URL + 'mobile/loader/getjobsformonth';
