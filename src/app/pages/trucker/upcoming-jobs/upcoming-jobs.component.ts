@@ -78,12 +78,13 @@ export class UpcomingJobsComponent implements OnInit {
 	getUpcomingJobs(token) {
 		this.apiServices.getUpcomingJobsTrucker(token).subscribe(
 			(res: any) => {
+                console.log('upcoming jobs');
 				console.log(res);
 				let tempProj = [];
                     let tempYears = [];
 
                     let i = 0;
-                    for (let data of res.upcoming_project_list) {
+                    for (let data of res.jobs) {
                         i += 1;
                         let temp = { index: i, job_name: data.jobName, job_number: data.jobNumber, job_status: data.jobStatus, date: data.pickupDate, id: data.id };
 

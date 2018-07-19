@@ -20,6 +20,11 @@ export class CompanyThisWeekComponent implements OnInit {
 	public total_loads : any;
 	public total_fees : any;
 
+	public rows: any[];
+    public columns: any[];
+    public temp: any[];
+
+
 	constructor(
 		private activeRoute: ActivatedRoute,
 		public router: Router,
@@ -38,7 +43,17 @@ export class CompanyThisWeekComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.total_fees = 0;
+
+		this.columns = [
+            { name: 'index' },
+            { name: 'job_name' },
+            { name: 'job_number' },
+            { name: 'job_status' },
+            { name: 'date' },
+            { name: 'action' },
+        ];
+
+		// this.total_fees = 0;
 		// get company name
 		this.getCompanyName(this.access_token);
 
@@ -77,6 +92,7 @@ export class CompanyThisWeekComponent implements OnInit {
 
 				if(res.status == "successful") {
 					this.total_loads = res.loads_count_for_dump_this_week;
+					this.total_fees = res.dump_fees_this_week;
 				}
 			},
 			err => {

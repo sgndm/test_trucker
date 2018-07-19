@@ -18,6 +18,12 @@ export class DupmCompleteComponent implements OnInit {
 	public total_loads: any;
 	public total_fees: any;
 
+	public job_month: any;
+	public job_year: any;
+	public years_list : any[];
+
+	public show_month: boolean;
+
 	constructor(
 		public router: Router,
 		private apiServices: ApiServicesService,
@@ -26,7 +32,21 @@ export class DupmCompleteComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.total_fees = 0;
+		this.job_year = 0;
+		this.job_month = 0;
+
+		let currentYear = new Date().getFullYear();
+		let max = currentYear + 10;
+		let min = currentYear - 10;
+
+		let years = [];
+		for(let x = min; x <= max; x++) {
+			years.push(x);
+		}
+
+		this.years_list = years;
+
+		// this.total_fees = 0;
 		// get company name
 		this.getCompanyName(this.access_token);
 
@@ -66,6 +86,7 @@ export class DupmCompleteComponent implements OnInit {
 
 				if(res.status == "successful") {
 					this.total_loads = res.complete_loads;
+					this.total_fees = res.complete_history_dump_fees;
 				}
 			},
 			err => {
@@ -74,4 +95,37 @@ export class DupmCompleteComponent implements OnInit {
 		)
 	}
 
+	// get months
+	getMonths() {
+		let year = this.job_year;
+
+		if(year == 0) {
+			this.show_month = false
+		} 
+		else {
+			this.show_month = true;
+			this.job_month = 0;
+		}
+	}
+
+	// get jobs by month 
+	getJobsByMonth() {
+		const data = {
+			month: this.job_month,
+			year: (new Date()).getFullYear()
+		}
+
+		this.apiServices.getJobsByMonth(data, this.access_token).subscribe(
+			(res: any) => {
+				console.log(res);
+
+				if(res.status == "successful") {
+
+				}
+			},
+			err => {
+				console.log(err);
+			}
+		)
+	}
 }

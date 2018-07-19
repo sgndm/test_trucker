@@ -37,6 +37,7 @@ import { LoaderDashboardComponent } from './loader/loader-dashboard/loader-dashb
 import { CompanyThisWeekComponent } from './loader/company-this-week/company-this-week.component';
 import { DupmThisYearComponent } from './loader/dupm-this-year/dupm-this-year.component';
 import { DupmCompleteComponent } from './loader/dupm--complete/dupm--complete.component';
+import { LoaderJobComponent } from './loader/loader-job/loader-job.component';
 
 
 const routes: Routes = [
@@ -80,6 +81,9 @@ const routes: Routes = [
     { path: 'loader/dump-history/th-year', component: DupmThisYearComponent },
     { path: 'loader/dump-history/complete', component: DupmCompleteComponent },
     { path: 'loader/dump-history/th-week/company/:name', component: CompanyThisWeekComponent },
+    { path: 'loader/dump-history/th-week/job/:id', component: LoaderJobComponent },
+    { path: 'loader/dump-history/th-year/job/:id', component: LoaderJobComponent },
+    { path: 'loader/dump-history/complete/job/:id', component: LoaderJobComponent },
     
 
 ];

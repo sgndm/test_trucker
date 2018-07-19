@@ -18,6 +18,10 @@ export class DupmThisYearComponent implements OnInit {
 	public total_fees : any;
 	public total_trucks : any;
 	public job_month : any;
+	
+	public rows: any[];
+    public columns: any[];
+    public temp: any[];
 
 	constructor(
 		public router: Router,
@@ -28,6 +32,15 @@ export class DupmThisYearComponent implements OnInit {
 
 	ngOnInit() {
 		this.job_month = 0;
+
+		this.columns = [
+            { name: 'index' },
+            { name: 'job_name' },
+            { name: 'job_number' },
+            { name: 'job_status' },
+            { name: 'date' },
+            { name: 'action' },
+        ];
 		
 		// get company name
 		this.getCompanyName(this.access_token);
@@ -68,7 +81,7 @@ export class DupmThisYearComponent implements OnInit {
 
 				if(res.status == "successful") {
 					this.total_loads = res.loads_this_year;
-					this.total_fees = res.total_fees_this_year;
+					this.total_fees = res.dump_fees_this_year;
 					this.total_trucks = res.trucks_used_this_year;
 				}
 			},

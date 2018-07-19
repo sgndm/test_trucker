@@ -47,6 +47,7 @@ import { LoaderDashboardComponent } from './loader/loader-dashboard/loader-dashb
 import { CompanyThisWeekComponent } from './loader/company-this-week/company-this-week.component';
 import { DupmThisYearComponent } from './loader/dupm-this-year/dupm-this-year.component';
 import { DupmCompleteComponent } from './loader/dupm--complete/dupm--complete.component';
+import { LoaderJobComponent } from './loader/loader-job/loader-job.component';
 
 @NgModule({
   imports: [
@@ -80,7 +81,8 @@ import { DupmCompleteComponent } from './loader/dupm--complete/dupm--complete.co
     LoaderDashboardComponent,
     CompanyThisWeekComponent,
     DupmThisYearComponent,
-    DupmCompleteComponent
+    DupmCompleteComponent,
+    LoaderJobComponent
   ]
 })
 export class PagesModule { }

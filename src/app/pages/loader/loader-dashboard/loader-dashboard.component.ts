@@ -32,7 +32,7 @@ export class LoaderDashboardComponent implements OnInit {
 
 	ngOnInit() {
 
-		this.total_fees = 0;
+		// this.total_fees = 0;
 		// this.total_loads = 0;
 
 		// get company name
@@ -72,6 +72,7 @@ export class LoaderDashboardComponent implements OnInit {
 
 				if(res.status == "successful") {
 					this.total_loads = res.loads_this_week;
+					this.total_fees = res.dump_fees_this_year;
 
 					let temp = res.loads_this_week_by_dump;
 					
