@@ -1,0 +1,60 @@
+<div class="page-content">
+
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-8">
+			<h2 class=""> This Week Dump History </h2>
+		</div>
+		<div class="col-sm-12 col-md-4">
+			<h2 class="text-right"> {{ company_name }} </h2>
+		</div>
+	</div>
+	<hr>
+	<h3>Quick Look</h3>
+	<hr>
+	<div class="row ">
+		<div class="col-md-3 col-lg-3">
+			<div class="card bg-info">
+				<div class="card-body">
+					<div class="align-self-center text-center">
+						<h6 class="text-white m-t-10 m-b-0">Total Loads</h6>
+						<h2 class="m-t-0 text-white"> {{ total_loads | number }} </h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-lg-3">
+			<div class="card bg-info">
+				<div class="card-body">
+					<div class="align-self-center text-center">
+						<h6 class="text-white m-t-10 m-b-0">Total Fees</h6>
+						<h2 class="m-t-0 text-white"> {{ total_fees | number }} </h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<h3>Loads By Dump Site</h3>
+	<hr>
+
+	<div class="row ">
+
+		<div class="col-lg-3" *ngFor="let obj of loads_dump_site">
+			<a [routerLink]="['/pages/loader/dump-history/th-week/company',obj['company']]">
+				<div class="card bg-success">
+					<div class="card-body">
+						<div class="align-self-center text-center">
+							<h6 class="text-white m-t-10 m-b-0">{{ obj['company'] }}</h6>
+							<h2 class="m-t-0 text-white"> {{ obj['loads'] | number }} </h2>
+						</div>
+					</div>
+				</div>
+			</a>
+
+		</div>
+
+	</div>
+
+
+</div>

@@ -38,67 +38,131 @@
         <div class="col-sm-12 col-md-8 col-lg-9">
             <!-- user details -->
             <div class="c_tab_panel" id="tab_1">
-                <div class="row">
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="company_name">Customer Name</label>
-                        <div class="col-xs-12">
-                            <input type="text" name="company_name" class="form-control" required="" placeholder="" [(ngModel)]="customerName">
-                        </div>
-                    </div>
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="email_1">Email Address</label>
-                        <div class="col-xs-12">
-                            <input type="text" name="email_1" class="form-control" required="" placeholder="" [(ngModel)]="email">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="phone">Phone Number</label>
-                        <div class="col-xs-12">
-                            <input type="text" name="phone" class="form-control" required="" placeholder="" [(ngModel)]="phone">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="ssn">SSN/EIN</label>
-                        <div class="col-xs-12">
-                            <input type="text" name="ssn" class="form-control" required="" placeholder="" [(ngModel)]="ssnEin">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="street">Street Address</label>
-                        <div class="col-xs-12">
-                            <input type="text" name="street" class="form-control" required="" placeholder="" [(ngModel)]="streetAddress">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="city">City</label>
-                        <div class="col-xs-12">
-                            <input type="text" name="city" class="form-control" required="" placeholder="" [(ngModel)]="city">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="state">State</label>
-                        <div class="col-xs-12">
-                            <input type="text" name="state" class="form-control" required="" placeholder="" [(ngModel)]="state">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <label for="zip">Zip</label>
-                        <div class="col-xs-12">
-                            <input type="text" name="zip" class="form-control" required="" placeholder="" [(ngModel)]="zipcode">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                        <button type="button" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12" (click)="onUpdateCustonmer(customer_id)">Save Customer</button>
-                    </div>
-
-                </div>
+                    <form novalidate [formGroup]="myForm" (ngSubmit)="onUpdateCustomer(customer_id)">
+                            <div class="row">
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': customerName.invalid && (customerName.dirty || customerName.touched),
+                                    'has-success': customerName.valid && (customerName.dirty || customerName.touched)
+                                    }">
+                                    <label for="company_name">Customer Name</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="company_name" class="form-control" required="" placeholder="" formControlName="customerName">
+                                        <div class="form-control-feedback" *ngIf="customerName.errors && (customerName.dirty || customerName.touched)">
+                                                <p *ngIf="customerName.errors.required">Customer Name is required</p>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': email.invalid && (email.dirty || email.touched),
+                                    'has-success': email.valid && (email.dirty || email.touched)
+                                    }">
+                                    <label for="email_1">Email Address</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="email_1" class="form-control" required="" placeholder="" formControlName="email">
+                                        <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+                                                <p *ngIf="email.errors.required">Email Address is required</p>
+                                                <p *ngIf="email.errors.pattern">Pleas provide valid email address</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': phone.invalid && (phone.dirty || phone.touched),
+                                    'has-success': phone.valid && (phone.dirty || phone.touched)
+                                    }">
+                                    <label for="phone">Phone Number</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="phone" class="form-control" required="" placeholder="" formControlName="phone">
+                                        <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+                                                <p *ngIf="phone.errors.required">Phone Number is required</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': street.invalid && (street.dirty || street.touched),
+                                    'has-success': street.valid && (street.dirty || street.touched)
+                                    }">
+                                    <label for="street">Street</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="street" class="form-control" required="" placeholder="" formControlName="street">
+                                        <div class="form-control-feedback" *ngIf="street.errors && (street.dirty || street.touched)">
+                                                <p *ngIf="street.errors.required">Street Name is required</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': streetAddress.invalid && (streetAddress.dirty || streetAddress.touched),
+                                    'has-success': streetAddress.valid && (streetAddress.dirty || streetAddress.touched)
+                                    }">
+                                    <label for="street">Street Address</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="street" class="form-control" required="" placeholder="" formControlName="streetAddress">
+                                        <div class="form-control-feedback" *ngIf="streetAddress.errors && (streetAddress.dirty || streetAddress.touched)">
+                                                <p *ngIf="streetAddress.errors.required">Street Address is required</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': city.invalid && (city.dirty || city.touched),
+                                    'has-success': city.valid && (city.dirty || city.touched)
+                                    }">
+                                    <label for="city">City</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="city" class="form-control" required="" placeholder="" formControlName="city">
+                                        <div class="form-control-feedback" *ngIf="city.errors && (city.dirty || city.touched)">
+                                                <p *ngIf="city.errors.required">Cityis required</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': state.invalid && (state.dirty || state.touched),
+                                    'has-success': state.valid && (state.dirty || state.touched)
+                                    }">
+                                    <label for="state">State</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="state" class="form-control" required="" placeholder="" formControlName="state">
+                                        <div class="form-control-feedback" *ngIf="state.errors && (state.dirty || state.touched)">
+                                                <p *ngIf="state.errors.required">State is required</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': zipcode.invalid && (zipcode.dirty || zipcode.touched),
+                                    'has-success': zipcode.valid && (zipcode.dirty || zipcode.touched)
+                                    }">
+                                    <label for="zip">Zip Code</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="zip" class="form-control" required="" placeholder="" formControlName="zipcode">
+                                        <div class="form-control-feedback" *ngIf="zipcode.errors && (zipcode.dirty || zipcode.touched)">
+                                                <p *ngIf="zipcode.errors.required">Zip code is required</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                                    'has-danger': ssnEin.invalid && (ssnEin.dirty || ssnEin.touched),
+                                    'has-success': ssnEin.valid && (ssnEin.dirty || ssnEin.touched)
+                                    }">
+                                    <label for="ssn">SSN/EIN</label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="ssn" class="form-control" required="" placeholder="" formControlName="ssnEin">
+                                        <div class="form-control-feedback" *ngIf="ssnEin.errors && (ssnEin.dirty || ssnEin.touched)">
+                                                <p *ngIf="ssnEin.errors.required">SSN/EIN is required</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                    <button type="submit" name="button" class="btn btn-primary col-sm-12 col-md-12 col-lg-12">Save Customer</button>
+                                </div>
+                    
+                            </div>
+                        </form>
 
             </div>
             <!-- dump ativities -->
@@ -215,16 +279,23 @@
                 <br>
                 <h5>Reset Password</h5>
                 <hr>
-
-                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                <form novalidate [formGroup]="myForm2" (ngSubmit)="onResetPassword(customer_id)">
+                <div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                    'has-danger': newPassword.invalid && (newPassword.dirty || newPassword.touched),
+                    'has-success': newPassword.valid && (newPassword.dirty || newPassword.touched)
+                    }">
                     <label for="company_name">New Password</label>
                     <div class="col-xs-12">
-                        <input type="password" name="newpassword" class="form-control" required="" placeholder="" [(ngModel)]="newPassword">
+                        <input type="password" name="newpassword" class="form-control" required="" placeholder="" formControlName="newPassword">
+                        <div class="form-control-feedback" *ngIf="newPassword.errors && (newPassword.dirty || newPassword.touched)">
+                                <p *ngIf="newPassword.errors.required">New Password is required</p>
+                            </div>
                     </div>
                 </div>
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                    <button class="btn btn-primary col-sm-12 col-md-8 col-lg-8" (click)="onResetPassword(customer_id)">Save Password</button>
+                    <button type="submit" class="btn btn-primary col-sm-12 col-md-8 col-lg-8" >Save Password</button>
                 </div>
+                </form>
 
             </div>
             <div class="c_tab_panel" id="tab_6">
@@ -235,12 +306,12 @@
                     <label for="company_name">Are You Sure?</label>
                     <br>
 
-                    <swal #deleteSwal title="Are Sure?" text="This cannot be undone" type="question"       [showCancelButton]="true"
-                        [focusCancel]="true" (confirm)="onDeleteCustomer(customer_id)">
+                    <swal #deleteSwal title="Are Sure?" text="This cannot be undone" type="question" [showCancelButton]="true" [focusCancel]="true"
+                        (confirm)="onDeleteCustomer(customer_id)">
                     </swal>
 
-                    <button type="button" class="btn btn-danger col-sm-12 col-md-8 col-lg-8" name="button" [swal]="deleteSwal" >
-                        Yes Delete This</button> 
+                    <button type="button" class="btn btn-danger col-sm-12 col-md-8 col-lg-8" name="button" [swal]="deleteSwal">
+                        Yes Delete This</button>
                 </div>
             </div>
         </div>

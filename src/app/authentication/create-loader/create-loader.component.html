@@ -3,44 +3,76 @@
 		<div class="col-sm-12 col-md-11 col-lg-11">
 			<div class="card">
 				<div class="card-body sign-up-container">
-					<form class="form-horizontal form-material" id="loginform">
+					<form class="form-horizontal form-material" [formGroup]="myForm" (ngSubmit)="onSaveTrucker()">
 						<br>
 						<h2 class="text-center">TRUCKER</h2>
 						<h3 class="box-title m-b-20 text-center">Create New Loader Account</h3>
 						<div class="row justify-content-center">
 							<div class="col-sm-12 col-md-4 col-lg-4 dump-comp">
 
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': loaderName.invalid && (loaderName.dirty || loaderName.touched),
+									'has-success': loaderName.valid && (loaderName.dirty || loaderName.touched)
+									}">
 									<label for=" ">Name</label>
 									<div class="col-xs-12">
-										<input type="text" name="name" class="form-control" required="" placeholder="" [(ngModel)]="loaderName">
+										<input type="text" name="name" class="form-control" required="" placeholder="" formControlName="loaderName">
+										<div class="form-control-feedback" *ngIf="loaderName.errors && (loaderName.dirty || loaderName.touched)">
+											<p *ngIf="loaderName.errors.required">Loader Name is required</p>
+										</div>
 									</div>
 								</div>
-								<div class="form-group">
+
+								<div class="form-group" [ngClass]="{
+                    'has-danger': loaderEmail.invalid && (loaderEmail.dirty || loaderEmail.touched),
+                    'has-success': loaderEmail.valid && (loaderEmail.dirty || loaderEmail.touched)
+                    }">
 									<label for=" ">Email</label>
 									<div class="col-xs-12">
-										<input type="text" name="email" class="form-control" required="" placeholder="" [(ngModel)]="loaderEmail">
+										<input type="text" name="email" class="form-control" required="" placeholder="" formControlName="loaderEmail">
+										<div class="form-control-feedback" *ngIf="loaderEmail.errors && (loaderEmail.dirty || loaderEmail.touched)">
+											<p *ngIf="loaderEmail.errors.required">Email is required</p>
+											<p *ngIf="loaderEmail.errors.pattern">Pleas provide valid email address</p>
+										</div>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': loaderPhone.invalid && (loaderPhone.dirty || loaderPhone.touched),
+									'has-success': loaderPhone.valid && (loaderPhone.dirty || loaderPhone.touched)
+									}">
 									<label for=" ">Phone Number</label>
 									<div class="col-xs-12">
-										<input type="text" name="phone" class="form-control" required="" placeholder="" [(ngModel)]="loaderPhone">
+										<input type="text" name="phone" class="form-control" required="" placeholder="" formControlName="loaderPhone">
+										<div class="form-control-feedback" *ngIf="loaderPhone.errors && (loaderPhone.dirty || loaderPhone.touched)">
+											<p *ngIf="loaderPhone.errors.required">Phone Number is required</p>
+										</div>
 									</div>
 								</div>
 
 							</div>
 							<div class="col-sm-12 col-md-4 col-lg-4 dump-comp">
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': userName.invalid && (userName.dirty || userName.touched),
+									'has-success': userName.valid && (userName.dirty || userName.touched)
+									}">
 									<label for=" ">Username</label>
 									<div class="col-xs-12">
-										<input type="text" name="username" class="form-control" required="" placeholder="" [(ngModel)]="userName">
+										<input type="text" name="username" class="form-control" required="" placeholder="" formControlName="userName">
+										<div class="form-control-feedback" *ngIf="userName.errors && (userName.dirty || userName.touched)">
+											<p *ngIf="userName.errors.required">Username is required</p>
+										</div>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group" [ngClass]="{
+									'has-danger': password.invalid && (password.dirty || password.touched),
+									'has-success': password.valid && (password.dirty || password.touched)
+									}">
 									<label for=" ">Password</label>
 									<div class="col-xs-12">
-										<input type="text" name="password" class="form-control" required="" placeholder="" [(ngModel)]="password">
+										<input type="password" name="password" class="form-control" required="" placeholder="" formControlName="password">
+										<div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+											<p *ngIf="password.errors.required">Password is required</p>
+										</div>
 									</div>
 								</div>
 
@@ -49,11 +81,11 @@
 									<div class="col-xs-12 row justify-content-center" *ngIf="show_btn">
 										<button type="button" class="btn btn-primary col-md-8 col-lg-8" (click)="openCheckout()">Add Card Details</button>
 									</div>
-									<label for="" *ngIf="has_card_token" class="cus-lbl bg-success col-sm-12 col-md-12 col-lg-12" >Card Details Added Successfully</label>
+									<label for="" *ngIf="has_card_token" class="cus-lbl bg-success col-sm-12 col-md-12 col-lg-12">Card Details Added Successfully</label>
 								</div>
 
 								<div class="form-group row justify-content-center" *ngIf="has_card_token">
-									<button type="button" class="btn btn-primary col-md-10 col-lg-10" (click)="onSaveTrucker()">Save Trucker Account</button>
+									<button type="submit" class="btn btn-primary col-md-10 col-lg-10">Save Trucker Account</button>
 								</div>
 
 							</div>

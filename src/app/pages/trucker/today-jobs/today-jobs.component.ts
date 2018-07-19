@@ -36,8 +36,32 @@ export class TodayJobsComponent implements OnInit {
 			{ name: 'action' },
 		];
 
+		this.getUserDetails(this.access_token);
 		this.getCurrentJobs(this.access_token);
 	}
+
+	// get user details 
+	getUserDetails(token) {
+		this.apiServices.getDetailsSetHeader(token).subscribe(
+			(res: any) => {
+				if (res.status == 'successful') {
+					let userType = res.userType;
+
+					switch (userType) {
+						case "DRIVER":
+							break;
+
+						default:
+							this.apiServices.altErr('You are not Authorized to go to this page', this.apiServices.logOut());
+							break;
+					}
+
+
+				}
+			}
+		)
+	}
+
 
 	getCurrentJobs(token) {
 		this.apiServices.getCurrentJobsTrucker(token).subscribe(

@@ -62,6 +62,7 @@ export class EmployeeComponent implements OnInit {
 
 						default:
 							this.company_name = '';
+							this.apiServices.altErr('You are not Authorized to go to this page', this.apiServices.logOut());
 							break;
 					}
 

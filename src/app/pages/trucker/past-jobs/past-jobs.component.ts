@@ -49,9 +49,33 @@ export class PastJobsComponent implements OnInit {
             { name: 'job_status' },
             { name: 'date' },
             { name: 'action' },
-		];
+        ];
+        
+        this.getUserDetails(this.access_token);
 		
 		this.getPastJobs(this.access_token);
+    }
+    
+    // get user details 
+	getUserDetails(token) {
+		this.apiServices.getDetailsSetHeader(token).subscribe(
+			(res: any) => {
+				if (res.status == 'successful') {
+					let userType = res.userType;
+
+					switch (userType) {
+						case "DRIVER":
+							break;
+
+						default:
+							this.apiServices.altErr('You are not Authorized to go to this page', this.apiServices.logOut());
+							break;
+					}
+
+
+				}
+			}
+		)
 	}
 
 	getPastJobs(token) {

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpResponse } from 'selenium-webdriver/http';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 const httpOptions = {
 	// responseType: 'string'
@@ -17,6 +18,7 @@ export class ApiServicesService {
 	public access_token = '';
 
 	constructor(
+		public router: Router,
 		private http: HttpClient
 	) {
 		this.access_token = localStorage.getItem('access_token')
@@ -77,6 +79,12 @@ export class ApiServicesService {
 		const url = SERVER_URL + 'login';
 		return this.http.post(url, { 'username': data.u, 'password': data.p }, { observe: 'response', responseType: 'text' });
 
+	}
+
+	// log out 
+	logOut() {
+		this.clearLocalStorage();
+		this.router.navigate(['/sign-in']);
 	}
 
 	// get user details 
@@ -418,6 +426,42 @@ export class ApiServicesService {
 	getPastJobsTrucker(token){
 		const url = SERVER_URL + 'web/driver/myjobs';
 		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_status: "END" } });
+	}
+
+	// loader 
+	getDumpHistoryThisWeek(token){
+		const url = SERVER_URL + 'mobile/loader/totalloadsthisweek';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	// get dump history by company name this week
+	getDumpHistoryByCompanyName(data, token) {
+		const url = SERVER_URL + 'mobile/loader/jobsthisweekperdump';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { companyName: data } });
+	}
+
+	// get stat for dump history this year
+	getDumpHistoryThisYear(token) {
+		const url = SERVER_URL + 'mobile/loader/totalloadsthisyear';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	// get jobs by month 
+	getJobsByMonth(data, token) {
+		const url = SERVER_URL + 'mobile/loader/getjobsformonth';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { month : data.month, selectedYear: data.year } });
+	}
+
+	// get complete dump history 
+	getCompleteDumpHistory(token){
+		const url = SERVER_URL + 'mobile/loader/completehistory';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
+	// get job details 
+	getLoaderJobDetails(data, token) {
+		const url = SERVER_URL + 'mobile/loader/getjobsformonth';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_id : data} });
 	}
 
 }

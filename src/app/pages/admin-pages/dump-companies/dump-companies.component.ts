@@ -31,10 +31,36 @@ export class DumpCompaniesComponent implements OnInit {
 	// on init
 	ngOnInit() {
 
+		// get details
+		this.getUserDetails(this.access_token);
+
 		// get dump company details
 		this.getDetailsAndCreatTable();
 
 	}
+
+	// get user details 
+	getUserDetails(token) {
+		this.apiServices.getDetailsSetHeader(token).subscribe(
+			(res: any) => {
+				if (res.status == 'successful') {
+					let userType = res.userType;
+
+					switch (userType) {
+						case "WEBADMIN":
+							break;
+
+						default:
+							this.apiServices.altErr('You are not Authorized to go to this page', this.apiServices.logOut());
+							break;
+					}
+
+
+				}
+			}
+		)
+	}
+
 
 	// approve sump company
 	onApprove(id) {
@@ -46,7 +72,7 @@ export class DumpCompaniesComponent implements OnInit {
 			(res: any) => {
 				console.log(res);
 				if ((res.status == "successful") && (res.message == "account_approved")) {
-					
+
 					this.apiServices.altScc('Successfully approved', this.getDetailsAndCreatTable());
 				}
 			},
@@ -67,9 +93,9 @@ export class DumpCompaniesComponent implements OnInit {
 			(res: any) => {
 				console.log(res);
 				if ((res.status == "successful") && (res.message == "account_blocked")) {
-				
+
 					this.apiServices.altScc('Successfully blocked', this.getDetailsAndCreatTable());
-					
+
 				}
 			},
 
@@ -80,7 +106,23 @@ export class DumpCompaniesComponent implements OnInit {
 	}
 
 	onUnblockCompany(id) {
-		alert('unbloking');
+		const data = {
+			companyId: id
+		}
+
+		this.apiServices.approveDumpCompany(data, this.access_token).subscribe(
+			(res: any) => {
+				console.log(res);
+				if ((res.status == "successful") && (res.message == "account_approved")) {
+
+					this.apiServices.altScc('Successfully approved', this.getDetailsAndCreatTable());
+				}
+			},
+
+			err => {
+				console.log(err);
+			}
+		)
 	}
 
 	getDetailsAndCreatTable() {
@@ -130,13 +172,13 @@ export class DumpCompaniesComponent implements OnInit {
 	updateFilter(event) {
 		const val = event.target.value.toLowerCase();
 
-        // filter our data
-        const temp_data = this.temp.filter(function(d) {
-          return d.comp_name.toLowerCase().indexOf(val) !== -1 || !val;
-        });
+		// filter our data
+		const temp_data = this.temp.filter(function (d) {
+			return d.comp_name.toLowerCase().indexOf(val) !== -1 || !val;
+		});
 
-        // update the rows
-        this.rows = temp_data;
+		// update the rows
+		this.rows = temp_data;
 	}
 
 

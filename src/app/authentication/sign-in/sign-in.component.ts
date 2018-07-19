@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, MinLengthValidator } from '@angular/forms';
 import * as $ from 'jquery';
 // import routes
 import { Router } from '@angular/router';
@@ -13,9 +14,10 @@ import swal from 'sweetalert2';
 })
 export class SignInComponent implements OnInit {
 
-	// declare variables
-	public username = '';
-	public password = '';
+	myForm: FormGroup;
+
+	username: FormControl;
+	password: FormControl;
 
 	public access_token = '';
 
@@ -28,6 +30,9 @@ export class SignInComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.createFormControls();
+		this.createForm();
+
 		if (this.access_token) {
 			this.getDetails(this.access_token);
 		} else {
@@ -35,49 +40,83 @@ export class SignInComponent implements OnInit {
 		}
 	}
 
+	createFormControls() {
+		this.username = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.password = new FormControl('', [Validators.required, Validators.minLength(1)]);
+	}
+
+	createForm() {
+		this.myForm = new FormGroup({
+			username: this.username,
+			password: this.password
+		});
+	}
+
+	validateAllFormFields(formGroup: FormGroup) {
+
+		Object.keys(formGroup.controls).forEach(field => {
+
+			const control = formGroup.get(field);
+
+			if (control instanceof FormControl) {
+				control.markAsTouched({ onlySelf: true });
+			}
+			else if (control instanceof FormGroup) {
+				this.validateAllFormFields(control);
+			}
+
+		});
+
+	}
+
 	ngAfterViewInit() {
+		
 		$(function () {
 			$(".preloader").fadeOut();
 		});
 
 	}
 
-	onLoggedin() {
+	onLogin() {
 
-		//this.goToDashboard();
-		const data = {
-			u: this.username,
-			p: this.password
-		};
+		if (this.myForm.valid) {
+			//this.goToDashboard();
+			const data = {
+				u: this.myForm.value.username,
+				p: this.myForm.value.password
+			};
 
-		// call the login end point
-		this.apiServices.login(data).subscribe(
-			(res: Response) => {
-				// if login success
-				console.log(res);
-				let get_access_token = res.headers.get('X-AUTH-TOKEN');
+			// call the login end point
+			this.apiServices.login(data).subscribe(
+				(res: Response) => {
+					// if login success
+					console.log(res);
+					let get_access_token = res.headers.get('X-AUTH-TOKEN');
 
-				// store token in local storage 
-				this.apiServices.saveToLocalStorage(get_access_token);
+					// store token in local storage 
+					this.apiServices.saveToLocalStorage(get_access_token);
 
-				// get user details 
-				this.getDetails(get_access_token);
+					// get user details 
+					this.getDetails(get_access_token);
 
-			},
+				},
 
-			err => {
-				// if login has failed
-				console.log(err);
-				if (err.status == 403) {
-					this.apiServices.altErr('Username or password is incorrect', this.apiServices.reload());
+				err => {
+					// if login has failed
+					console.log(err);
+					if (err.status == 403) {
+						this.apiServices.altErr('Username or password is incorrect', '');
+					}
+					else if (err.status == 500) {
+						this.apiServices.altErr('Server Error', this.apiServices.reload());
+					}
+
 				}
-				else if (err.status == 500) {
-					this.apiServices.altErr('Server Error', this.apiServices.reload());
-				}
-
-			}
-		)
-
+			)
+		}
+		else {
+			this.validateAllFormFields(this.myForm);
+		}
 	}
 
 	// get details
@@ -145,7 +184,7 @@ export class SignInComponent implements OnInit {
 	}
 
 	goToLoaderDashboard() {
-		this.router.navigate(['/pages/trucker/jobs/today']);
+		this.router.navigate(['/pages/loader/dump-history/th-week']);
 	}
 
 

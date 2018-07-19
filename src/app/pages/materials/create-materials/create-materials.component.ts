@@ -95,6 +95,7 @@ export class CreateMaterialsComponent implements OnInit {
 
 						default:
 							this.company_name = '';
+							this.apiServices.altErr('You are not Authorized to go to this page', this.apiServices.logOut());
 							break;
 					}
 
@@ -105,7 +106,7 @@ export class CreateMaterialsComponent implements OnInit {
 	}
 	// get truck types
 	getTruckTypes(trucks_arr, token) {
-		this.apiServices.getTruckTypes(token).subscribe(
+		this.apiServices.getTruckTypesSignUp().subscribe(
 			(res: any) => {
 				console.log(res);
 				if ((res.status == "successful") && (res.message == "truck_types")) {
