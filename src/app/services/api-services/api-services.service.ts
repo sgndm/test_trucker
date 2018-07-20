@@ -460,7 +460,7 @@ export class ApiServicesService {
 
 	// get job details 
 	getLoaderJobDetails(data, token) {
-		const url = SERVER_URL + 'mobile/loader/getjobsformonth';
+		const url = SERVER_URL + 'web/loader/projects/jobdetails';
 		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }, params: { job_id : data} });
 	}
 
