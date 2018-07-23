@@ -93,16 +93,39 @@ export class DupmThisYearComponent implements OnInit {
 
 	// get jobs by month 
 	getJobsByMonth() {
+
+		console.log("this is a log getJobsByMonth 1");
 		const data = {
 			month: this.job_month,
 			year: (new Date()).getFullYear()
 		}
+		console.log("this is a log getJobsByMonth 2");
+		 
 
 		this.apiServices.getJobsByMonth(data, this.access_token).subscribe(
 			(res: any) => {
 				console.log(res);
 
 				if(res.status == "successful") {
+
+					console.log("this is a log");
+
+					let tempProj = [];
+					let tempYears = [];
+                    
+
+					let i = 0;
+                    for (let data of res.jobs_this_month) {
+                        i += 1;
+                        let temp = { index: i, job_name: data.jobName, job_number: data.jobNumber, job_status: data.jobStatus, date: data.pickupDate, id: data.id };
+
+						tempProj.push(temp);
+						
+						console.log("this is a log inside the loop");
+                    }
+                    // projects
+                    this.rows = tempProj;
+					this.temp = tempProj;
 
 				}
 			},

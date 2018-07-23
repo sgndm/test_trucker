@@ -24,6 +24,11 @@ export class DupmCompleteComponent implements OnInit {
 
 	public show_month: boolean;
 
+	public columns: any[];
+	public rows: any[];
+	public temp: any[];
+	public year_list: any[];
+
 	constructor(
 		public router: Router,
 		private apiServices: ApiServicesService,
@@ -32,7 +37,7 @@ export class DupmCompleteComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.job_year = 0;
+		this.job_year = new Date().getFullYear();
 		this.job_month = 0;
 
 		let currentYear = new Date().getFullYear();
@@ -45,6 +50,15 @@ export class DupmCompleteComponent implements OnInit {
 		}
 
 		this.years_list = years;
+
+		this.columns = [
+            { name: 'index' },
+            { name: 'job_name' },
+            { name: 'job_number' },
+            { name: 'job_status' },
+            { name: 'date' },
+            { name: 'action' },
+        ];
 
 		// this.total_fees = 0;
 		// get company name
@@ -95,9 +109,11 @@ export class DupmCompleteComponent implements OnInit {
 		)
 	}
 
+
 	// get months
 	getMonths() {
 		let year = this.job_year;
+		console.log("get months for year: " +year);
 
 		if(year == 0) {
 			this.show_month = false
@@ -112,14 +128,46 @@ export class DupmCompleteComponent implements OnInit {
 	getJobsByMonth() {
 		const data = {
 			month: this.job_month,
-			year: (new Date()).getFullYear()
+			year:  new Date().getFullYear()
 		}
+
+		console.log("get months for year:" +  this.job_year);
 
 		this.apiServices.getJobsByMonth(data, this.access_token).subscribe(
 			(res: any) => {
 				console.log(res);
 
 				if(res.status == "successful") {
+
+					let tempProj = [];
+					let tempYears = [];
+                    
+
+					let i = 0;
+                    for (let data of res.jobs_this_month) {
+                        i += 1;
+                        let temp = { index: i, job_name: data.jobName, job_number: data.jobNumber, job_status: data.jobStatus, date: data.pickupDate, id: data.id };
+
+                        tempProj.push(temp);
+
+                        // get year 
+                        let t_year = data.pickupDate;
+                        t_year = t_year.split('/');
+                        t_year = t_year[2];
+
+                        if(!(tempYears.includes(t_year))) {
+                            tempYears.push(t_year);
+                        }
+                        
+
+                    }
+                    // projects
+                    this.rows = tempProj;
+					this.temp = tempProj;
+					
+					 // years 
+					 tempYears = tempYears.sort();
+					 this.year_list = tempYears;
 
 				}
 			},
