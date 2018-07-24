@@ -93,6 +93,18 @@ export class CompanyThisWeekComponent implements OnInit {
 				if(res.status == "successful") {
 					this.total_loads = res.loads_count_for_dump_this_week;
 					this.total_fees = res.dump_fees_this_week;
+
+					let tempData = [];
+                    
+					let i = 0;
+                    for (let data of res.loads_this_week) {
+                        i += 1;
+                        let temp = { index: i, job_name: data.jobName, job_number: data.jobNumber, job_status: data.jobStatus, date: data.pickupDate, id: data.id };
+                        tempData.push(temp);
+                    }
+                    // projects
+                    this.rows = tempData;
+					this.temp = tempData;
 				}
 			},
 			err => {
