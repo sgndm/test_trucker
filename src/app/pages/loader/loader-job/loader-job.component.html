@@ -99,25 +99,56 @@
 
 				<br>
 				<br>
-				<h6 class="text-center">Truckers And Truking Details</h6>
+				<h6 class="text-center">Truckers And Trucking Details</h6>
 				<hr>
-				<table class="table table-sm custom-table-1">
-					<tr *ngFor="let trucker of truckers">
+				<table class="table table-sm custom-table-1" *ngFor="let trucker of truckers">
+					<tr>
 						<td class="text-center">
 							<div class="col-md-12 bg-info custom-lable-1">
 								{{ trucker.name }}
 							</div>
-							<div class="row justify-content-center">
+							<!-- <div class="row justify-content-center">
+				
 								<div class="col-sm-12 col-md-4 col-lg-4 text-center" *ngFor="let time of trucker.times; let i = index">
 									<p>{{ i + 1 }} ) {{ time | date: 'HH:mm:ss' }}</p>
 								</div>
-							</div>
+							</div> -->
+							
 						</td>
 						<td></td>
 						<td class="text-center">
 							<div class="bg-info custom-lable-1 ">
 								{{ trucker.turns }}
 							</div>
+						</td>
+					</tr>
+
+					<tr>
+
+						<td class="text-center">
+								
+							<div class="row">
+								<!-- <div class="col" *ngFor="let status of trucker.statuses; let i = index">
+									<p>{{ status}}</p>
+								</div> -->
+	
+								<tr align = "left" class="col" *ngFor="let status of trucker.statuses; let i = index">
+										<p>{{ i + 1 }} ) {{ status }}</p>
+								</tr>
+										
+							</div>
+									
+						</td>
+
+						<td></td>
+
+						<td class="text-center">
+	
+								<div class="row">
+										<tr align = "left" class="col" *ngFor="let time of trucker.times; let i = index">
+												<p>{{ time | date: 'HH:mm:ss' }}</p>
+											</tr>
+								</div>
 						</td>
 					</tr>
 				</table>

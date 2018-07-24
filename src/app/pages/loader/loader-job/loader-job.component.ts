@@ -126,6 +126,7 @@ export class LoaderJobComponent implements OnInit {
 						truckerCount += 1;
 
 						let times = [];
+						let statuses = [];
 						let turns = 0;
 
 						for (let trucker of temptrukers) {
@@ -133,14 +134,20 @@ export class LoaderJobComponent implements OnInit {
 							loadCount += 1;
 
 							let t_time = new Date(trucker.updatedDate);
+							let jobStatus =  trucker.jobStatus;
+
+							console.log("trucker jobStatus: " + jobStatus + " - " + t_time);
+
 							times.push(t_time);
+							statuses.push(jobStatus);
 						}
 
 						let temp = {
 							name: temptrukers[0].driver.name,
 							turns: turns,
 							id: temptrukers[0].driver.id,
-							times: times
+							times: times,
+							statuses : statuses
 						}
 
 						this.truckers.push(temp);
