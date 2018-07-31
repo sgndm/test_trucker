@@ -118,6 +118,13 @@ export class ApiServicesService {
 		return this.http.post(url, formData);
 	}
 
+	// sign up dump site
+	geocode(data) {
+		const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + data + "&key=AIzaSyCgQtUCgoSLeSfQGc7yoA4XVhlBl2wHU_0";
+		return this.http.get(url);
+	}
+
+
 	// get truck types
 	getTruckTypesSignUp(){
 		const url = SERVER_URL + 'gettrucktypes';
