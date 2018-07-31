@@ -36,6 +36,7 @@ export class CreateMaterialsComponent implements OnInit {
 	public matFees4: any;
 	public matFees5: any;
 	public matFees6: any;
+	public materialName : any;
 
 	// myform: FormGroup;
 
@@ -55,6 +56,7 @@ export class CreateMaterialsComponent implements OnInit {
 		// })
 
 		this.materialType = 0;
+		this.materialName = "";
 
 		this.truckType1 = 0;
 		this.truckType2 = 0;
@@ -74,11 +76,13 @@ export class CreateMaterialsComponent implements OnInit {
 		// get company name 
 		this.getCompanyName(this.access_token);
 
-		// get truck types 
-		this.getTruckTypes([], this.access_token);
-
+		
 		// get materials 
 		this.getMaterials(this.access_token);
+
+		// get truck types 
+		this.getTruckTypes(this.access_token);
+
 	}
 
 	// get company name
@@ -105,25 +109,25 @@ export class CreateMaterialsComponent implements OnInit {
 		)
 	}
 	// get truck types
-	getTruckTypes(trucks_arr, token) {
-		this.apiServices.getTruckTypesSignUp().subscribe(
+	getTruckTypes(token) {
+		this.apiServices.getTruckTypes(token).subscribe(
 			(res: any) => {
 				console.log(res);
 				if ((res.status == "successful") && (res.message == "truck_types")) {
 
 					let temp_trucks = res.truck_types;
 					let result = [];
-					let t_truck_ids = [];
+					let t_t_ids = [];
+
 
 					for (let truck of temp_trucks) {
-						if (!(trucks_arr.includes(truck.id))) {
-							result.push(truck);
-							t_truck_ids.push(truck.id);
-						}
+						result.push(truck);
+						t_t_ids.push(truck.id);
+						console.log("truck added: " + truck.type);
 					}
 
 					this.truck_types_list = result;
-					this.truck_ids = t_truck_ids;
+					this.truck_ids = t_t_ids;	
 				}
 			},
 
@@ -151,8 +155,10 @@ export class CreateMaterialsComponent implements OnInit {
 
 	onSaving() {
 
-		if (this.materialType == 0) {
-			this.apiServices.altErr('Select a material first', '')
+		this.materialName = $('#materialName').val();
+
+		if (this.materialName.length == 0) {
+			this.apiServices.altErr('Enter a material name', '')
 		}
 		else {
 			let trucks = this.truck_ids;
@@ -175,18 +181,18 @@ export class CreateMaterialsComponent implements OnInit {
 			}
 
 			const data = {
-				material_id: this.materialType,
+				material_name: this.materialName,
 				mat_fees: temp
 			}
 
-			this.apiServices.createMaterialFees(data, this.access_token).subscribe(
+			console.log("createMaterialFees data: " + data);
+
+			this.apiServices.createMaterialFeesNew(data, this.access_token).subscribe(
 				(res: any) => {
 					console.log(res);
 
 					if ((res.status == "successful") && (res.message == "material_fees_created")) {
-
-						this.apiServices.altScc('Successfully created Material fees', this.apiServices.reload());
-						
+						this.apiServices.altScc('Successfully created Material and fees', null);
 					}
 				},
 				err => {
@@ -206,7 +212,7 @@ export class CreateMaterialsComponent implements OnInit {
 
 		this.apiServices.getMaterialFees(token).subscribe(
 			(res: any) => {
-				console.log(res);
+				console.log("getMaterialFees: " + res);
 
 				if ((res.status == "successful") && (res.message == "material_fees")) {
 
@@ -218,10 +224,16 @@ export class CreateMaterialsComponent implements OnInit {
 						t_t_ids.push(t_id);
 					}
 
+					if(material_fees != null && material_fees.count > 0){
+
+					}else{
+						
+					}
+
 					// this.truck_ids = t_t_ids;
 
 					// get the trucks
-					this.getTruckTypes(t_t_ids, token);
+					//this.getTruckTypes(t_t_ids, token);
 
 				}
 
@@ -230,27 +242,6 @@ export class CreateMaterialsComponent implements OnInit {
 				console.log(err);
 			}
 		)
-	}
-
-	// on change materials
-	onChangeMaterials() {
-		let matId = this.materialType;
-
-		if (matId > 0) {
-			let matType = '';
-
-			let temp_materials = this.materials_list;
-
-			for (let mat of temp_materials) {
-				if (mat.id == parseInt(matId)) {
-					matType = mat.type;
-				}
-			}
-
-			
-			this.getMaterialFees(matType, this.access_token);
-		}
-		
 	}
 
 }

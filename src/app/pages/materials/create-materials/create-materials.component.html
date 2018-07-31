@@ -10,15 +10,36 @@
 	</div>
 	<hr>
 
-	<div class="col-sm-12 col-md-6 col-lg-6">
+	<!-- <div class="col-sm-12 col-md-6 col-lg-6">
 		<div class="form-group">
-			<label for="">Materials</label>
-			<select name="" id="" class="form-control custom-select col-sm-12 col-md-5 col-lg-5" [(ngModel)]="materialType" (change)="onChangeMaterials()" >
-				<option value="0">Select a Material</option>
-				<option *ngFor="let material of materials_list" value="{{material.id}}"> {{ material.type}} </option>
-			</select>
+			<div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
+                'has-danger': materialName.invalid && (materialName.dirty || materialName.touched),
+                'has-success': materialName.valid && (materialName.dirty || materialName.touched)
+                }">
+                <label for="material_name">Material Name</label>
+                <div class="col-xs-12">
+                    <input type="text" name="material_name" class="form-control" required="" placeholder="" formControlName="materialName">
+                    <div class="form-control-feedback" *ngIf="materialName.errors && (materialName.dirty || materialName.touched)">
+                            <p *ngIf="materialName.errors.required">Material Name is required</p>
+                        </div>
+                </div>
+            </div>
 		</div>
-	</div>
+	</div> -->
+
+	
+	<div class="row justify-content-center">
+		<div class="col-sm-4">
+			<label for="">Material Name</label>
+		</div>
+		<div class="col-sm-4">
+				<div class="form-group">
+						<input type="text" name="material_name" class="form-control" required="" placeholder="" formControlName="materialName" id="materialName">
+				</div>
+		</div>
+	</div> 
+
+	<div class="row-md-2"></div>
 
 	<div class="col-sm-12 col-md-12 col-lg-12">
 
@@ -31,8 +52,8 @@
 
 	</div>
 
-	<div class="col-sm-12 col-md-6 col-lg-6 pull-right">
-		<button class="btn btn-primary col-sm-12 col-md-12 col-lg-8" (click)="onSaving()">Save Material Fees</button>
+	<div class="col-sm-12 col-md-6 col-lg-6 justify-content-center">
+		<button class="btn btn-primary col-sm-12 col-md-12 col-lg-8" (click)="onSaving()">Create Material and Fees</button>
 	</div>
 
 	<!-- <form action="" [formGroup]="myform" >

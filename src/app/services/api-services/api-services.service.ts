@@ -311,20 +311,41 @@ export class ApiServicesService {
 	// materials 
 	
 	// get truck types 
+	// getTruckTypes(token) {
+	// 	const url = SERVER_URL + 'web/trucktypes';
+	// 	return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	// }
+
 	getTruckTypes(token) {
-		const url = SERVER_URL + 'web/trucktypes';
+		const url = SERVER_URL + 'web/gettrucktypes';
 		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
 	}
 
+	
 	// get materials 
 	getMaterials(token) {
 		const url = SERVER_URL + 'web/materials';
 		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
 	}
 
+	// get materials 
+	geAlreadyAddedMaterials(token) {
+		const url = SERVER_URL + 'web/dumpcompany/materialfees';
+		return this.http.get(url, { headers: { 'X-AUTH-TOKEN': token }});
+	}
+
 	createMaterialFees(data, token) {
 		const formData: FormData = new FormData();
 		formData.append('material_id ', data.material_id);
+		formData.append('fees', JSON.stringify(data.mat_fees));
+
+		const url = SERVER_URL + 'web/dumpcompany/materialfee/create';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+	createMaterialFeesNew(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('material_name ', data.material_name);
 		formData.append('fees', JSON.stringify(data.mat_fees));
 
 		const url = SERVER_URL + 'web/dumpcompany/materialfee/create';
@@ -341,6 +362,8 @@ export class ApiServicesService {
 	updateMaterialFees(data, token) { 
 		const formData: FormData = new FormData();
 		formData.append('updatedFees', JSON.stringify(data.mat_fees));
+
+		console.log("update material : " +  JSON.stringify(data.mat_fees))
 
 		const url = SERVER_URL + 'web/dumpcompany/materialfees/update';
 		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
