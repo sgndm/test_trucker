@@ -38,33 +38,7 @@
 						<td>{{ comp_zip }} </td>
 					</tr>
 
-					<!-- <tr class="bg-info text-white">
-						<td colspan="2">Dump Site </td>
-					</tr>
-					<tr>
-						<td>Dump Site Name : </td>
-						<td>{{ dump_site_name }} </td>
-					</tr>
-					<tr>
-						<td>Street Address : </td>
-						<td>{{ dump_st_add }} </td>
-					</tr>
-					<tr>
-						<td>City : </td>
-						<td>{{ dump_city }} </td>
-					</tr>
-					<tr>
-						<td>Country : </td>
-						<td>{{ dump_country }} </td>
-					</tr>
-					<tr>
-						<td>ZIP Code : </td>
-						<td>{{ dump_zip }} </td>
-					</tr>
-					<tr>
-						<td>Dump Site Phone : </td>
-						<td>{{ dump_phone }} </td>
-					</tr> -->
+
 
 					<tr class="bg-info text-white">
 						<td colspan="2">User </td>
@@ -90,6 +64,39 @@
 			</table>
 
 
+			<table class="table table-sm custom-table-1" *ngFor="let site of dump_account_sites">
+
+				<tr class="bg-info text-white">
+					<td colspan="2">Dump Site </td>
+				</tr>
+				<tr>
+					<td>Name : </td>
+					<td>{{ site.name }} </td>
+				</tr>
+
+				<tr>
+					<td>Street Address : </td>
+					<td>{{ site.street }} </td>
+				</tr>
+				<tr>
+					<td>City : </td>
+					<td>{{ site.city }} </td>
+				</tr>
+				<tr>
+					<td>Country : </td>
+					<td>{{ site.county }} </td>
+				</tr>
+				<tr>
+					<td>ZIP Code : </td>
+					<td>{{ site.zipcode }} </td>
+				</tr>
+				<tr>
+					<td>Dump Site Phone : </td>
+					<td>{{ site.phone }} </td>
+				</tr>
+
+
+			</table>
 
 
 		</div>

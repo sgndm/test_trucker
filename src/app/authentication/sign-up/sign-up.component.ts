@@ -17,31 +17,31 @@ import { ApiServicesService } from '../../services/api-services/api-services.ser
 export class SignUpComponent implements OnInit {
 
 	myForm: FormGroup;
-	
 
-	 compName:FormControl;
-	 compStrAddress:FormControl;
-	 compCountry:FormControl;
-	 compCity:FormControl;
-	 compZipCode:FormControl;
+
+	compName: FormControl;
+	compStrAddress: FormControl;
+	compCountry: FormControl;
+	compCity: FormControl;
+	compZipCode: FormControl;
 	//  compLatitude:FormControl;
 	//  compLongitude:FormControl;
 
-	 dumpSiteName:FormControl;
-	 dumpStrAddress:FormControl;
-	 dumpStrDetails:FormControl;
-	 dumpCity:FormControl;
-	 dumpZipCode:FormControl;
+	dumpSiteName: FormControl;
+	dumpStrAddress: FormControl;
+	dumpStrDetails: FormControl;
+	dumpCity: FormControl;
+	dumpZipCode: FormControl;
 	//  dumpLatitude:FormControl;
 	//  dumpLongitude:FormControl;
-	 dumpSitePhone:FormControl;
+	dumpSitePhone: FormControl;
 
 
-	 dumpuserName:FormControl;
-	 email:FormControl;
-	 userPhone:FormControl;
-	 userName:FormControl;
-	 password:FormControl;
+	dumpuserName: FormControl;
+	email: FormControl;
+	userPhone: FormControl;
+	userName: FormControl;
+	password: FormControl;
 
 	constructor(
 		public router: Router,
@@ -72,9 +72,9 @@ export class SignUpComponent implements OnInit {
 		// this.dumpLongitude = new FormControl('', [Validators.required, Validators.minLength(1)]);
 		this.dumpSitePhone = new FormControl('', [Validators.required, Validators.minLength(1)]);
 
-		
+
 		this.dumpuserName = new FormControl('', [Validators.required, Validators.minLength(1)]);
-		this.email = new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]); 
+		this.email = new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]);
 		this.userPhone = new FormControl('', [Validators.required, Validators.minLength(1)]);
 		this.userName = new FormControl('', [Validators.required, Validators.minLength(1)]);
 		this.password = new FormControl('', [Validators.required, Validators.minLength(1)]);
@@ -126,7 +126,7 @@ export class SignUpComponent implements OnInit {
 
 	onSignUp() {
 
-		if(this.myForm.valid) {
+		if (this.myForm.valid) {
 
 			let dumpCompanyLat = 0;
 			let dumpCompanyLongi = 0;
@@ -134,15 +134,15 @@ export class SignUpComponent implements OnInit {
 			let dumpSiteLat = 0;
 			let dumpSiteLongi = 0;
 
-			let dumpCompanyAddress = this.myForm.value.compStrAddress + " "+ this.myForm.value.compCity + " " +  this.myForm.value.compCountry;
+			let dumpCompanyAddress = this.myForm.value.compStrAddress + " " + this.myForm.value.compCity + " " + this.myForm.value.compCountry;
 			console.log("geocode this address: " + dumpCompanyAddress);
 
-			let dumpSiteAddress =  this.myForm.value.dumpStrAddress + " "+  this.myForm.value.dumpStrDetails + " " + this.myForm.value.dumpCity;
+			let dumpSiteAddress = this.myForm.value.dumpStrAddress + " " + this.myForm.value.dumpStrDetails + " " + this.myForm.value.dumpCity;
 			console.log("geocode this address: " + dumpSiteAddress);
-			
+
 			this.apiServices.geocode(dumpCompanyAddress).subscribe(
 				(res: any) => {
-					if(res.status == "OK") {
+					if (res.status == "OK") {
 
 						let results = res.results[0];
 
@@ -159,18 +159,18 @@ export class SignUpComponent implements OnInit {
 
 						this.apiServices.geocode(dumpSiteAddress).subscribe(
 							(res: any) => {
-								if(res.status == "OK") {
-			
+								if (res.status == "OK") {
+
 									let results = res.results[0];
-			
+
 									console.log("results: " + results);
-			
+
 									let geometry = results.geometry;
 									let location = geometry.location;
-			
+
 									dumpSiteLat = location.lat;
 									dumpSiteLongi = location.lng;
-			
+
 									console.log("dumpSiteLat: " + dumpSiteLat);
 									console.log("dumpSiteLongi: " + dumpSiteLongi);
 
@@ -179,9 +179,9 @@ export class SignUpComponent implements OnInit {
 										dupmCompany: {
 											"companyName": this.myForm.value.compName,
 											"city": this.myForm.value.compCity,
-											"stree": this.myForm.value.compStrAddress,
+											"street": this.myForm.value.compStrAddress,
 											"county": this.myForm.value.compCountry,
-											"zipCode": this.myForm.value.compZipCode,
+											"zipcode": this.myForm.value.compZipCode,
 											"longitude": dumpCompanyLongi,
 											"latitude": dumpCompanyLat
 										},
@@ -192,7 +192,7 @@ export class SignUpComponent implements OnInit {
 												"longitude": dumpSiteLongi,
 												"city": this.myForm.value.dumpCity,
 												"phone": this.myForm.value.dumpSitePhone,
-												"zipCode": this.myForm.value.dumpZipCode,
+												"zipcode": this.myForm.value.dumpZipCode,
 												"street": this.myForm.value.dumpStrAddress,
 												"streetDetails": this.myForm.value.dumpStrDetails
 											}
@@ -207,51 +207,50 @@ export class SignUpComponent implements OnInit {
 											}
 										}
 									}
-							
+
 									console.log(data);
-							
+
 									//call server 
 									this.apiServices.signUp(data).subscribe(
 										(res: any) => {
-											if(res.status == "successful") {
+											if (res.status == "successful") {
 												this.apiServices.altScc('successfully created a dump site', this.goToLogin());
 											}
 										},
-							
+
 										err => {
 											console.log(err);
 										}
 									)
-								}else{
+								} else {
 									this.apiServices.altErr('Could not retrieve location of the site address.', null);
 								}
 
 							},
-				
+
 							err => {
 								console.log(err);
 								this.apiServices.altErr('Could not retrieve location of the site address.', null);
 
-
 							}
 						)
-					}else{
-						this.apiServices.altErr('Could not retrieve location of the company address.', null);	
+					} else {
+						this.apiServices.altErr('Could not retrieve location of the company address.', null);
 					}
 				},
-	
+
 				err => {
 					console.log(err);
 					this.apiServices.altErr('Could not retrieve location of the company address.', null);
 
 				}
 			)
-	
+
 		}
 		else {
 			this.validateAllFormFields(this.myForm);
 		}
-		
+
 
 
 	}

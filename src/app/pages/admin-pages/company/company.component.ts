@@ -30,6 +30,7 @@ export class CompanyComponent implements OnInit {
 	public user_email: '';
 	public user_phone: '';
 	public username: '';
+	public dump_account_sites : any[]
 
 	constructor(
 		private activeRoute: ActivatedRoute,
@@ -86,16 +87,22 @@ export class CompanyComponent implements OnInit {
 					let details = res.dump_account;
 					
 					this.company_name = details.dumpCompany.companyName;
-					this.comp_st_add = details.dumpCompany.streetDetails;
+					this.comp_st_add = details.dumpCompany.street;
+				
 					this.comp_city = details.dumpCompany.city;
 					this.comp_country = details.dumpCompany.county;
 					this.comp_zip = details.dumpCompany.zipcode;
-					// this.dump_site_name = details.dumpCompany.companyName;
-					// this.dump_st_add = details.dumpCompany.companyName;
-					// this.dump_city = details.dumpCompany.companyName;
-					// this.dump_country = details.dumpCompany.companyName;
-					// this.dump_zip = details.dumpCompany.companyName;
-					// this.dump_phone = details.dumpCompany.companyName;
+
+					this.dump_account_sites = res.dump_account_sites;
+
+					// this.dump_site_name = details.dumpSite.siteName;
+					// this.dump_st_add = details.dumpSite.street;
+					// this.dump_city = details.dumpSite.city;
+					// this.dump_country = details.dumpSite.county;
+					// this.dump_zip = details.dumpSite.zipcode;
+					// this.dump_phone = details.dumpSite.phoneNumber;
+
+
 					this.user_name = details.name;
 					this.user_email = details.email;
 					this.user_phone = details.phoneNumber;
