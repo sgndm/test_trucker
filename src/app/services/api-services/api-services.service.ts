@@ -9,7 +9,7 @@ const httpOptions = {
 	// responseType: 'string'
 }
 
-const SERVER_URL = 'http://34.219.77.92:8080/truckerapp/api/';
+const SERVER_URL = 'http://54.184.126.179:8080/truckerapp/api/';
 
 @Injectable()
 export class ApiServicesService {
