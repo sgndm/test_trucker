@@ -146,6 +146,7 @@ export class NewCustomerComponent implements OnInit {
 				},
 				err => {
 					console.log(err);
+					this.apiServices.altErr('Customer creation failed. Please try again.', null);
 				}
 			)
 		}

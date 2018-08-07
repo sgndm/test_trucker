@@ -91,8 +91,12 @@ export class TJobComponent implements OnInit {
 
 					this.company_name = jobDetails.job.jobName;
 
-					let jobStTime = new Date(jobDetails.job.startTime);
-					let jobEndTime = new Date(jobDetails.job.endTime);
+					let jobStTime = new Date(jobDetails.job.startTimeUTC);
+					let jobEndTime = new Date(jobDetails.job.endTimeUTC);
+
+					console.log("jobStTime:" + jobStTime);
+					console.log("jobEndTime:" + jobEndTime);
+
 
 					this.j_address = jobDetails.job.pickupAddress;
 					this.j_status = jobDetails.job.jobStatus;
@@ -105,7 +109,6 @@ export class TJobComponent implements OnInit {
 					this.c_price = '';
 					this.t_fees = jobDetails.job.jobPayment.amount;
 					
-
 
 					let driverActivityList = res.job_details.driverActivityList;
 

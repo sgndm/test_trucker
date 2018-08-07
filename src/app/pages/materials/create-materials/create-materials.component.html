@@ -8,35 +8,20 @@
 			<h2 class="text-right"> {{ company_name }} </h2>
 		</div>
 	</div>
-	<hr>
 
-	<!-- <div class="col-sm-12 col-md-6 col-lg-6">
-		<div class="form-group">
-			<div class="form-group col-sm-12 col-md-6 col-lg-6" [ngClass]="{
-                'has-danger': materialName.invalid && (materialName.dirty || materialName.touched),
-                'has-success': materialName.valid && (materialName.dirty || materialName.touched)
-                }">
-                <label for="material_name">Material Name</label>
-                <div class="col-xs-12">
-                    <input type="text" name="material_name" class="form-control" required="" placeholder="" formControlName="materialName">
-                    <div class="form-control-feedback" *ngIf="materialName.errors && (materialName.dirty || materialName.touched)">
-                            <p *ngIf="materialName.errors.required">Material Name is required</p>
-                        </div>
-                </div>
-            </div>
-		</div>
-	</div> -->
 
-	
 	<div class="row justify-content-center">
+
 		<div class="col-sm-4">
 			<label for="">Material Name</label>
 		</div>
+
 		<div class="col-sm-4">
 				<div class="form-group">
-						<input type="text" name="material_name" class="form-control" required="" placeholder="" formControlName="materialName" id="materialName">
+						<input type="text" name="material_name" id="materialName">
 				</div>
 		</div>
+		
 	</div> 
 
 	<div class="row-md-2"></div>
@@ -56,11 +41,4 @@
 		<button class="btn btn-primary col-sm-12 col-md-12 col-lg-8" (click)="onSaving()">Create Material and Fees</button>
 	</div>
 
-	<!-- <form action="" [formGroup]="myform" >
-		<div class="form-group">
-			<input type="text" name="" id="" class="form-control" formControlName="test_name" >
-			<pre>Dirty? {{ myform.controls.test_name.dirty }}</pre>
-		</div>
-	</form> -->
-	
 </div>

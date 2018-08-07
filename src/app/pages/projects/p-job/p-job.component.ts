@@ -99,8 +99,8 @@ export class PJobComponent implements OnInit {
 
 					this.company_name = jobDetails.job.jobName;
 
-					let jobStTime = new Date(jobDetails.job.startTime);
-					let jobEndTime = new Date(jobDetails.job.endTime);
+					let jobStTime = new Date(jobDetails.job.startTimeUTC);
+					let jobEndTime = new Date(jobDetails.job.endTimeUTC);
 
 					this.j_address = jobDetails.job.pickupAddress;
 					this.j_status = jobDetails.job.jobStatus;
