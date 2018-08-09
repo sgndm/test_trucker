@@ -96,6 +96,8 @@ export class LoaderJobComponent implements OnInit {
 				console.log(res);
 				if (res.status == "successful") {
 
+					//
+
 					let jobDetails = res.job_details;
 
 					this.company_name = jobDetails.job.jobName;
