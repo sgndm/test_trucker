@@ -18,6 +18,7 @@ export class CompanyComponent implements OnInit {
 	public company_name: '';
 	public comp_st_add: '';
 	public comp_city: '';
+	public comp_state: '';
 	public comp_country: '';
 	public comp_zip: '';
 	public dump_site_name: '';
@@ -90,6 +91,7 @@ export class CompanyComponent implements OnInit {
 					this.comp_st_add = details.dumpCompany.street;
 				
 					this.comp_city = details.dumpCompany.city;
+					this.comp_state = details.dumpCompany.state;
 					this.comp_country = details.dumpCompany.county;
 					this.comp_zip = details.dumpCompany.zipcode;
 

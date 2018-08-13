@@ -55,6 +55,20 @@
 									</div>
 
 									<div class="col-xs-12 custom-form-1" [ngClass]="{
+										'has-danger': compState.invalid && (compState.dirty || compState.touched),
+										'has-success': compState.valid && (compState.dirty || compState.touched)
+										}">
+										<label for="d_state">
+											<small>State</small>
+										</label>
+										<input type="text" name="d_state" id="d_state" class="form-control" required="" placeholder="" formControlName="compState">
+										<div class="form-control-feedback" *ngIf="compState.errors && (compState.dirty || compState.touched)">
+											<p *ngIf="compState.errors.required">State is required</p>
+										</div>
+									</div>
+
+
+									<div class="col-xs-12 custom-form-1" [ngClass]="{
 										'has-danger': compCountry.invalid && (compCountry.dirty || compCountry.touched),
 										'has-success': compCountry.valid && (compCountry.dirty || compCountry.touched)
 										}">
@@ -67,6 +81,7 @@
 										</div>
 									</div>
 
+									
 									<div class="col-xs-12 custom-form-1" [ngClass]="{
 										'has-danger': compZipCode.invalid && (compZipCode.dirty || compZipCode.touched),
 										'has-success': compZipCode.valid && (compZipCode.dirty || compZipCode.touched)
@@ -79,6 +94,8 @@
 											<p *ngIf="compZipCode.errors.required">ZIP Code is required</p>
 										</div>
 									</div>
+
+
 								</div>
 
 								<!-- <div class="form-group">
@@ -147,17 +164,12 @@
 										</div>
 									</div>
 
-									<div class="col-xs-12 custom-form-1" [ngClass]="{
-										'has-danger': dumpStrDetails.invalid && (dumpStrDetails.dirty || dumpStrDetails.touched),
-										'has-success': dumpStrDetails.valid && (dumpStrDetails.dirty || dumpStrDetails.touched)
-										}">
+									<div class="col-xs-12 custom-form-1">
 										<label for="d_street_address_d">
-											<small>Street Address Details</small>
+											<small>Street Address Details (Optional)</small>
 										</label>
-										<input type="text" name="d_street_address_d" id="d_street_address_d" class="form-control" required="" placeholder="" formControlName="dumpStrDetails">
-										<div class="form-control-feedback" *ngIf="dumpStrDetails.errors && (dumpStrDetails.dirty || dumpStrDetails.touched)">
-											<p *ngIf="dumpStrDetails.errors.required">Street Address Details is required</p>
-										</div>
+										<input type="text" name="d_street_address_d" id="d_street_address_d" class="form-control" required="false" placeholder="" formControlName="dumpStrDetails">
+									
 									</div>
 
 									<div class="col-xs-12 custom-form-1" [ngClass]="{
@@ -185,6 +197,8 @@
 											<p *ngIf="dumpZipCode.errors.required">ZIP Code is required</p>
 										</div>
 									</div>
+
+									
 
 								</div>
 
@@ -309,13 +323,16 @@
 
 							<div class="col-sm-12 col-md-9 col-lg-9 text-right">
 								<br>
-								<button type="submit" class="btn btn-primary col-md-6 col-lg-6 push-right">Save Dump Site Account</button>
+								<button type="submit" class="btn btn-primary col-md-6 col-lg-6 push-right">Create Account</button>
 								<br>
 							</div>
 
 						</div>
 
 					</form>
+
+					<!-- <map />  -->
+
 				</div>
 			</div>
 		</div>

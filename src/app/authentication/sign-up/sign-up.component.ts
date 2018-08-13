@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { FormGroup, FormControl, Validators, MinLengthValidator } from '@angular/forms';
 
 // import routes
@@ -32,6 +32,8 @@ export class SignUpComponent implements OnInit {
 	dumpStrDetails: FormControl;
 	dumpCity: FormControl;
 	dumpZipCode: FormControl;
+	compState: FormControl;
+	
 	//  dumpLatitude:FormControl;
 	//  dumpLongitude:FormControl;
 	dumpSitePhone: FormControl;
@@ -45,13 +47,12 @@ export class SignUpComponent implements OnInit {
 
 	constructor(
 		public router: Router,
-		private apiServices: ApiServicesService,
+		public apiServices: ApiServicesService,
 	) { }
 
 	ngOnInit() {
 		this.createFormControls();
 		this.createForm();
-
 	}
 
 	createFormControls() {
@@ -65,9 +66,10 @@ export class SignUpComponent implements OnInit {
 
 		this.dumpSiteName = new FormControl('', [Validators.required, Validators.minLength(1)]);
 		this.dumpStrAddress = new FormControl('', [Validators.required, Validators.minLength(1)]);
-		this.dumpStrDetails = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.dumpStrDetails = new FormControl(null);
 		this.dumpCity = new FormControl('', [Validators.required, Validators.minLength(1)]);
 		this.dumpZipCode = new FormControl('', [Validators.required, Validators.minLength(1)]);
+		this.compState = new FormControl('', [Validators.required, Validators.minLength(1)]);
 		// this.dumpLatitude = new FormControl('', [Validators.required, Validators.minLength(1)]);
 		// this.dumpLongitude = new FormControl('', [Validators.required, Validators.minLength(1)]);
 		this.dumpSitePhone = new FormControl('', [Validators.required, Validators.minLength(1)]);
@@ -87,6 +89,8 @@ export class SignUpComponent implements OnInit {
 			compStrAddress: this.compStrAddress,
 			compCity: this.compCity,
 			compZipCode: this.compZipCode,
+			compState: this.compState,
+
 			// compLatitude: this.compLatitude,
 			// compLongitude: this.compLongitude,
 
@@ -135,10 +139,16 @@ export class SignUpComponent implements OnInit {
 			let dumpSiteLongi = 0;
 
 			let dumpCompanyAddress = this.myForm.value.compStrAddress + " " + this.myForm.value.compCity + " " + this.myForm.value.compCountry;
-			console.log("geocode this address: " + dumpCompanyAddress);
+			console.log("geocode this company address: " + dumpCompanyAddress);
 
-			let dumpSiteAddress = this.myForm.value.dumpStrAddress + " " + this.myForm.value.dumpStrDetails + " " + this.myForm.value.dumpCity;
-			console.log("geocode this address: " + dumpSiteAddress);
+			let dumpSiteAddress;
+
+			if(this.myForm.value.dumpStrDetails != null && this.myForm.value.dumpStrDetails.length > 0){
+				dumpSiteAddress = this.myForm.value.dumpStrAddress + " " + this.myForm.value.dumpStrDetails + " " + this.myForm.value.dumpCity;
+			}else{
+				dumpSiteAddress = this.myForm.value.dumpStrAddress + " " + this.myForm.value.dumpCity;
+			}
+			console.log("geocode this dump site address: " + dumpSiteAddress);
 
 			this.apiServices.geocode(dumpCompanyAddress).subscribe(
 				(res: any) => {
@@ -157,24 +167,88 @@ export class SignUpComponent implements OnInit {
 						console.log("dumpCompanyLat: " + dumpCompanyLat);
 						console.log("dumpCompanyLongi: " + dumpCompanyLongi);
 
+					
+						 this.sleep(5000);
+
+
+						// dumpSiteLat = 6.9068859;
+						// 			dumpSiteLongi = 79.89514969999999
+
+				
+						// 			console.log("dumpSiteLat: " + dumpSiteLat);
+						// 			console.log("dumpSiteLongi: " + dumpSiteLongi);
+				
+				
+						// 			const data = {
+						// 				dupmCompany: {
+						// 					"companyName": this.myForm.value.compName,
+						// 					"city": this.myForm.value.compCity,
+						// 					"street": this.myForm.value.compStrAddress,
+						// 					"county": this.myForm.value.compCountry,
+						// 					"zipcode": this.myForm.value.compZipCode,
+						// 					"state": this.myForm.value.compState,
+						// 					"longitude": dumpCompanyLongi,
+						// 					"latitude": dumpCompanyLat
+						// 				},
+						// 				dumpSite: [
+						// 					{
+						// 						"name": this.myForm.value.dumpSiteName,
+						// 						"latitude": dumpSiteLat,
+						// 						"longitude": dumpSiteLongi,
+						// 						"city": this.myForm.value.dumpCity,
+						// 						"phone": this.myForm.value.dumpSitePhone,
+						// 						"zipcode": this.myForm.value.dumpZipCode,
+						// 						"street": this.myForm.value.dumpStrAddress,
+						// 						"streetDetails": this.myForm.value.dumpStrDetails
+						// 					}
+						// 				],
+						// 				dumpUser: {
+						// 					"name": this.myForm.value.dumpuserName,
+						// 					"email": this.myForm.value.email,
+						// 					"phoneNumber": this.myForm.value.userPhone,
+						// 					"user": {
+						// 						"username": this.myForm.value.userName,
+						// 						"password": this.myForm.value.password
+						// 					}
+						// 				}
+						// 			}
+				
+						// 			console.log(data);
+				
+						// 			//call server 
+						// 			this.apiServices.signUp(data).subscribe(
+						// 				(res: any) => {
+						// 					if (res.status == "successful") {
+						// 						this.apiServices.altScc('successfully created a dump site', this.goToLogin());
+						// 					}
+						// 				},
+				
+						// 				err => {
+						// 					console.log(err);
+						// 				}
+						// 			)
+
 						this.apiServices.geocode(dumpSiteAddress).subscribe(
 							(res: any) => {
 								if (res.status == "OK") {
-
+				
 									let results = res.results[0];
-
+				
 									console.log("results: " + results);
-
+				
 									let geometry = results.geometry;
 									let location = geometry.location;
-
+				
 									dumpSiteLat = location.lat;
 									dumpSiteLongi = location.lng;
 
+							
+
+				
 									console.log("dumpSiteLat: " + dumpSiteLat);
 									console.log("dumpSiteLongi: " + dumpSiteLongi);
-
-
+				
+				
 									const data = {
 										dupmCompany: {
 											"companyName": this.myForm.value.compName,
@@ -182,6 +256,7 @@ export class SignUpComponent implements OnInit {
 											"street": this.myForm.value.compStrAddress,
 											"county": this.myForm.value.compCountry,
 											"zipcode": this.myForm.value.compZipCode,
+											"state": this.myForm.value.compState,
 											"longitude": dumpCompanyLongi,
 											"latitude": dumpCompanyLat
 										},
@@ -207,9 +282,9 @@ export class SignUpComponent implements OnInit {
 											}
 										}
 									}
-
+				
 									console.log(data);
-
+				
 									//call server 
 									this.apiServices.signUp(data).subscribe(
 										(res: any) => {
@@ -217,7 +292,7 @@ export class SignUpComponent implements OnInit {
 												this.apiServices.altScc('successfully created a dump site', this.goToLogin());
 											}
 										},
-
+				
 										err => {
 											console.log(err);
 										}
@@ -225,17 +300,20 @@ export class SignUpComponent implements OnInit {
 								} else {
 									this.apiServices.altErr('Could not retrieve location of the site address.', null);
 								}
-
+				
 							},
-
+				
 							err => {
 								console.log(err);
 								this.apiServices.altErr('Could not retrieve location of the site address.', null);
-
+				
 							}
 						)
+
 					} else {
 						this.apiServices.altErr('Could not retrieve location of the company address.', null);
+
+						
 					}
 				},
 
@@ -255,8 +333,22 @@ export class SignUpComponent implements OnInit {
 
 	}
 
+	retrieveDumpSiteLatLongiAndCreate(dumpCompanyLat, dumpCompanyLongi, dumpSiteAddress){
+
+		
+
+	}
+
 	goToLogin() {
 		this.router.navigate(['/sign-in']);
 	}
 
+	sleep(milliseconds) {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+		  if ((new Date().getTime() - start) > milliseconds){
+			break;
+		  }
+		}
+	  }
 }
