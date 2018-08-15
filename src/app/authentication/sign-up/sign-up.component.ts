@@ -168,7 +168,7 @@ export class SignUpComponent implements OnInit {
 						console.log("dumpCompanyLongi: " + dumpCompanyLongi);
 
 					
-						 this.sleep(5000);
+						 this.sleep(1000);
 
 
 						// dumpSiteLat = 6.9068859;
