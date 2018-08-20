@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 // import routes
 import { Router } from '@angular/router';
+
+import swal from 'sweetalert2';
+
+
+
 // import api services
 import { ApiServicesService } from '../../../services/api-services/api-services.service';
 
@@ -27,6 +32,9 @@ export class DumpCompaniesComponent implements OnInit {
 	) {
 		this.access_token = localStorage.getItem('access_token')
 	}
+
+
+	
 
 	// on init
 	ngOnInit() {
@@ -131,20 +139,37 @@ export class DumpCompaniesComponent implements OnInit {
 			companyId: id
 		}
 
-		this.apiServices.rejectDumpCompany(data, this.access_token).subscribe(
-			(res: any) => {
-				console.log(res);
-				if ((res.status == "successful") && (res.message == "account_rejected")) {
-					this.apiServices.altScc('Dump Rejected !', this.getDetailsAndCreatTable());
-				}else{
-					this.apiServices.altErr('Could not reject dump. Please try again', null);
-				}
-			},
+		swal({
+            title: 'Confirm!',
+            text: "Are you sure you want to reject this dump?",
+            type: 'warning',
+            showCancelButton: true,
+			confirmButtonText: "Reject",
+			confirmButtonColor:"#FF0000",
+            cancelButtonText: "Cancel",
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.value) {
 
-			err => {
-				console.log(err);
-			}
-		)
+				this.apiServices.rejectDumpCompany(data, this.access_token).subscribe(
+					(res: any) => {
+						console.log(res);
+						if ((res.status == "successful") && (res.message == "account_rejected")) {
+							this.apiServices.altScc('Dump Rejected !', this.getDetailsAndCreatTable());
+						}else{
+							this.apiServices.altErr('Could not reject dump. Please try again', null);
+						}
+					},
+		
+					err => {
+						console.log(err);
+					}
+				)
+               
+            }
+        })
+
+		
 	}
 
 	getDetailsAndCreatTable() {
