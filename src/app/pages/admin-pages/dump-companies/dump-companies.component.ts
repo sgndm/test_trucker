@@ -125,6 +125,28 @@ export class DumpCompaniesComponent implements OnInit {
 		)
 	}
 
+	// reject company request
+	onRejectCompany(id) {
+		const data = {
+			companyId: id
+		}
+
+		this.apiServices.rejectDumpCompany(data, this.access_token).subscribe(
+			(res: any) => {
+				console.log(res);
+				if ((res.status == "successful") && (res.message == "account_rejected")) {
+					this.apiServices.altScc('Dump Rejected !', this.getDetailsAndCreatTable());
+				}else{
+					this.apiServices.altErr('Could not reject dump. Please try again', null);
+				}
+			},
+
+			err => {
+				console.log(err);
+			}
+		)
+	}
+
 	getDetailsAndCreatTable() {
 		this.apiServices.getDumpCompanies(this.access_token).subscribe(
 			(res: any) => {

@@ -96,6 +96,12 @@ label {
   color: white;
 }
 
+.cus-lb2 {
+  width: 100%;
+  text-align: center;
+  color: rgb(31, 31, 31);
+}
+
 .event-lbl-cus {
   width: 70px;
   height: 70px;
@@ -103,6 +109,11 @@ label {
 
 .cus-btn-1 {
   width: 100%;
+}
+
+.cus-btn-2 {
+  width: 100%;
+  margin-top: 5px;
 }
 
 
@@ -131,5 +142,8 @@ tr.custom-table-1 td {
   width: 50%;
   cursor: pointer;
 }
+
+ 
+
 
 

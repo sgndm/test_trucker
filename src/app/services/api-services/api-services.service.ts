@@ -177,6 +177,17 @@ export class ApiServicesService {
 		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
 	}
 
+	// block dump company 
+	rejectDumpCompany(data, token) {
+		const formData: FormData = new FormData();
+		formData.append('dump_user_id', data.companyId);
+
+		const url = SERVER_URL + 'admin/dumpaccount/reject';
+		return this.http.post(url, formData, { headers: { 'X-AUTH-TOKEN': token } });
+	}
+
+
+
 	// get company details
 	getCompanyDetailsById(data, token) {
 		const url = SERVER_URL + 'admin/dumpaccount/view';
