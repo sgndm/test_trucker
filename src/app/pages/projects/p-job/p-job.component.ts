@@ -95,6 +95,8 @@ export class PJobComponent implements OnInit {
 				console.log(res);
 				if (res.status == "successful") {
 
+					console.log("getProjectDetails: " + res);
+
 					let jobDetails = res.job_details;
 
 					this.company_name = jobDetails.job.jobName;
