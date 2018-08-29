@@ -25,6 +25,7 @@ export class PJobComponent implements OnInit {
 	public d_location: string = '';
 	public j_material: string = '';
 	public c_price: string = '';
+	public p_load: string = '';
 	public t_fees: string = '';
 	public n_loads: number;
 	public n_trucks: number;
@@ -112,7 +113,9 @@ export class PJobComponent implements OnInit {
 					this.e_time = jobEndTime;
 					this.d_location = jobDetails.job.jobEndpoint.endpointAddress;
 					this.j_material = jobDetails.job.material.type;
-					this.c_price = '';
+					this.c_price =  res.job_details.currentPrice;
+					this.p_load =  res.job_details.pricePerLoad;
+
 					this.t_fees = jobDetails.job.jobPayment.amount;
 					
 
