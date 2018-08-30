@@ -168,9 +168,10 @@ export class LoaderJobComponent implements OnInit {
 					truckerCount = res.job_details.numberOfTrucks;
 					
 					// trucking details
-					this.n_loads = res.job_details.numberOfLoads;
-					this.n_trucks =  res.job_details.numberOfTrucks;
-					this.av_ld_truck = (loadCount / truckerCount);
+					this.n_loads = jobDetails.numberOfLoads;
+					this.n_trucks = jobDetails.numberOfTrucks;
+					this.av_ld_truck = jobDetails.averageLoadsPerTruck;
+
 
 				}
 			},

@@ -127,12 +127,23 @@ export class PJobComponent implements OnInit {
 
 					for(let temptrukers of driverActivityList) {
 
+						
 						truckerCount += 1;
+
+						
 
 						let times = [];
 						let turns = 0;
 
 						for(let trucker of temptrukers){
+
+							let jobStatus = trucker.jobStatus;
+							console.log("getProjectDetails jobStatus: " + jobStatus);
+
+							if(jobStatus != 'DRIVER_AT_THE_DUMP') {
+								continue;
+							}
+
 							turns += 1;
 							loadCount += 1;
 
@@ -151,10 +162,12 @@ export class PJobComponent implements OnInit {
 	
 					}
 
-					// trucking details
-					this.n_loads = loadCount;
-					this.n_trucks = truckerCount;
-					this.av_ld_truck = (loadCount / truckerCount);
+				// 	// trucking details
+
+
+					this.n_loads = jobDetails.numberOfLoads;
+					this.n_trucks = jobDetails.numberOfTrucks;
+					this.av_ld_truck = jobDetails.averageLoadsPerTruck;
 					
 				}
 			},
